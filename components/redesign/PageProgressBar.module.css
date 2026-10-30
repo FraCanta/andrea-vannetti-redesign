@@ -1,0 +1,25 @@
+.track {
+  position: fixed;
+  z-index: 105;
+  top: calc(78px + env(safe-area-inset-top));
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: var(--home-border);
+  pointer-events: none;
+}
+
+.fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--home-lime);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+@media (max-width: 560px) {
+  .track {
+    top: calc(68px + env(safe-area-inset-top));
+  }
+}

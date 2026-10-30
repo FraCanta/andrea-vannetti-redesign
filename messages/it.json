@@ -1,0 +1,642 @@
+{
+  "Nav": {
+    "links": {
+      "home": "Home",
+      "projects": "Progetti",
+      "services": "Servizi",
+      "about": "Chi Sono",
+      "contact": "Contatti"
+    },
+    "cta": "Parliamo",
+    "whatsapp": "Contattami su WhatsApp",
+    "toggleMenu": "Apri o chiudi il menu"
+  },
+  "SiteNav": {
+    "homeLabel": "Andrea Vannetti — homepage",
+    "openMenu": "Apri la navigazione",
+    "closeMenu": "Chiudi la navigazione",
+    "menuLabel": "Navigazione principale",
+    "switchLanguage": "Passa alla lingua {locale}",
+    "conversionLabel": "Contatti e collaborazioni",
+    "projectCta": "Raccontami il tuo progetto",
+    "collaborationEyebrow": "Collaboriamo?",
+    "collaborationDescription": "Sei un'agenzia, uno studio creativo o un freelance? Mettiamo insieme le competenze per dare forma a nuovi progetti.",
+    "collaborationHint": "Per agenzie e professionisti · scrivimi tramite Contatti",
+    "contactCta": "Parliamo del progetto",
+    "collaborationCta": "Proponi una collaborazione",
+    "links": {
+      "home": "Home",
+      "projects": "Progetti",
+      "services": "Servizi",
+      "about": "Chi sono",
+      "collaborations": "Collaborazioni",
+      "contact": "Contatti"
+    },
+    "theme": {
+      "label": "Tema del sito",
+      "light": "Tema chiaro",
+      "dark": "Tema scuro",
+      "system": "Segui il tema del sistema"
+    }
+  },
+  "HomeRedesign": {
+    "role": "WEB DESIGNER & DEVELOPER FREELANCE",
+    "titleFirst": "Oltre la",
+    "titleSecond": "superficie",
+    "value": "Un buon progetto comincia prima del codice.",
+    "description": "Progetto e sviluppo siti web su misura per aziende e professionisti. Il confronto non finisce dopo il primo incontro: continua attraverso scelte condivise e anteprime durante lo sviluppo.",
+    "projectCta": "Raccontami il tuo progetto",
+    "collaborationCta": "Proponi una collaborazione",
+    "scroll": "Il metodo, sotto la superficie",
+    "methodEyebrow": "Il metodo",
+    "methodTitle": "Il lavoro dietro l’interfaccia.",
+    "methodIntro": "Un processo condiviso, dal primo confronto al lancio e al supporto concordato.",
+    "steps": {
+      "1": {
+        "title": "Ascolto e analisi",
+        "body": "Il confronto chiarisce esigenze e obiettivi; l’analisi orienta la proposta."
+      },
+      "2": {
+        "title": "Progettazione",
+        "body": "Wireframe e prototipi vengono rivisti insieme prima dello sviluppo."
+      },
+      "3": {
+        "title": "Sviluppo",
+        "body": "Il sito viene realizzato con le tecnologie concordate per il progetto."
+      },
+      "4": {
+        "title": "Preview e confronto",
+        "body": "Anteprime condivise durante lo sviluppo permettono di raccogliere feedback."
+      },
+      "5": {
+        "title": "Lancio e supporto",
+        "body": "Dopo test e pubblicazione, formazione e supporto successivo vengono concordati."
+      }
+    },
+    "services": {
+      "eyebrow": "Servizi",
+      "title": "Dare forma alle esigenze.",
+      "intro": "Competenze diverse, scelte in base al progetto e alle persone che lo useranno.",
+      "indexLabel": "Indice dei servizi",
+      "detailLabel": "Approfondimento",
+      "cta": "Esplora i servizi"
+    },
+    "about": {
+      "eyebrow": "Chi è Andrea",
+      "statement": "Il progetto si costruisce insieme.",
+      "cta": "Conosci Andrea"
+    },
+    "blog": {
+      "eyebrow": "Blog",
+      "title": "Uno spazio per approfondire.",
+      "intro": "Approfondimenti su sviluppo web, architettura, UI/UX e performance: quattro temi che attraversano la progettazione di un sito.",
+      "status": "In preparazione",
+      "published": "Pubblicato",
+      "article1": {
+        "category": "Sviluppo web",
+        "title": "Dal codice all'esperienza: cosa rende efficace un sito",
+        "excerpt": "Un sito web non è soltanto codice che funziona. Struttura, interazioni e attenzione ai dettagli contribuiscono a costruire un'esperienza realmente efficace.",
+        "imageAlt": "Illustrazione editoriale di codice e wireframe di un'interfaccia web"
+      },
+      "article2": {
+        "category": "Architettura web",
+        "title": "Headless e architetture web: scegliere la struttura giusta",
+        "excerpt": "Separare frontend e gestione dei contenuti apre nuove possibilità. Ma quando conviene davvero scegliere un'architettura headless?",
+        "imageAlt": "Schema illustrato di un'architettura web con servizi e dispositivi connessi"
+      },
+      "article3": {
+        "category": "UI/UX design",
+        "title": "Design system: coerenza senza perdere identità",
+        "excerpt": "Componenti, regole visive e interazioni condivise aiutano a costruire interfacce coerenti, mantenendo la personalità del progetto.",
+        "imageAlt": "Composizione grafica ispirata a un design system e a componenti d'interfaccia"
+      },
+      "article4": {
+        "category": "Performance",
+        "title": "Performance web: la velocità è parte del progetto",
+        "excerpt": "Caricamento, stabilità e reattività influenzano il modo in cui le persone utilizzano un sito. Le performance sono parte dell'esperienza.",
+        "imageAlt": "Illustrazione di indicatori e andamento delle performance web"
+      }
+    },
+    "contact": {
+      "eyebrow": "Il prossimo passo",
+      "title": "Da dove cominciamo?",
+      "intro": "Un primo confronto aiuta a capire esigenze, obiettivi e il modo giusto di lavorare insieme.",
+      "project": "Raccontami il tuo progetto",
+      "projectText": "Per aziende e professionisti che vogliono sviluppare un progetto web.",
+      "collaboration": "Proponi una collaborazione",
+      "collaborationText": "Per agenzie, studi creativi e freelance interessati a lavorare insieme."
+    }
+  },
+  "Home": {
+    "hero": {
+      "badge": "Disponibile per nuovi progetti",
+      "title": "Oltre la <highlight>superficie</highlight>",
+      "subtitle": "Al tuo fianco per trasformare idee in progetti web d'impatto. Dal primo wireframe al lancio online, senza lasciarti mai solo.",
+      "ctaProjects": "Vedi i Progetti",
+      "ctaContact": "Contattami",
+      "scroll": "Scroll"
+    },
+    "stack": {
+      "ariaLabel": "Tecnologie utilizzate"
+    },
+    "services": {
+      "eyebrow": "Servizi",
+      "title": "Cosa faccio",
+      "all": "Tutti i servizi",
+      "more": "Scopri di più",
+      "items": {
+        "webDev": {
+          "title": "Sviluppo Web",
+          "description": "Siti web custom con React, Next.js e WordPress. Veloci, responsive e ottimizzati per ogni dispositivo."
+        },
+        "seo": {
+          "title": "SEO & Performance",
+          "description": "Ottimizzazione tecnica e contenutistica per posizionarti su Google e farti trovare dai tuoi clienti."
+        },
+        "ecommerce": {
+          "title": "E-Commerce",
+          "description": "Negozi online con WooCommerce o soluzioni headless. Pagamenti sicuri, gestione prodotti semplificata."
+        },
+        "wordpress": {
+          "title": "WordPress",
+          "description": "Temi custom e headless CMS. La flessibilità di WordPress con le prestazioni di un frontend moderno."
+        }
+      }
+    },
+    "featured": {
+      "eyebrow": "In Evidenza",
+      "title": "Caso Studio",
+      "imageAlt": "Homepage del sito Radici in Chianti",
+      "description": "Sito web per un'associazione di promozione sociale nel territorio del Chianti e Gaiole. Gestione eventi, network di partner locali e percorsi escursionistici con tracce GPX.",
+      "challengeLabel": "La sfida principale",
+      "challenge": "Costruire una mappa interattiva custom con Leaflet, clustering dinamico, filtri per categoria, tracce GPX con profili altimetrici e una UX fluida su ogni dispositivo.",
+      "features": {
+        "map": "Mappa Interattiva Custom",
+        "events": "Gestione Eventi",
+        "partners": "Network Partner",
+        "trails": "Percorsi Escursionistici"
+      },
+      "cta": "Vedi il progetto"
+    },
+    "cta": {
+      "titleLine1": "Creiamo qualcosa",
+      "titleHighlight": "insieme",
+      "text": "Hai un progetto in mente? Parliamone. Il primo passo è sempre una conversazione.",
+      "button": "Iniziamo"
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "Chi sono — Sviluppatore web nel Chianti",
+      "description": "Sono Andrea Vannetti, sviluppatore web freelance nel Chianti, tra Siena e Firenze. Realizzo siti, e-commerce e web app su misura in tutta Italia."
+    },
+    "eyebrow": "Chi Sono",
+    "bio": {
+      "p1": "Sono uno sviluppatore web freelance con base nel Chianti, tra Siena e Firenze. Lavoro con attività in tutta la Toscana e in Italia: aiuto ristoranti, agriturismi, B&B e piccole-medie imprese a costruire una presenza digitale che funziona davvero.",
+      "p2": "Il mio lavoro non è solo scrivere codice — è capire le tue esigenze, tradurle in un progetto concreto e accompagnarti fino al risultato. Ogni sito che creo è pensato per essere veloce, trovabile su Google e semplice da gestire.",
+      "p3": "Lavoro con tecnologie moderne come React, Next.js, WordPress e Tailwind CSS. Ma la tecnologia è solo uno strumento: quello che conta è il risultato che porta alla tua attività."
+    },
+    "photoAlt": "Andrea Vannetti — Sviluppatore Web",
+    "principles": {
+      "eyebrow": "Principi",
+      "title": "In cosa <highlight>credo</highlight>",
+      "items": {
+        "code": {
+          "title": "Codice pulito, risultati concreti",
+          "description": "Non scrivo codice per impressionare altri sviluppatori. Scrivo codice che funziona, che è veloce e che porta risultati al tuo business."
+        },
+        "communication": {
+          "title": "Comunicazione diretta",
+          "description": "Niente gergo tecnico inutile. Ti spiego tutto in modo chiaro e ti tengo aggiornato in ogni fase, senza sorprese."
+        },
+        "local": {
+          "title": "Radicato nel territorio",
+          "description": "Vivo e lavoro nel Chianti. Conosco il territorio, le sue attività e le sfide di chi fa impresa qui. Non sono un'agenzia anonima."
+        },
+        "support": {
+          "title": "Dopo il lancio, ci sono ancora",
+          "description": "Un sito non finisce con la messa online. Offro supporto continuativo, aggiornamenti e ottimizzazioni perché il tuo investimento cresca nel tempo."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ti piace come lavoro?",
+      "text": "Parliamo del tuo progetto.",
+      "button": "Scrivimi, non mordo."
+    }
+  },
+  "Services": {
+    "meta": {
+      "title": "Siti web, e-commerce e SEO in Toscana",
+      "description": "Realizzazione siti web, e-commerce, WordPress e SEO per aziende e professionisti a Siena, Firenze e in tutta Italia."
+    },
+    "hero": {
+      "title": "Quello che so fare, <highlight>fatto bene</highlight>",
+      "text": "Ogni progetto è diverso, ma il mio approccio è sempre lo stesso: ascoltare, progettare e costruire qualcosa che funziona davvero."
+    },
+    "problems": {
+      "title": "Quali problemi <highlight>risolvo</highlight>",
+      "items": {
+        "seo": {
+          "problem": "Nessuno ti trova su Google",
+          "solution": "Costruisco siti ottimizzati SEO dalla base, con struttura semantica, velocità e contenuti pensati per posizionarti."
+        },
+        "mobile": {
+          "problem": "Il tuo sito non funziona da mobile",
+          "solution": "Progetto mobile-first: ogni elemento è pensato per funzionare perfettamente su qualsiasi schermo."
+        },
+        "speed": {
+          "problem": "Il sito è lento e i clienti se ne vanno",
+          "solution": "Uso tecnologie moderne e ottimizzazione delle performance per tempi di caricamento sotto i 2 secondi."
+        },
+        "start": {
+          "problem": "Non sai da dove iniziare",
+          "solution": "Ti guido passo dopo passo, dalla strategia al lancio. Non devi sapere nulla di tecnico, ci penso io."
+        },
+        "security": {
+          "problem": "Hai un sito vecchio e non sicuro",
+          "solution": "Migro il tuo sito su tecnologie aggiornate, con HTTPS, backup e manutenzione continua."
+        },
+        "ecommerce": {
+          "problem": "Vuoi vendere online ma non sai come",
+          "solution": "Creo e-commerce semplici da gestire, con pagamenti sicuri e un catalogo prodotti chiaro per i tuoi clienti."
+        }
+      }
+    },
+    "details": {
+      "title": "Servizi nel <highlight>dettaglio</highlight>",
+      "includes": "Cosa include",
+      "items": {
+        "web-dev": {
+          "title": "Sviluppo Web",
+          "subtitle": "Siti veloci, moderni e su misura",
+          "description": "Creo siti web custom con le tecnologie più performanti: React, Next.js, Vite. Ogni progetto è responsive, accessibile e costruito per durare. Niente template, niente compromessi.",
+          "features": [
+            "Siti vetrina e istituzionali",
+            "Landing page ad alta conversione",
+            "Web app interattive",
+            "Performance ottimizzata (Core Web Vitals)",
+            "Design responsive su ogni dispositivo"
+          ]
+        },
+        "wordpress": {
+          "title": "WordPress",
+          "subtitle": "Flessibilità e autonomia nella gestione",
+          "description": "WordPress resta il CMS più diffuso al mondo, e per buone ragioni. Lo uso sia in versione classica che headless, collegandolo a frontend moderni in React per unire facilità di gestione e prestazioni.",
+          "features": [
+            "Temi custom da zero",
+            "WordPress headless + React",
+            "ACF e custom post types",
+            "Migrazione da altri CMS",
+            "Formazione per gestione autonoma"
+          ]
+        },
+        "ecommerce": {
+          "title": "E-Commerce",
+          "subtitle": "Vendi online senza complicazioni",
+          "description": "Negozi online pensati per vendere davvero: catalogo prodotti chiaro, checkout veloce, pagamenti sicuri. Con WooCommerce o soluzioni headless, a seconda delle tue esigenze.",
+          "features": [
+            "WooCommerce personalizzato",
+            "Configurazione pagamenti e spedizioni",
+            "Catalogo prodotti ottimizzato",
+            "Integrazione con gestionali",
+            "Dashboard vendite e analytics"
+          ]
+        },
+        "seo": {
+          "title": "SEO & Performance",
+          "subtitle": "Fatti trovare su Google",
+          "description": "Un sito bello ma invisibile non serve a nulla. Ottimizzo ogni progetto per i motori di ricerca: struttura tecnica, velocità, contenuti e meta tag. Per farti trovare da chi ti cerca.",
+          "features": [
+            "Ottimizzazione tecnica on-page",
+            "Struttura semantica HTML",
+            "Meta tag e Open Graph",
+            "Sitemap e robots.txt",
+            "Monitoraggio con Search Console"
+          ]
+        },
+        "design": {
+          "title": "UI/UX Design",
+          "subtitle": "Interfacce che guidano l'utente",
+          "description": "Progetto l'esperienza utente prima ancora di scrivere codice. Wireframe, prototipi e design system per assicurarmi che il sito non sia solo bello, ma funzionale e intuitivo.",
+          "features": [
+            "Wireframe e prototipi interattivi",
+            "Design system coerente",
+            "User experience research",
+            "Responsive design mobile-first",
+            "Collaborazione su Figma"
+          ]
+        },
+        "consulenza": {
+          "title": "Consulenza Digitale",
+          "subtitle": "Strategia prima della tecnologia",
+          "description": "Non tutti hanno bisogno di un sito nuovo. A volte serve capire cosa non funziona, dove investire e come muoversi online. Ti aiuto a fare scelte consapevoli sulla tua presenza digitale.",
+          "features": [
+            "Audit del sito esistente",
+            "Strategia digitale su misura",
+            "Scelta degli strumenti giusti",
+            "Analisi della concorrenza",
+            "Pianificazione budget e priorità"
+          ]
+        }
+      }
+    },
+    "workflow": {
+      "eyebrow": "Processo",
+      "title": "Come <highlight>lavoro</highlight>",
+      "text": "Dal primo contatto al supporto post-lancio, ogni fase è trasparente.",
+      "items": {
+        "contact": {
+          "title": "Primo contatto",
+          "description": "Ci conosciamo con una call o un caffè. Mi racconti la tua attività, i tuoi obiettivi e le tue esigenze. Io ascolto e prendo appunti."
+        },
+        "analysis": {
+          "title": "Analisi e proposta",
+          "description": "Studio il tuo settore, la concorrenza e le opportunità. Ti presento una proposta chiara con tempi, costi e deliverable definiti."
+        },
+        "design": {
+          "title": "Design e prototipi",
+          "description": "Progetto wireframe e mockup del sito. Li rivediamo insieme e li iteriamo finché non sei soddisfatto, prima di scrivere una riga di codice."
+        },
+        "development": {
+          "title": "Sviluppo",
+          "description": "Costruisco il sito con le tecnologie concordate. Ti tengo aggiornato con anteprime regolari e raccolgo il tuo feedback in corso d'opera."
+        },
+        "launch": {
+          "title": "Lancio",
+          "description": "Test finali, ottimizzazione performance e SEO, configurazione hosting e dominio. Il sito va online e ti formo sulla gestione autonoma."
+        },
+        "support": {
+          "title": "Supporto post-lancio",
+          "description": "Non sparisco dopo la consegna. Resto disponibile per aggiornamenti, correzioni e miglioramenti. Il sito cresce con la tua attività."
+        }
+      }
+    },
+    "faq": {
+      "title": "Domande <highlight>frequenti</highlight>",
+      "items": [
+        {
+          "q": "Quanto costa un sito web?",
+          "a": "Dipende dalla complessità del progetto. Un sito vetrina parte da circa 1.000€, un e-commerce o un progetto con funzionalità custom può salire. Ti faccio sempre un preventivo chiaro e dettagliato prima di iniziare."
+        },
+        {
+          "q": "Quanto tempo ci vuole?",
+          "a": "Un sito vetrina richiede in media 2-4 settimane. Progetti più complessi come e-commerce o applicazioni web possono richiedere 4-6 settimane. I tempi dipendono anche dalla velocità nel ricevere contenuti e feedback."
+        },
+        {
+          "q": "Lavori solo con attività del Chianti?",
+          "a": "No, lavoro con clienti in tutta Italia, anche da remoto. Nelle province di Siena e Firenze posso incontrarti di persona. Il Chianti è casa mia, e per le attività locali posso offrire un valore aggiunto: conosco il territorio, il pubblico e le dinamiche di chi lavora qui."
+        },
+        {
+          "q": "Posso aggiornare il sito da solo dopo la consegna?",
+          "a": "Assolutamente sì. Se il progetto lo richiede, uso WordPress come CMS così puoi gestire contenuti, immagini e testi in autonomia. Ti faccio anche una breve formazione per partire sicuro."
+        },
+        {
+          "q": "Cosa succede dopo il lancio?",
+          "a": "Non sparisco. Offro supporto post-lancio per correzioni, aggiornamenti e ottimizzazioni. Possiamo anche concordare un piano di manutenzione mensile se preferisci avere assistenza continuativa."
+        },
+        {
+          "q": "Fai anche SEO?",
+          "a": "Ogni sito che costruisco è ottimizzato SEO di base: struttura semantica, velocità, meta tag, sitemap. Per strategie SEO avanzate e campagne di posizionamento, possiamo valutare un percorso dedicato."
+        },
+        {
+          "q": "Che tecnologie usi?",
+          "a": "Principalmente React, Next.js, TypeScript, MaterialUI e WordPress (anche headless). La scelta tecnologica dipende dal progetto — uso sempre lo strumento più adatto, non il più di moda."
+        },
+        {
+          "q": "Serve un contratto?",
+          "a": "Sì, lavoro sempre con un preventivo scritto e accettato che definisce scope, tempi, costi e modalità di pagamento. Chiarezza fin dall'inizio, per entrambi."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Hai trovato quello che cercavi?",
+      "text": "Raccontami il tuo progetto e troviamo insieme la soluzione giusta.",
+      "button": "Parliamone"
+    }
+  },
+  "Projects": {
+    "meta": {
+      "title": "Siti web realizzati in Chianti e Toscana",
+      "description": "Portfolio di siti per cantine, agriturismi, associazioni e studi tecnici tra Siena e Firenze. Sviluppati con Next.js, React e WordPress."
+    },
+    "hero": {
+      "title": "Lavori <highlight>recenti</highlight>",
+      "text": "Ogni progetto è una storia diversa. Ecco quelli a cui sto lavorando e quelli già online."
+    },
+    "status": {
+      "live": "Live",
+      "inProgress": "In sviluppo"
+    },
+    "featuredLabel": "Progetto in evidenza",
+    "keyFeatures": "Funzionalità chiave",
+    "visit": "Visita il sito",
+    "screenshotAlt": "Screenshot di {title}",
+    "comingSoon": "Presto online",
+    "othersTitle": "Altri <highlight>progetti</highlight>",
+    "items": {
+      "radici": {
+        "subtitle": "Associazione di Promozione Sociale",
+        "description": "Sito web per un'associazione che promuove il territorio del Chianti e Gaiole. Gestione eventi, network di partner locali, percorsi escursionistici con tracce GPX e profili altimetrici. La sfida principale: una mappa interattiva custom con Leaflet, clustering dinamico, filtri per categoria e una UX fluida su ogni dispositivo.",
+        "features": [
+          "Mappa interattiva con Leaflet + clustering",
+          "Custom Post Types (eventi, partner, escursioni, sentieri)",
+          "Tracce GPX con profili altimetrici",
+          "Filtri per categoria e ricerca",
+          "WordPress headless via REST API"
+        ]
+      },
+      "succulentarte": {
+        "subtitle": "Renzo Vannetti — Artigianato con piante succulente",
+        "description": "Sito vetrina per l'attività di mio padre Renzo, che crea composizioni artistiche con piante succulente. Design pulito che mette al centro le creazioni, con galleria fotografica e contatti."
+      },
+      "casanova": {
+        "subtitle": "Azienda Agricola — Gaiole in Chianti",
+        "description": "Sito per un'azienda vinicola nel cuore del Chianti Classico. Racconta la storia della famiglia Rossi, i terreni, il progetto apicoltura e l'offerta di degustazioni e agriturismo. Multilingua italiano/inglese."
+      },
+      "cresta": {
+        "subtitle": "Percorso trekking sul crinale del Chianti",
+        "description": "Sito dedicato al cammino micaelico sul crinale dei Monti del Chianti: 70 km da Castelnuovo Berardenga a Strada in Chianti. Mappa del percorso, tappe, storia e informazioni logistiche per gli escursionisti."
+      },
+      "cantinetta": {
+        "subtitle": "Enoteca a Gaiole in Chianti — Dal 2003",
+        "description": "Sito vetrina per un'enoteca storica nel cuore del Chianti Classico. Architettura headless con WordPress come CMS e Next.js per il frontend. Design system elegante con palette rosso merlot, galleria fotografica con album, pagine vini e prodotti tipici con filtri dinamici."
+      },
+      "glam": {
+        "subtitle": "Wedding & Events — Toscana",
+        "description": "Consulenza SEO e ottimizzazione GEO (Generative Engine Optimization) per un'agenzia di eventi e matrimoni in Toscana. Lavoro su struttura dei contenuti, schema markup e visibilità nelle ricerche AI-assisted.",
+        "label": "Solo SEO/GEO"
+      },
+      "tecnochianti": {
+        "subtitle": "Studio tecnico di architettura e ingegneria — Radda in Chianti",
+        "description": "Sito portfolio per uno studio tecnico che riunisce tre professionisti tra architettura e impiantistica. Direzione \"architettura tipografica\": titoli serif in grande, immagini protagoniste su fondo chiaro e una palette quasi monocromatica con un accento terracotta. Le anteprime dei lavori passano dal bianco e nero al colore al passaggio del mouse."
+      }
+    },
+    "cta": {
+      "titleLine1": "Il tuo progetto potrebbe",
+      "titleLine2": "essere il <highlight>prossimo</highlight>",
+      "text": "Raccontami la tua idea e la trasformiamo insieme.",
+      "button": "Parliamone"
+    }
+  },
+  "Contact": {
+    "meta": {
+      "title": "Preventivo sito web – Siena e Firenze",
+      "description": "Hai un progetto web in mente? Ti preparo un preventivo su misura: incontro di persona tra Siena e Firenze, da remoto in tutta Italia."
+    },
+    "hero": {
+      "titleHighlight": "Inizia",
+      "titleRest": "tutto da qui.",
+      "text": "Pronto a creare qualcosa che ancora non esiste?"
+    },
+    "links": {
+      "email": "Email",
+      "phone": "Telefono",
+      "whatsapp": "WhatsApp"
+    },
+    "whatsappValue": "Scrivimi su WhatsApp",
+    "call": {
+      "title": "Preferisci una call?",
+      "text": "Prenota 30 minuti per parlare del tuo progetto",
+      "button": "Prenota una call"
+    },
+    "follow": "Seguimi",
+    "review": {
+      "title": "Hai già lavorato con me?",
+      "text": "La tua opinione mi aiuta a crescere e a farmi trovare da nuovi clienti.",
+      "qrAlt": "QR Code per lasciare una recensione Google",
+      "hint": "Scansiona il QR code o clicca il bottone",
+      "button": "Recensione"
+    },
+    "formTitle": "Hai qualcosa da <highlight>chiedermi</highlight>?"
+  },
+  "ContactForm": {
+    "labels": {
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "company": "Azienda",
+      "email": "Email",
+      "channel": "Dove posso contattarti?",
+      "hasSite": "Hai già un sito?",
+      "hasBudget": "Hai un budget?",
+      "message": "Messaggio"
+    },
+    "placeholders": {
+      "firstName": "Il tuo nome",
+      "lastName": "Il tuo cognome",
+      "company": "Nome azienda (opzionale)",
+      "email": "la-tua@email.it",
+      "siteUrl": "https://il-tuo-sito.it",
+      "budget": "Seleziona un range...",
+      "message": "Raccontami il tuo progetto..."
+    },
+    "options": {
+      "email": "Email",
+      "phone": "Telefono",
+      "whatsapp": "WhatsApp",
+      "yes": "Sì",
+      "no": "No",
+      "redo": "Sì, ma va rifatto",
+      "budgetLow": "< 2.000€",
+      "budgetMid": "2.000€ - 5.000€",
+      "budgetHigh": "> 5.000€"
+    },
+    "errors": {
+      "firstName": "Inserisci il tuo nome",
+      "lastName": "Inserisci il tuo cognome",
+      "channel": "Seleziona come contattarti",
+      "emailRequired": "Inserisci la tua email",
+      "emailInvalid": "Email non valida",
+      "phone": "Inserisci il tuo numero",
+      "message": "Scrivi un messaggio",
+      "siteUrl": "Inserisci l'indirizzo del tuo sito",
+      "budget": "Seleziona un range di budget",
+      "privacy": "Devi accettare la privacy policy",
+      "send": "Errore nell'invio. Riprova più tardi.",
+      "network": "Errore di rete. Riprova più tardi."
+    },
+    "privacy": "Ho letto e accetto la <link>Privacy Policy</link>",
+    "submit": "Invia messaggio",
+    "sending": "Invio in corso...",
+    "reset": "Resetta il form",
+    "success": {
+      "title": "Messaggio inviato!",
+      "text": "Grazie per avermi scritto. Ti rispondo entro 24 ore.",
+      "again": "Invia un altro messaggio"
+    }
+  },
+  "Footer": {
+    "taglineLine1": "Sviluppatore web nel Chianti, tra Siena e Firenze.",
+    "taglineLine2": "Creo siti che funzionano, per attività che contano.",
+    "navTitle": "Navigazione",
+    "contactTitle": "Contatti",
+    "links": {
+      "projects": "Progetti",
+      "services": "Servizi",
+      "about": "Chi Sono",
+      "contact": "Contatti",
+      "privacy": "Privacy Policy"
+    },
+    "cookies": "Gestisci Cookie",
+    "vat": "P.IVA 01631290523 | Regime Forfettario",
+    "address": "Sede legale: Gaiole in Chianti (SI) · Operativo a Radda in Chianti",
+    "rights": "© {year} Andrea Vannetti. Tutti i diritti riservati.",
+    "builtWith": "Sviluppato con",
+    "redesign": {
+      "footerLabel": "Informazioni e navigazione del sito",
+      "identityLabel": "Web designer & developer freelance",
+      "description": "Progetto e sviluppo siti web su misura, con confronto diretto e anteprime durante il lavoro.",
+      "servicesLabel": "Servizi",
+      "servicesTitle": "Competenze e soluzioni",
+      "allServices": "Tutti i servizi",
+      "exploreLabel": "Esplora",
+      "exploreTitle": "Navigazione",
+      "legalLabel": "Informazioni",
+      "legalTitle": "Dati e preferenze",
+      "communityLabel": "Social e rete",
+      "socialTitle": "Seguimi e collaboriamo"
+    }
+  },
+  "Cookie": {
+    "title": "Questo sito usa cookie",
+    "text": "Questo sito utilizza cookie di Google Analytics per capire come viene usato e cookie di Google Ads per misurare l'efficacia delle campagne pubblicitarie. Vengono attivati solo se accetti. <link>Leggi la privacy policy</link>",
+    "accept": "Accetta",
+    "reject": "Rifiuta"
+  },
+  "Meta": {
+    "siteTitle": "Andrea Vannetti – Sviluppatore web freelance a Siena e Firenze",
+    "description": "Sviluppatore web freelance nel Chianti, tra Siena e Firenze. Siti web, e-commerce e web app su misura per attività in Toscana e in tutta Italia.",
+    "ogDescription": "Siti web, e-commerce e web app su misura, veloci e ottimizzati SEO. Lavoro con clienti in tutta Italia.",
+    "jobTitle": "Sviluppatore Web Freelance"
+  },
+  "NotFound": {
+    "eyebrow": "Errore 404",
+    "title": "Pagina non trovata",
+    "text": "La pagina che cerchi non esiste o è stata spostata. Capita anche ai siti migliori.",
+    "home": "Torna alla home",
+    "projects": "Vedi i progetti"
+  },
+  "Email": {
+    "subject": "Ho ricevuto il tuo messaggio",
+    "preview": "Grazie per avermi scritto: ti rispondo entro 24 ore.",
+    "greeting": "Grazie, {name}!",
+    "intro": "Ho ricevuto il tuo messaggio e ti risponderò entro 24 ore {channel}.",
+    "channel": {
+      "email": "via email",
+      "phone": "telefonicamente",
+      "whatsapp": "su WhatsApp"
+    },
+    "recapTitle": "Riepilogo della tua richiesta",
+    "labels": {
+      "contact": "Contatto",
+      "site": "Sito attuale",
+      "budget": "Budget",
+      "message": "Messaggio"
+    },
+    "budgetNotSet": "Da definire",
+    "replyHint": "Hai dimenticato qualcosa? Rispondi pure a questa email.",
+    "cta": "Guarda i miei progetti",
+    "role": "Sviluppatore Web — Radda in Chianti, Toscana",
+    "footer": "Ricevi questa email perché hai compilato il modulo di contatto su andreavannetti.dev."
+  }
+}

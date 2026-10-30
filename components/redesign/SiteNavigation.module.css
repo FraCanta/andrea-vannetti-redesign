@@ -1,0 +1,153 @@
+.header {
+  position: fixed;
+  z-index: 100;
+  inset: 0 0 auto;
+  display: flex;
+  height: calc(78px + env(safe-area-inset-top));
+  align-items: center;
+  justify-content: space-between;
+  padding: env(safe-area-inset-top) clamp(1rem, 4vw, 3.75rem) 0;
+  border-bottom: 1px solid var(--home-border);
+  background: color-mix(in srgb, var(--home-bg) 94%, transparent);
+  color: var(--home-fg);
+  font-family: var(--font-mono), monospace;
+  backdrop-filter: blur(8px);
+}
+
+.brand { display: inline-flex; width: 48px; align-items: center; justify-content: center; }
+.brand img { display: block; width: 42px; height: 42px; filter: brightness(0); }
+:global(html[data-theme="dark"]) .brand img { filter: brightness(0) invert(1); }
+.controls { display: flex; align-items: center; gap: clamp(0.5rem, 1.5vw, 1.25rem); }
+.menuToggle {
+  min-height: 42px;
+  border: 1px solid var(--home-border);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.menuToggle { display: inline-flex; min-width: 120px; align-items: center; justify-content: space-between; gap: 0.8rem; padding: 0 0.8rem; background: var(--home-accent); color: var(--home-accent-fg); }
+.themeSelector { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--home-border); }
+.themeSelector button { min-width: 28px; min-height: 30px; border: 0; padding: 0 0.35rem; background: transparent; color: inherit; font: inherit; font-size: 0.68rem; cursor: pointer; }
+.themeSelector button[aria-pressed="true"] { background: var(--home-fg); color: var(--home-bg); }
+.themeSelector button:disabled { cursor: default; }
+.localeButton { display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border: 1px solid var(--home-menu-border); border-radius: 0; background: transparent; color: inherit; font: inherit; font-size: 0.7rem; cursor: pointer; }
+.header .localeButton { border-color: var(--home-border); border-radius: 0; color: var(--home-fg); }
+.desktopLocale { display: inline-flex; align-items: center; justify-content: center; }
+.header :is(a, button):focus-visible, .menu :is(a, button):focus-visible { outline: 3px solid var(--home-accent); outline-offset: 4px; }
+
+.menu {
+  position: fixed;
+  z-index: 110;
+  inset: 0;
+  display: flex;
+  height: 100vh;
+  height: 100svh;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: max(1.1rem, env(safe-area-inset-top)) clamp(1.25rem, 4vw, 4rem) max(1.25rem, env(safe-area-inset-bottom));
+  background: var(--home-menu-bg);
+  color: var(--home-menu-fg);
+}
+.menuMasthead { display: flex; min-height: 58px; align-items: center; justify-content: space-between; gap: 1.25rem; border-bottom: 1px solid var(--home-menu-border); }
+.menuBrand { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; }
+.menuBrand img { width: 42px; height: 42px; filter: brightness(0); }
+:global(html[data-theme="dark"]) .menuBrand img { filter: brightness(0) invert(1); }
+.menuControls { display: flex; align-items: center; gap: clamp(0.5rem, 1.2vw, 1rem); }
+.menuControls .themeSelector { border-color: var(--home-menu-border); }
+.menuControls .themeSelector button[aria-pressed="true"] { background: var(--home-menu-fg); color: var(--home-menu-bg); }
+.menuControls .localeButton { border-color: var(--home-menu-border); color: var(--home-menu-fg); }
+.closeButton { display: inline-flex; min-width: 120px; min-height: 42px; align-items: center; justify-content: space-between; gap: 0.8rem; padding: 0 0.8rem; border: 1px solid var(--home-accent); background: var(--home-accent); color: var(--home-accent-fg); font: inherit; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+.menuBody { display: grid; width: min(100%, 1600px); min-height: 0; flex: 1; grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr); align-items: center; gap: clamp(2.5rem, 7vw, 7rem); margin: 0 auto; padding: 1.5rem 0; }
+.menuLinks { display: grid; align-content: center; }
+.menuItem { border-bottom: 1px solid var(--home-menu-border); }
+.menuItem:first-child { border-top: 1px solid var(--home-menu-border); }
+.menuLinks a { display: grid; min-height: clamp(4rem, 10vh, 6.4rem); grid-template-columns: 3rem 1fr auto; align-items: center; gap: clamp(0.5rem, 1.4vw, 1.4rem); color: inherit; text-decoration: none; transition: color 180ms ease, padding 180ms ease; }
+.menuLinks a:hover { padding-inline: 0.35rem; color: var(--home-menu-accent); }
+.menuIndex { align-self: start; padding-top: 0.7rem; color: var(--home-menu-marker); font-family: var(--font-mono), monospace; font-size: 0.72rem; letter-spacing: 0.08em; }
+.menuLinkLabel { font-family: var(--font-display), sans-serif; font-size: clamp(2.7rem, 5vw, 5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 0.98; }
+.menuLinks svg { width: clamp(1.3rem, 2.5vw, 2rem); color: var(--home-menu-marker); transition: transform 180ms ease; }
+.menuLinks a:hover svg { transform: translate(3px, -3px); }
+.menuConversion { display: grid; gap: clamp(1rem, 2.5vh, 1.6rem); }
+.projectCta, .collaborationCta { display: flex; min-height: 70px; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.3rem; font-family: var(--font-mono), monospace; font-size: clamp(0.72rem, 1vw, 0.85rem); font-weight: 700; letter-spacing: 0.025em; line-height: 1.3; text-decoration: none; text-transform: uppercase; transition: background-color 160ms ease, color 160ms ease, transform 160ms ease; }
+.projectCta { background: var(--home-lime); color: #0a0a0a; }
+.projectCta:hover, .collaborationCta:hover { transform: translateY(-2px); }
+.projectCta svg, .collaborationCta svg { flex: 0 0 auto; }
+.collaborationBlock { padding: clamp(1.2rem, 2.5vw, 2rem); background: var(--home-violet); color: #fff; }
+.collaborationEyebrow { margin: 0 0 0.8rem; color: var(--home-lime); font-family: var(--font-mono), monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; }
+.collaborationDescription { max-width: 34rem; margin: 0; font-family: var(--font-body), sans-serif; font-size: clamp(0.95rem, 1.3vw, 1.15rem); line-height: 1.5; }
+.collaborationCta { min-height: 54px; margin-top: 1.25rem; border: 1px solid rgb(255 255 255 / 72%); color: #fff; }
+
+@media (max-width: 560px) {
+  .header { height: calc(68px + env(safe-area-inset-top)); }
+  .brand, .brand img { width: 38px; height: 38px; }
+  .controls { gap: 0.45rem; }
+  .themeSelector { gap: 0; }
+  .themeSelector button { min-width: 25px; padding-inline: 0.2rem; font-size: 0.6rem; }
+  .menuToggle { min-width: 44px; justify-content: center; padding: 0 0.6rem; }
+  .menuToggle span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .menuLinks a { grid-template-columns: 2rem 1fr auto; font-size: clamp(2.55rem, 11vw, 4rem); }
+  .menuLinks a small { max-width: 20rem; font-size: 0.7rem; }
+  .menuFooter { align-items: stretch; }
+  .projectCta { flex: 1; }
+}
+
+@media (max-width: 900px) {
+  .menu { padding-inline: clamp(1rem, 5vw, 2rem); }
+  .menuBody { display: block; width: 100%; padding: clamp(1.5rem, 3vh, 2rem) 0 0.75rem; }
+  .menuLinks { margin-bottom: 1.5rem; }
+  .menuLinks a { min-height: clamp(3.8rem, 8svh, 4.5rem); grid-template-columns: 2rem 1fr auto; }
+  .menuLinkLabel { font-size: clamp(2.15rem, 6vw, 3.6rem); }
+  .menuIndex { padding-top: 0.55rem; }
+  .menuConversion { gap: 0.85rem; }
+  .projectCta, .collaborationCta { min-height: 52px; }
+  .collaborationBlock { padding: 1.1rem; }
+  .collaborationDescription { font-size: 0.92rem; }
+  .collaborationCta { margin-top: 0.9rem; }
+}
+
+@media (max-width: 560px) {
+  .menu { padding-top: env(safe-area-inset-top); padding-bottom: max(0.8rem, env(safe-area-inset-bottom)); }
+  .menuMasthead { min-height: 68px; }
+  .menuBrand { width: 38px; height: 38px; }
+  .menuBrand img { width: 38px; height: 38px; }
+  .menuControls { gap: 0.35rem; }
+  .menuControls .themeSelector { gap: 0; padding: 2px; }
+  .menuControls .themeSelector button { min-width: 24px; min-height: 28px; padding-inline: 0.15rem; font-size: 0.58rem; }
+  .closeButton { min-width: 44px; min-height: 42px; justify-content: center; padding: 0 0.6rem; }
+  .closeButton span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .menuLinks { margin-bottom: 1.4rem; }
+  .menuLinks a { min-height: clamp(3.8rem, 8svh, 4.5rem); }
+  .menuLinkLabel { font-size: clamp(1.9rem, 8.4vw, 2.7rem); }
+  .menuIndex { padding-top: 0.45rem; font-size: 0.65rem; }
+  .projectCta { min-height: 48px; padding: 0.8rem 0.9rem; }
+  .collaborationBlock { padding: 0.95rem; }
+  .collaborationEyebrow { margin-bottom: 0.5rem; font-size: 0.65rem; }
+  .collaborationDescription { font-size: 0.85rem; line-height: 1.4; }
+  .collaborationCta { min-height: 44px; margin-top: 0.7rem; padding: 0.65rem 0.8rem; font-size: 0.65rem; }
+}
+
+@media (max-height: 760px) and (min-width: 901px) {
+  .menu { padding-block: max(0.65rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-bottom)); }
+  .menuMasthead { min-height: 48px; }
+  .menuBody { gap: 2rem; padding-block: 0.75rem; }
+  .menuLinks a { min-height: 3.5rem; }
+  .menuLinkLabel { font-size: clamp(2.3rem, 4.4vw, 4rem); }
+  .projectCta { min-height: 56px; }
+  .collaborationBlock { padding: 1.15rem; }
+  .collaborationDescription { font-size: 0.95rem; }
+  .collaborationCta { min-height: 46px; margin-top: 0.8rem; }
+}
+
+@media (max-width: 900px) {
+  .desktopLocale { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header { backdrop-filter: none; }
+  .menuLinks a, .menuLinks svg, .projectCta, .collaborationCta { transition: none; }
+}

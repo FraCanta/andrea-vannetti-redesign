@@ -1,0 +1,642 @@
+{
+  "Nav": {
+    "links": {
+      "home": "Home",
+      "projects": "Projects",
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "cta": "Let's talk",
+    "whatsapp": "Contact me on WhatsApp",
+    "toggleMenu": "Toggle menu"
+  },
+  "SiteNav": {
+    "homeLabel": "Andrea Vannetti — homepage",
+    "openMenu": "Open navigation",
+    "closeMenu": "Close navigation",
+    "menuLabel": "Main navigation",
+    "switchLanguage": "Switch language to {locale}",
+    "conversionLabel": "Contact and collaborations",
+    "projectCta": "Tell me about your project",
+    "collaborationEyebrow": "Shall we collaborate?",
+    "collaborationDescription": "Are you an agency, creative studio or freelancer? Let’s bring our skills together to shape new projects.",
+    "collaborationHint": "For agencies and professionals · contact me to start a conversation",
+    "contactCta": "Let’s discuss a project",
+    "collaborationCta": "Propose a collaboration",
+    "links": {
+      "home": "Home",
+      "projects": "Projects",
+      "services": "Services",
+      "about": "About",
+      "collaborations": "Collaborations",
+      "contact": "Contact"
+    },
+    "theme": {
+      "label": "Site theme",
+      "light": "Light theme",
+      "dark": "Dark theme",
+      "system": "Follow system theme"
+    }
+  },
+  "HomeRedesign": {
+    "role": "Freelance web designer & developer",
+    "titleFirst": "Oltre la",
+    "titleSecond": "superficie",
+    "value": "A good project starts before the code.",
+    "description": "I design and build bespoke websites for businesses and professionals. The conversation doesn’t end after the first meeting: it continues through shared decisions and previews during development.",
+    "projectCta": "Tell me about your project",
+    "collaborationCta": "Propose a collaboration",
+    "scroll": "The method beneath the surface",
+    "methodEyebrow": "The method",
+    "methodTitle": "The work behind the interface.",
+    "methodIntro": "A shared process, from the first conversation to launch and any agreed support.",
+    "steps": {
+      "1": {
+        "title": "Listen and analyse",
+        "body": "The conversation clarifies needs and goals; analysis informs the proposal."
+      },
+      "2": {
+        "title": "Design",
+        "body": "Wireframes and prototypes are reviewed together before development."
+      },
+      "3": {
+        "title": "Development",
+        "body": "The site is built with the technologies agreed for the project."
+      },
+      "4": {
+        "title": "Previews and feedback",
+        "body": "Shared previews during development make it possible to gather feedback."
+      },
+      "5": {
+        "title": "Launch and support",
+        "body": "After testing and launch, training and any further support are agreed together."
+      }
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Make needs take shape.",
+      "intro": "Different skills, chosen around the project and the people who will use it.",
+      "indexLabel": "Services index",
+      "detailLabel": "Details",
+      "cta": "Explore services"
+    },
+    "about": {
+      "eyebrow": "About Andrea",
+      "statement": "A project takes shape together.",
+      "cta": "Get to know Andrea"
+    },
+    "blog": {
+      "eyebrow": "Blog",
+      "title": "A space to explore ideas.",
+      "intro": "Ideas on web development, architecture, UI/UX and performance: four themes that shape the work of building a website.",
+      "status": "In preparation",
+      "published": "Published",
+      "article1": {
+        "category": "Web development",
+        "title": "From code to experience: what makes a website effective",
+        "excerpt": "A website is more than code that works. Structure, interactions and attention to detail help create a genuinely effective experience.",
+        "imageAlt": "Editorial illustration of code and a web interface wireframe"
+      },
+      "article2": {
+        "category": "Web architecture",
+        "title": "Headless and web architecture: choosing the right structure",
+        "excerpt": "Separating the frontend from content management opens new possibilities. But when does a headless architecture make sense?",
+        "imageAlt": "Illustrated web architecture diagram connecting services and devices"
+      },
+      "article3": {
+        "category": "UI/UX design",
+        "title": "Design systems: consistency without losing identity",
+        "excerpt": "Shared components, visual rules and interactions help create consistent interfaces while preserving a project’s personality.",
+        "imageAlt": "Graphic composition inspired by a design system and interface components"
+      },
+      "article4": {
+        "category": "Performance",
+        "title": "Web performance: speed is part of the project",
+        "excerpt": "Loading, stability and responsiveness affect how people use a website. Performance is part of the experience.",
+        "imageAlt": "Illustration of web performance indicators and measurements"
+      }
+    },
+    "contact": {
+      "eyebrow": "The next step",
+      "title": "Where do we begin?",
+      "intro": "A first conversation helps clarify needs, goals and how we can work together.",
+      "project": "Tell me about your project",
+      "projectText": "For businesses and professionals looking to develop a web project.",
+      "collaboration": "Propose a collaboration",
+      "collaborationText": "For agencies, creative studios and freelancers interested in working together."
+    }
+  },
+  "Home": {
+    "hero": {
+      "badge": "Available for new projects",
+      "title": "Beyond the <highlight>surface</highlight>",
+      "subtitle": "By your side to turn ideas into web projects that make an impact. From the first wireframe to launch day, you're never on your own.",
+      "ctaProjects": "See my work",
+      "ctaContact": "Get in touch",
+      "scroll": "Scroll"
+    },
+    "stack": {
+      "ariaLabel": "Technologies I use"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "What I do",
+      "all": "All services",
+      "more": "Learn more",
+      "items": {
+        "webDev": {
+          "title": "Web Development",
+          "description": "Custom websites built with React, Next.js and WordPress. Fast, responsive and optimized for every device."
+        },
+        "seo": {
+          "title": "SEO & Performance",
+          "description": "Technical and content optimization to help you rank on Google and get found by your customers."
+        },
+        "ecommerce": {
+          "title": "E-Commerce",
+          "description": "Online stores with WooCommerce or headless solutions. Secure payments and easy product management."
+        },
+        "wordpress": {
+          "title": "WordPress",
+          "description": "Custom themes and headless CMS. The flexibility of WordPress with the performance of a modern frontend."
+        }
+      }
+    },
+    "featured": {
+      "eyebrow": "Featured",
+      "title": "Case Study",
+      "imageAlt": "Radici in Chianti website homepage",
+      "description": "Website for a non-profit community association in the Chianti and Gaiole area. Event management, a network of local partners and hiking trails with GPX tracks.",
+      "challengeLabel": "The main challenge",
+      "challenge": "Building a custom interactive map with Leaflet, featuring dynamic clustering, category filters, GPX tracks with elevation profiles and a smooth UX on every device.",
+      "features": {
+        "map": "Custom Interactive Map",
+        "events": "Event Management",
+        "partners": "Partner Network",
+        "trails": "Hiking Trails"
+      },
+      "cta": "View project"
+    },
+    "cta": {
+      "titleLine1": "Let's build something",
+      "titleHighlight": "together",
+      "text": "Got a project in mind? Let's talk. It always starts with a conversation.",
+      "button": "Get started"
+    }
+  },
+  "About": {
+    "meta": {
+      "title": "About — Web developer in Chianti, Tuscany",
+      "description": "I'm Andrea Vannetti, a freelance web developer based in Chianti, between Siena and Florence. I build custom websites, e-commerce and web apps for businesses and professionals."
+    },
+    "eyebrow": "About me",
+    "bio": {
+      "p1": "I'm a freelance web developer based in Chianti, between Siena and Florence, working with businesses across Tuscany and Italy. I help restaurants, farm stays, B&Bs and small businesses build an online presence that actually works.",
+      "p2": "My job isn't just writing code — it's understanding your needs, turning them into a concrete plan and seeing it through with you all the way. Every site I build is designed to be fast, easy to find on Google and simple to manage.",
+      "p3": "I work with modern technologies like React, Next.js, WordPress and Tailwind CSS. But technology is just a tool: what matters is the results it brings to your business."
+    },
+    "photoAlt": "Andrea Vannetti — Web Developer",
+    "principles": {
+      "eyebrow": "Principles",
+      "title": "What I <highlight>believe in</highlight>",
+      "items": {
+        "code": {
+          "title": "Clean code, real results",
+          "description": "I don't write code to impress other developers. I write code that works, that's fast and that delivers results for your business."
+        },
+        "communication": {
+          "title": "Straight talk",
+          "description": "No pointless jargon. I explain everything clearly and keep you updated at every stage, with no surprises."
+        },
+        "local": {
+          "title": "Rooted in the region",
+          "description": "I live and work in Chianti. I know the area, its businesses and the challenges of running a company here. I'm not a faceless agency."
+        },
+        "support": {
+          "title": "Still here after launch",
+          "description": "A website doesn't end when it goes live. I offer ongoing support, updates and optimization so your investment keeps growing over time."
+        }
+      }
+    },
+    "cta": {
+      "title": "Like the way I work?",
+      "text": "Let's talk about your project.",
+      "button": "Drop me a line, I don't bite."
+    }
+  },
+  "Services": {
+    "meta": {
+      "title": "Websites, e-commerce and SEO in Tuscany",
+      "description": "Website and web app development, e-commerce, WordPress, SEO and digital consulting. Custom projects for businesses in Siena, Florence and across Italy."
+    },
+    "hero": {
+      "title": "What I do, <highlight>done right</highlight>",
+      "text": "Every project is different, but my approach is always the same: listen, plan and build something that actually works."
+    },
+    "problems": {
+      "title": "Problems I <highlight>solve</highlight>",
+      "items": {
+        "seo": {
+          "problem": "Nobody can find you on Google",
+          "solution": "I build sites with SEO baked in from the start: semantic structure, speed and content designed to help you rank."
+        },
+        "mobile": {
+          "problem": "Your site doesn't work on mobile",
+          "solution": "I design mobile-first: every element is built to work perfectly on any screen."
+        },
+        "speed": {
+          "problem": "Your site is slow and customers leave",
+          "solution": "I use modern technologies and performance optimization to keep load times under 2 seconds."
+        },
+        "start": {
+          "problem": "You don't know where to start",
+          "solution": "I guide you step by step, from strategy to launch. You don't need any technical knowledge — I'll take care of it."
+        },
+        "security": {
+          "problem": "Your site is old and insecure",
+          "solution": "I migrate your site to up-to-date technologies, with HTTPS, backups and ongoing maintenance."
+        },
+        "ecommerce": {
+          "problem": "You want to sell online but don't know how",
+          "solution": "I build online stores that are easy to manage, with secure payments and a clear product catalog for your customers."
+        }
+      }
+    },
+    "details": {
+      "title": "Services in <highlight>detail</highlight>",
+      "includes": "What's included",
+      "items": {
+        "web-dev": {
+          "title": "Web Development",
+          "subtitle": "Fast, modern, tailor-made websites",
+          "description": "I build custom websites with high-performance technologies: React, Next.js, Vite. Every project is responsive, accessible and built to last. No templates, no compromises.",
+          "features": [
+            "Business and corporate websites",
+            "High-converting landing pages",
+            "Interactive web apps",
+            "Optimized performance (Core Web Vitals)",
+            "Responsive design on every device"
+          ]
+        },
+        "wordpress": {
+          "title": "WordPress",
+          "subtitle": "Flexibility and full control over your content",
+          "description": "WordPress is still the most widely used CMS in the world, and for good reason. I use it both in its classic form and headless, connecting it to modern React frontends to combine ease of management with performance.",
+          "features": [
+            "Custom themes from scratch",
+            "Headless WordPress + React",
+            "ACF and custom post types",
+            "Migration from other CMSs",
+            "Training so you can manage it yourself"
+          ]
+        },
+        "ecommerce": {
+          "title": "E-Commerce",
+          "subtitle": "Sell online without the hassle",
+          "description": "Online stores built to actually sell: a clear product catalog, fast checkout, secure payments. With WooCommerce or headless solutions, depending on your needs.",
+          "features": [
+            "Custom WooCommerce",
+            "Payment and shipping setup",
+            "Optimized product catalog",
+            "Integration with management software",
+            "Sales dashboard and analytics"
+          ]
+        },
+        "seo": {
+          "title": "SEO & Performance",
+          "subtitle": "Get found on Google",
+          "description": "A beautiful website nobody sees is useless. I optimize every project for search engines: technical structure, speed, content and meta tags. So the people looking for you can actually find you.",
+          "features": [
+            "Technical on-page optimization",
+            "Semantic HTML structure",
+            "Meta tags and Open Graph",
+            "Sitemap and robots.txt",
+            "Monitoring with Search Console"
+          ]
+        },
+        "design": {
+          "title": "UI/UX Design",
+          "subtitle": "Interfaces that guide the user",
+          "description": "I design the user experience before writing a single line of code. Wireframes, prototypes and design systems to make sure the site isn't just beautiful, but functional and intuitive.",
+          "features": [
+            "Wireframes and interactive prototypes",
+            "Consistent design system",
+            "User experience research",
+            "Mobile-first responsive design",
+            "Collaboration in Figma"
+          ]
+        },
+        "consulenza": {
+          "title": "Digital Consulting",
+          "subtitle": "Strategy before technology",
+          "description": "Not everyone needs a new website. Sometimes you need to understand what isn't working, where to invest and how to move forward online. I help you make informed decisions about your digital presence.",
+          "features": [
+            "Audit of your existing site",
+            "Tailored digital strategy",
+            "Choosing the right tools",
+            "Competitor analysis",
+            "Budget and priority planning"
+          ]
+        }
+      }
+    },
+    "workflow": {
+      "eyebrow": "Process",
+      "title": "How I <highlight>work</highlight>",
+      "text": "From first contact to post-launch support, every stage is transparent.",
+      "items": {
+        "contact": {
+          "title": "First contact",
+          "description": "We get to know each other over a call or a coffee. You tell me about your business, your goals and your needs. I listen and take notes."
+        },
+        "analysis": {
+          "title": "Analysis and proposal",
+          "description": "I study your industry, your competitors and the opportunities. Then I present a clear proposal with defined timelines, costs and deliverables."
+        },
+        "design": {
+          "title": "Design and prototypes",
+          "description": "I create wireframes and mockups of the site. We review them together and iterate until you're happy, before a single line of code is written."
+        },
+        "development": {
+          "title": "Development",
+          "description": "I build the site with the agreed technologies. I keep you posted with regular previews and gather your feedback along the way."
+        },
+        "launch": {
+          "title": "Launch",
+          "description": "Final testing, performance and SEO optimization, hosting and domain setup. The site goes live and I show you how to manage it on your own."
+        },
+        "support": {
+          "title": "Post-launch support",
+          "description": "I don't disappear after delivery. I'm still around for updates, fixes and improvements. Your site grows with your business."
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently asked <highlight>questions</highlight>",
+      "items": [
+        {
+          "q": "How much does a website cost?",
+          "a": "It depends on the complexity of the project. A business website starts at around €1,000; an online store or a project with custom features can cost more. I always give you a clear, detailed quote before we start."
+        },
+        {
+          "q": "How long does it take?",
+          "a": "A business website takes 2–4 weeks on average. More complex projects like online stores or web applications can take 4–6 weeks. Timelines also depend on how quickly I receive content and feedback."
+        },
+        {
+          "q": "Do you only work with businesses in Chianti?",
+          "a": "No, I work with clients all over Italy, remotely too. In the Siena and Florence areas I can also meet you in person. Chianti is my home, and for local businesses I can offer something extra: I know the area, the audience and how things work here."
+        },
+        {
+          "q": "Can I update the site myself after delivery?",
+          "a": "Absolutely. If the project calls for it, I use WordPress as a CMS so you can manage content, images and text on your own. I also give you a short training session so you can get started with confidence."
+        },
+        {
+          "q": "What happens after launch?",
+          "a": "I don't disappear. I offer post-launch support for fixes, updates and optimizations. We can also agree on a monthly maintenance plan if you'd like ongoing assistance."
+        },
+        {
+          "q": "Do you do SEO too?",
+          "a": "Every site I build comes with solid SEO foundations: semantic structure, speed, meta tags, sitemap. For advanced SEO strategies and ranking campaigns, we can discuss a dedicated plan."
+        },
+        {
+          "q": "What technologies do you use?",
+          "a": "Mainly React, Next.js, TypeScript, MaterialUI and WordPress (headless too). The choice depends on the project — I always use the right tool for the job, not the trendiest one."
+        },
+        {
+          "q": "Is there a contract?",
+          "a": "Yes, I always work with a written, accepted quote that defines scope, timeline, costs and payment terms. Clarity from the start, for both of us."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Found what you were looking for?",
+      "text": "Tell me about your project and let's find the right solution together.",
+      "button": "Let's talk"
+    }
+  },
+  "Projects": {
+    "meta": {
+      "title": "Websites built in Chianti and Tuscany",
+      "description": "Websites for wineries, farm stays, associations and technical studios between Siena and Florence. Built with Next.js, React and WordPress."
+    },
+    "hero": {
+      "title": "Recent <highlight>work</highlight>",
+      "text": "Every project tells a different story. Here are the ones I'm working on and the ones already live."
+    },
+    "status": {
+      "live": "Live",
+      "inProgress": "In progress"
+    },
+    "featuredLabel": "Featured project",
+    "keyFeatures": "Key features",
+    "visit": "Visit site",
+    "screenshotAlt": "Screenshot of {title}",
+    "comingSoon": "Coming soon",
+    "othersTitle": "More <highlight>projects</highlight>",
+    "items": {
+      "radici": {
+        "subtitle": "Non-profit community association",
+        "description": "Website for an association that promotes the Chianti and Gaiole area. Event management, a network of local partners, and hiking trails with GPX tracks and elevation profiles. The main challenge: a custom interactive map with Leaflet, dynamic clustering, category filters and a smooth UX on every device.",
+        "features": [
+          "Interactive Leaflet map with clustering",
+          "Custom Post Types (events, partners, excursions, trails)",
+          "GPX tracks with elevation profiles",
+          "Category filters and search",
+          "Headless WordPress via REST API"
+        ]
+      },
+      "succulentarte": {
+        "subtitle": "Renzo Vannetti — Succulent plant artistry",
+        "description": "Showcase website for my father Renzo's business, creating artistic arrangements with succulent plants. A clean design that puts his creations front and center, with a photo gallery and contact details."
+      },
+      "casanova": {
+        "subtitle": "Wine estate — Gaiole in Chianti",
+        "description": "Website for a winery in the heart of Chianti Classico. It tells the story of the Rossi family, their land, the beekeeping project and the tastings and farm-stay offering. Bilingual Italian/English."
+      },
+      "cresta": {
+        "subtitle": "Trekking route along the Chianti ridge",
+        "description": "Website dedicated to the Michaelic pilgrimage route along the ridge of the Chianti Mountains: 70 km from Castelnuovo Berardenga to Strada in Chianti. Route map, stages, history and practical information for hikers."
+      },
+      "cantinetta": {
+        "subtitle": "Wine shop in Gaiole in Chianti — Since 2003",
+        "description": "Showcase website for a historic wine shop in the heart of Chianti Classico. Headless architecture with WordPress as the CMS and Next.js on the frontend. An elegant design system with a merlot red palette, a photo gallery with albums, and wine and local-product pages with dynamic filters."
+      },
+      "glam": {
+        "subtitle": "Weddings & Events — Tuscany",
+        "description": "SEO consulting and GEO (Generative Engine Optimization) for a wedding and events agency in Tuscany. Work on content structure, schema markup and visibility in AI-assisted search.",
+        "label": "SEO/GEO only"
+      },
+      "tecnochianti": {
+        "subtitle": "Architecture & engineering firm — Radda in Chianti",
+        "description": "Portfolio website for a technical firm bringing together three professionals in architecture and building services. A \"typographic architecture\" direction: large serif headlines, images front and center on a light background and a near-monochrome palette with a terracotta accent. Project previews fade from black and white to color on hover."
+      }
+    },
+    "cta": {
+      "titleLine1": "Your project could be",
+      "titleLine2": "the <highlight>next one</highlight>",
+      "text": "Tell me your idea and let's bring it to life together.",
+      "button": "Let's talk"
+    }
+  },
+  "Contact": {
+    "meta": {
+      "title": "Website quote – Siena and Florence",
+      "description": "Have a web project in mind? Tell me about it via email, phone or WhatsApp and I'll prepare a custom quote. In person around Siena and Florence, remotely across Italy."
+    },
+    "hero": {
+      "titleHighlight": "Everything",
+      "titleRest": "starts here.",
+      "text": "Ready to create something that doesn't exist yet?"
+    },
+    "links": {
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp"
+    },
+    "whatsappValue": "Message me on WhatsApp",
+    "call": {
+      "title": "Prefer a call?",
+      "text": "Book 30 minutes to talk about your project",
+      "button": "Book a call"
+    },
+    "follow": "Follow me",
+    "review": {
+      "title": "Already worked with me?",
+      "text": "Your feedback helps me grow and helps new clients find me.",
+      "qrAlt": "QR code to leave a Google review",
+      "hint": "Scan the QR code or click the button",
+      "button": "Leave a review"
+    },
+    "formTitle": "Got something to <highlight>ask me</highlight>?"
+  },
+  "ContactForm": {
+    "labels": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "company": "Company",
+      "email": "Email",
+      "channel": "How should I contact you?",
+      "hasSite": "Do you already have a website?",
+      "hasBudget": "Do you have a budget?",
+      "message": "Message"
+    },
+    "placeholders": {
+      "firstName": "Your first name",
+      "lastName": "Your last name",
+      "company": "Company name (optional)",
+      "email": "you@email.com",
+      "siteUrl": "https://your-website.com",
+      "budget": "Select a range...",
+      "message": "Tell me about your project..."
+    },
+    "options": {
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "yes": "Yes",
+      "no": "No",
+      "redo": "Yes, but it needs a redo",
+      "budgetLow": "< €2,000",
+      "budgetMid": "€2,000 – €5,000",
+      "budgetHigh": "> €5,000"
+    },
+    "errors": {
+      "firstName": "Please enter your first name",
+      "lastName": "Please enter your last name",
+      "channel": "Choose how I should contact you",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Invalid email address",
+      "phone": "Please enter your phone number",
+      "message": "Please write a message",
+      "siteUrl": "Please enter your website URL",
+      "budget": "Please select a budget range",
+      "privacy": "You must accept the privacy policy",
+      "send": "Something went wrong. Please try again later.",
+      "network": "Network error. Please try again later."
+    },
+    "privacy": "I have read and accept the <link>Privacy Policy</link>",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "reset": "Reset form",
+    "success": {
+      "title": "Message sent!",
+      "text": "Thanks for reaching out. I'll get back to you within 24 hours.",
+      "again": "Send another message"
+    }
+  },
+  "Footer": {
+    "taglineLine1": "Web developer in Chianti, between Siena and Florence.",
+    "taglineLine2": "I build websites that work, for businesses that matter.",
+    "navTitle": "Navigation",
+    "contactTitle": "Contact",
+    "links": {
+      "projects": "Projects",
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact",
+      "privacy": "Privacy Policy"
+    },
+    "cookies": "Cookie settings",
+    "vat": "VAT No. 01631290523 | Flat-rate tax scheme",
+    "address": "Registered office: Gaiole in Chianti (SI) · Based in Radda in Chianti, Tuscany",
+    "rights": "© {year} Andrea Vannetti. All rights reserved.",
+    "builtWith": "Built with",
+    "redesign": {
+      "footerLabel": "Site information and navigation",
+      "identityLabel": "Freelance web designer & developer",
+      "description": "I design and build bespoke websites through direct collaboration and shared previews during development.",
+      "servicesLabel": "Services",
+      "servicesTitle": "Skills and solutions",
+      "allServices": "All services",
+      "exploreLabel": "Explore",
+      "exploreTitle": "Navigation",
+      "legalLabel": "Information",
+      "legalTitle": "Details and preferences",
+      "communityLabel": "Social and network",
+      "socialTitle": "Follow and collaborate"
+    }
+  },
+  "Cookie": {
+    "title": "This site uses cookies",
+    "text": "This site uses Google Analytics cookies to understand how it is used and Google Ads cookies to measure the effectiveness of advertising campaigns. They are only enabled if you accept. <link>Read the privacy policy</link>",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
+  "Meta": {
+    "siteTitle": "Andrea Vannetti — Freelance Web Developer in Siena and Florence",
+    "description": "Custom websites, e-commerce and web apps for businesses, wineries, hospitality and professionals. Fast, well-crafted and SEO-optimized. Based in Chianti between Siena and Florence, working across Italy.",
+    "ogDescription": "Custom websites, e-commerce and web apps — fast and SEO-optimized.",
+    "jobTitle": "Freelance Web Developer"
+  },
+  "NotFound": {
+    "eyebrow": "Error 404",
+    "title": "Page not found",
+    "text": "The page you're looking for doesn't exist or has been moved. It happens to the best websites.",
+    "home": "Back to home",
+    "projects": "See my work"
+  },
+  "Email": {
+    "subject": "I've received your message",
+    "preview": "Thanks for getting in touch: I'll reply within 24 hours.",
+    "greeting": "Thanks, {name}!",
+    "intro": "I've received your message and will get back to you within 24 hours {channel}.",
+    "channel": {
+      "email": "by email",
+      "phone": "by phone",
+      "whatsapp": "on WhatsApp"
+    },
+    "recapTitle": "Your request at a glance",
+    "labels": {
+      "contact": "Contact",
+      "site": "Current website",
+      "budget": "Budget",
+      "message": "Message"
+    },
+    "budgetNotSet": "To be defined",
+    "replyHint": "Forgot something? Just reply to this email.",
+    "cta": "See my work",
+    "role": "Web Developer — Radda in Chianti, Tuscany",
+    "footer": "You're receiving this email because you filled in the contact form on andreavannetti.dev."
+  }
+}
