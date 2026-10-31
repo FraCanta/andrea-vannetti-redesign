@@ -195,12 +195,27 @@
       "description": "I'm Andrea Vannetti, a freelance web developer based in Chianti, between Siena and Florence. I build custom websites, e-commerce and web apps for businesses and professionals."
     },
     "eyebrow": "About me",
+    "hero": {
+      "headline": "Conversation is part of the project.",
+      "contactCta": "Tell me about your project",
+      "servicesCta": "Discover my services"
+    },
     "bio": {
       "p1": "I'm a freelance web developer based in Chianti, between Siena and Florence, working with businesses across Tuscany and Italy. I help restaurants, farm stays, B&Bs and small businesses build an online presence that actually works.",
       "p2": "My job isn't just writing code — it's understanding your needs, turning them into a concrete plan and seeing it through with you all the way. Every site I build is designed to be fast, easy to find on Google and simple to manage.",
       "p3": "I work with modern technologies like React, Next.js, WordPress and Tailwind CSS. But technology is just a tool: what matters is the results it brings to your business."
     },
     "photoAlt": "Andrea Vannetti — Web Developer",
+    "story": {
+      "eyebrow": "My approach",
+      "title": "Understand before building.",
+      "principlesIntro": "Four principles shape how I turn needs into concrete projects."
+    },
+    "motto": {
+      "label": "A personal note",
+      "quote": "Do or do not, there is no try",
+      "attribution": "Yoda"
+    },
     "principles": {
       "eyebrow": "Principles",
       "title": "What I <highlight>believe in</highlight>",
@@ -222,6 +237,11 @@
           "description": "A website doesn't end when it goes live. I offer ongoing support, updates and optimization so your investment keeps growing over time."
         }
       }
+    },
+    "territory": {
+      "eyebrow": "Context and tools",
+      "title": "Place and technology",
+      "projectsCta": "Discover the projects"
     },
     "cta": {
       "title": "Like the way I work?",

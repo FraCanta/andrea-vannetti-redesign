@@ -195,12 +195,27 @@
       "description": "Sono Andrea Vannetti, sviluppatore web freelance nel Chianti, tra Siena e Firenze. Realizzo siti, e-commerce e web app su misura in tutta Italia."
     },
     "eyebrow": "Chi Sono",
+    "hero": {
+      "headline": "Il confronto fa parte del progetto.",
+      "contactCta": "Parlami del tuo progetto",
+      "servicesCta": "Scopri i miei servizi"
+    },
     "bio": {
       "p1": "Sono uno sviluppatore web freelance con base nel Chianti, tra Siena e Firenze. Lavoro con attività in tutta la Toscana e in Italia: aiuto ristoranti, agriturismi, B&B e piccole-medie imprese a costruire una presenza digitale che funziona davvero.",
       "p2": "Il mio lavoro non è solo scrivere codice — è capire le tue esigenze, tradurle in un progetto concreto e accompagnarti fino al risultato. Ogni sito che creo è pensato per essere veloce, trovabile su Google e semplice da gestire.",
       "p3": "Lavoro con tecnologie moderne come React, Next.js, WordPress e Tailwind CSS. Ma la tecnologia è solo uno strumento: quello che conta è il risultato che porta alla tua attività."
     },
     "photoAlt": "Andrea Vannetti — Sviluppatore Web",
+    "story": {
+      "eyebrow": "Il mio approccio",
+      "title": "Capire, prima di costruire.",
+      "principlesIntro": "Quattro principi guidano il modo in cui trasformo le esigenze in progetti concreti."
+    },
+    "motto": {
+      "label": "Una nota personale",
+      "quote": "Do or do not, there is no try",
+      "attribution": "Yoda"
+    },
     "principles": {
       "eyebrow": "Principi",
       "title": "In cosa <highlight>credo</highlight>",
@@ -222,6 +237,11 @@
           "description": "Un sito non finisce con la messa online. Offro supporto continuativo, aggiornamenti e ottimizzazioni perché il tuo investimento cresca nel tempo."
         }
       }
+    },
+    "territory": {
+      "eyebrow": "Contesto e strumenti",
+      "title": "Territorio e tecnologia",
+      "projectsCta": "Scopri i progetti"
     },
     "cta": {
       "title": "Ti piace come lavoro?",

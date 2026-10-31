@@ -3,10 +3,8 @@ import localFont from "next/font/local";
 import { Space_Grotesk, Fira_Code } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/components/Navbar";
-import { LegacyFooterSwitch } from "@/components/redesign/LegacyFooterSwitch";
 import { EditorialFooter } from "@/components/redesign/EditorialFooter";
 import { PageProgressBar } from "@/components/redesign/PageProgressBar";
-import { StarfieldBackground } from "@/components/StarfieldBackground";
 import { CookieBanner } from "@/components/CookieBanner";
 import { GoogleTag } from "@/components/GoogleTag";
 import ContactConversionTracker from "@/components/ContactConversionTracker";
@@ -218,11 +216,10 @@ export default async function RootLayout({
       <body className="relative z-10 text-typography font-body">
         <NextIntlClientProvider>
           <SiteProviders>
-            <StarfieldBackground />
             <Navbar />
             <PageProgressBar />
             <main>{children}</main>
-            <LegacyFooterSwitch homeFooter={<EditorialFooter />} />
+            <EditorialFooter />
             <CookieBanner />
             <ContactConversionTracker />
             <GoogleTag />
