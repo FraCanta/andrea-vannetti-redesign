@@ -339,13 +339,11 @@
 }
 .footer {
   position: relative;
+  z-index: 2;
   padding: 0 clamp(1rem, 4vw, 3.75rem) 1.5rem;
   overflow: hidden;
   background: var(--home-footer-bg);
   color: var(--home-footer-fg);
-}
-:global(html:not([data-theme="dark"])) .footer {
-  z-index: 2;
 }
 .footerInner {
   width: 100%;
