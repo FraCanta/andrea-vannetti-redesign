@@ -81,6 +81,10 @@
       "detailLabel": "Approfondimento",
       "cta": "Esplora i servizi"
     },
+    "marquee": {
+      "start": "Dal codice alle",
+      "accent": "persone."
+    },
     "about": {
       "eyebrow": "Chi è Andrea",
       "statement": "Il progetto si costruisce insieme.",

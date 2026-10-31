@@ -25,6 +25,9 @@
   margin: 0 auto 4rem;
 }
 .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   grid-column: 1/-1;
   margin: 0;
   color: var(--home-role);
@@ -33,6 +36,11 @@
     monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.eyebrowNumber {
+  flex: 0 0 auto;
+  padding: 0.23rem 0.4rem;
+  border: 1px solid currentColor;
 }
 .chapterHead h2,
 .contact h2 {
@@ -277,6 +285,7 @@
 }
 .contact h2 {
   max-width: 12ch;
+  margin-top: 1.5rem;
 }
 .contact .lede {
   margin-top: 1.4rem;
@@ -335,17 +344,8 @@
   background: var(--home-footer-bg);
   color: var(--home-footer-fg);
 }
-.footer::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 4px;
-  background: var(--home-lime);
-  content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: footer-rule 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+:global(html:not([data-theme="dark"])) .footer {
+  z-index: 2;
 }
 .footerInner {
   width: 100%;
@@ -367,9 +367,12 @@
 .footerLogo img {
   display: block;
 }
+:global(html:not([data-theme="dark"])) .footerLogo img {
+  filter: brightness(0);
+}
 .footerEyebrow {
   margin: 0;
-  color: var(--home-lime);
+  color: var(--home-footer-accent);
   font:
     0.68rem/1.5 var(--font-mono),
     monospace;
@@ -473,7 +476,7 @@
 }
 .footerServices li span,
 .footerExplore li span {
-  color: var(--home-lime);
+  color: var(--home-footer-accent);
   font:
     0.65rem/1 var(--font-mono),
     monospace;
@@ -499,7 +502,7 @@
 }
 .footerServices > .footerTextLink {
   margin-top: 0.7rem;
-  color: var(--home-lime);
+  color: var(--home-footer-accent);
 }
 .footerProjectLink:hover {
   background: var(--home-fg);
@@ -537,7 +540,7 @@
 }
 .footerExplore li a svg {
   margin-left: auto;
-  color: var(--home-lime);
+  color: var(--home-footer-accent);
 }
 .footerLegal .footerTextLink,
 .footerLegal .footerPhone {
@@ -573,7 +576,7 @@
 }
 .footerCollaboration h3 {
   margin: 0 0 0.5rem;
-  color: var(--home-lime);
+  color: var(--home-footer-accent);
   font:
     600 1.5rem/1 var(--font-display),
     sans-serif;
@@ -602,13 +605,8 @@
   font-weight: 600;
 }
 .footer :is(a, button):focus-visible {
-  outline: 3px solid var(--home-lime);
+  outline: 3px solid var(--home-footer-focus);
   outline-offset: 4px;
-}
-@keyframes footer-rule {
-  to {
-    transform: scaleX(1);
-  }
 }
 @media (max-width: 900px) {
   .footerMasthead {
@@ -721,9 +719,5 @@
   .serviceActive,
   .footer :is(a, button) svg {
     transition: none;
-  }
-  .footer::before {
-    animation: none;
-    transform: scaleX(1);
   }
 }

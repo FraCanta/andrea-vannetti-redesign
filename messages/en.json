@@ -81,6 +81,10 @@
       "detailLabel": "Details",
       "cta": "Explore services"
     },
+    "marquee": {
+      "start": "From code to",
+      "accent": "people."
+    },
     "about": {
       "eyebrow": "About Andrea",
       "statement": "A project takes shape together.",

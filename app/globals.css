@@ -23,10 +23,12 @@
     --home-method-fg: #e9e9e4;
     --home-method-muted: rgb(233 233 228 / 82%);
     --home-method-border: rgb(233 233 228 / 36%);
-    --home-footer-bg: #55227f;
-    --home-footer-fg: #fff;
-    --home-footer-muted: rgb(255 255 255 / 82%);
-    --home-footer-border: rgb(255 255 255 / 40%);
+    --home-footer-bg: #e9e9e4;
+    --home-footer-fg: #0a0a0a;
+    --home-footer-muted: #41423d;
+    --home-footer-border: rgb(10 10 10 / 22%);
+    --home-footer-accent: #55227f;
+    --home-footer-focus: #0a0a0a;
     --home-menu-bg: #e9e9e4;
     --home-menu-fg: #0a0a0a;
     --home-menu-muted: #41423d;
@@ -59,6 +61,8 @@
     --home-footer-fg: #e9e9e4;
     --home-footer-muted: rgb(233 233 228 / 82%);
     --home-footer-border: rgb(233 233 228 / 36%);
+    --home-footer-accent: #95e600;
+    --home-footer-focus: #95e600;
     --home-menu-bg: #0a0a0a;
     --home-menu-fg: #fff;
     --home-menu-muted: rgb(255 255 255 / 74%);

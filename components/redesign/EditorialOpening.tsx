@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import styles from "./EditorialHome.module.css";
+import { HomeReveal } from "./HomeReveal";
 
 export function EditorialOpening() {
   const t = useTranslations("HomeRedesign");
@@ -85,9 +86,17 @@ export function EditorialOpening() {
             <ol className={styles.methodSteps}>
               {[1, 2, 3, 4, 5].map((step) => (
                 <li key={step}>
-                  <span className={styles.stepIndex}>{String(step).padStart(2, "0")}</span>
-                  <h3>{t(`steps.${step}.title`)}</h3>
-                  <p>{t(`steps.${step}.body`)}</p>
+                  <HomeReveal
+                    as="div"
+                    className={styles.methodStepContent}
+                    delay={(step - 1) * 0.08}
+                    duration={0.68}
+                    y={16}
+                  >
+                    <span className={styles.stepIndex}>{String(step).padStart(2, "0")}</span>
+                    <h3>{t(`steps.${step}.title`)}</h3>
+                    <p>{t(`steps.${step}.body`)}</p>
+                  </HomeReveal>
                 </li>
               ))}
             </ol>

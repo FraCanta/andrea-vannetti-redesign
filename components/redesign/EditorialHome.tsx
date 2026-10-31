@@ -1,5 +1,6 @@
 import { EditorialOpening } from "./EditorialOpening";
 import { HomeServices } from "./HomeServices";
+import { HomeBridgeMarquee } from "./HomeBridgeMarquee";
 import { HomeAbout } from "./HomeAbout";
 import { HomeBlog } from "./HomeBlog";
 import { HomeContact } from "./HomeContact";
@@ -10,6 +11,7 @@ export function EditorialHome() {
     <div className={styles.homeRoot}>
       <EditorialOpening />
       <HomeServices />
+      <HomeBridgeMarquee />
       <HomeAbout />
       <HomeBlog />
       <HomeContact />

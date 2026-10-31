@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import styles from "./HomeChapters.module.css";
+import { HomeReveal } from "./HomeReveal";
 
 const articles = [
   {
@@ -54,19 +55,27 @@ export async function HomeBlog() {
       className={`${styles.chapter} ${styles.blog}`}
       aria-labelledby="home-blog-title"
     >
-      <p className={styles.eyebrow}>04 / {t("eyebrow")}</p>
+      <HomeReveal as="p" className={styles.eyebrow}>
+        <span className={styles.eyebrowNumber}>04</span>
+        <span>{t("eyebrow")}</span>
+      </HomeReveal>
       <span className={styles.blogRule} aria-hidden="true" />
       <div className={styles.blogIntro}>
-        <h2 className={styles.aboutStatement} id="home-blog-title">
+        <HomeReveal
+          as="h2"
+          className={styles.aboutStatement}
+          id="home-blog-title"
+          delay={0.06}
+        >
           {t("title")}
-        </h2>
-        <div className={styles.aboutText}>
+        </HomeReveal>
+        <HomeReveal as="div" className={styles.aboutText} delay={0.14}>
           <p>{t("intro")}</p>
           <p className={styles.blogStatus}>{t("status")}</p>
-        </div>
+        </HomeReveal>
       </div>
       <div className={styles.blogGrid}>
-        {articles.map((article) => {
+        {articles.map((article, index) => {
           const content = (
             <>
               <Image
@@ -95,7 +104,13 @@ export async function HomeBlog() {
               : null;
 
           return (
-            <article className={styles.blogArticle} key={article.id}>
+            <HomeReveal
+              as="article"
+              className={styles.blogArticle}
+              key={article.id}
+              delay={0.1 + index * 0.09}
+              y={18}
+            >
               {href ? (
                 <a className={styles.blogArticleLink} href={href}>
                   {content}
@@ -103,7 +118,7 @@ export async function HomeBlog() {
               ) : (
                 content
               )}
-            </article>
+            </HomeReveal>
           );
         })}
       </div>

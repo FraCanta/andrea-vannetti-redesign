@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import styles from "./HomeChapters.module.css";
+import { HomeReveal } from "./HomeReveal";
 
 const keys = [
   "web-dev",
@@ -30,9 +31,16 @@ export function HomeServices() {
       aria-labelledby="home-services-title"
     >
       <div className={styles.chapterHead}>
-        <p className={styles.eyebrow}>02 / {h("eyebrow")}</p>
-        <h2 id="home-services-title">{h("title")}</h2>
-        <p className={styles.lede}>{h("intro")}</p>
+        <HomeReveal as="p" className={styles.eyebrow}>
+          <span className={styles.eyebrowNumber}>02</span>
+          <span>{h("eyebrow")}</span>
+        </HomeReveal>
+        <HomeReveal as="h2" id="home-services-title" delay={0.06}>
+          {h("title")}
+        </HomeReveal>
+        <HomeReveal as="p" className={styles.lede} delay={0.14}>
+          {h("intro")}
+        </HomeReveal>
       </div>
       <div className={styles.serviceLayout}>
         <div
@@ -41,9 +49,12 @@ export function HomeServices() {
           aria-label={h("indexLabel")}
         >
           {keys.map((service, index) => (
-            <button
+            <HomeReveal
+              as="button"
               key={service}
               type="button"
+              delay={index * 0.07}
+              y={16}
               role="tab"
               tabIndex={active === index ? 0 : -1}
               aria-selected={active === index}
@@ -91,10 +102,12 @@ export function HomeServices() {
               </span>
               <span>{t(`items.${service}.title`)}</span>
               <ArrowUpRight size={17} aria-hidden="true" />
-            </button>
+            </HomeReveal>
           ))}
         </div>
-        <div
+        <HomeReveal
+          as="div"
+          delay={0.12}
           className={styles.serviceDetail}
           id="home-service-detail"
           role="tabpanel"
@@ -118,7 +131,7 @@ export function HomeServices() {
               </Link>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </HomeReveal>
       </div>
     </section>
   );
