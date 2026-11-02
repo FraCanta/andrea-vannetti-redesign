@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useParams } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -13,6 +14,7 @@ import styles from "@/components/redesign/SiteNavigation.module.css";
 const links = [
   { href: "/", key: "home" },
   { href: "/progetti", key: "projects" },
+  { href: "/blog", key: "blog" },
   { href: "/servizi", key: "services" },
   { href: "/chi-sono", key: "about" },
   { href: "/contatti", key: "contact" },
@@ -22,6 +24,7 @@ export function Navbar() {
   const t = useTranslations("SiteNav");
   const locale = useLocale();
   const pathname = usePathname();
+  const params = useParams<{ slug?: string }>();
   const router = useRouter();
   const lenis = useLenis();
   const reducedMotion = useReducedMotion();
@@ -38,7 +41,27 @@ export function Navbar() {
   const switchLocale = () => {
     const nextLocale = locale === "it" ? "en" : "it";
     setMenuOpen(false);
-    startTransition(() => router.replace(pathname, { locale: nextLocale }));
+    startTransition(() => {
+      if (pathname === "/progetti/[slug]" && typeof params.slug === "string") {
+        router.replace(
+          { pathname: "/progetti/[slug]", params: { slug: params.slug } },
+          { locale: nextLocale },
+        );
+        return;
+      }
+      if (pathname === "/blog/[slug]" && typeof params.slug === "string") {
+        router.replace(
+          { pathname: "/blog/[slug]", params: { slug: params.slug } },
+          { locale: nextLocale },
+        );
+        return;
+      }
+
+      router.replace(
+        pathname as Exclude<typeof pathname, "/progetti/[slug]" | "/blog/[slug]">,
+        { locale: nextLocale },
+      );
+    });
   };
 
   useEffect(() => {

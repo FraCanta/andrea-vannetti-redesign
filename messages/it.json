@@ -3,6 +3,7 @@
     "links": {
       "home": "Home",
       "projects": "Progetti",
+      "blog": "Blog",
       "services": "Servizi",
       "about": "Chi Sono",
       "contact": "Contatti"
@@ -27,6 +28,7 @@
     "links": {
       "home": "Home",
       "projects": "Progetti",
+      "blog": "Blog",
       "services": "Servizi",
       "about": "Chi sono",
       "collaborations": "Collaborazioni",
@@ -457,6 +459,22 @@
     "visit": "Visita il sito",
     "screenshotAlt": "Screenshot di {title}",
     "comingSoon": "Presto online",
+    "openCaseStudy": "Apri il case study",
+    "detail": {
+      "draftNotice": "Anteprima editoriale: i testi di questa pagina sono provvisori e non descrivono risultati o attività verificati.",
+      "backToArchive": "Tutti i progetti",
+      "context": "Contesto",
+      "challenge": "Esigenza",
+      "approach": "Approccio",
+      "activities": "Ambiti di lavoro",
+      "technologies": "Tecnologie disponibili",
+      "coverPending": "Copertina in preparazione",
+      "nextProject": "Progetto successivo",
+      "externalSite": "Visita il sito",
+      "sourceCode": "Codice sorgente",
+      "systemMarker": "07 / SISTEMA",
+      "technicalMarker": "08 / TECNICA"
+    },
     "othersTitle": "Altri <highlight>progetti</highlight>",
     "items": {
       "radici": {
@@ -632,6 +650,28 @@
     "description": "Sviluppatore web freelance nel Chianti, tra Siena e Firenze. Siti web, e-commerce e web app su misura per attività in Toscana e in tutta Italia.",
     "ogDescription": "Siti web, e-commerce e web app su misura, veloci e ottimizzati SEO. Lavoro con clienti in tutta Italia.",
     "jobTitle": "Sviluppatore Web Freelance"
+  },
+  "Blog": {
+    "archive": {
+      "title": "Idee, struttura e interfacce.",
+      "featured": "Articolo in evidenza",
+      "allArticles": "Tutti gli articoli"
+    },
+    "article": {
+      "breadcrumbLabel": "Percorso articolo",
+      "backToBlog": "Torna al Blog",
+      "read": "Leggi l’articolo",
+      "by": "Di {author}",
+      "readTime": "{time} di lettura",
+      "draftNotice": "Bozza editoriale: contenuto dimostrativo da rivedere prima della pubblicazione.",
+      "contents": "In questo articolo",
+      "related": "Continua ad approfondire",
+      "ctaEyebrow": "Un progetto web",
+      "ctaText": "Hai un’idea da mettere a fuoco?",
+      "ctaLink": "Parliamone"
+    },
+    "minute": "minuto",
+    "minutes": "minuti"
   },
   "NotFound": {
     "eyebrow": "Errore 404",

@@ -3,6 +3,7 @@
     "links": {
       "home": "Home",
       "projects": "Projects",
+      "blog": "Blog",
       "services": "Services",
       "about": "About",
       "contact": "Contact"
@@ -27,6 +28,7 @@
     "links": {
       "home": "Home",
       "projects": "Projects",
+      "blog": "Blog",
       "services": "Services",
       "about": "About",
       "collaborations": "Collaborations",
@@ -457,6 +459,22 @@
     "visit": "Visit site",
     "screenshotAlt": "Screenshot of {title}",
     "comingSoon": "Coming soon",
+    "openCaseStudy": "Open case study",
+    "detail": {
+      "draftNotice": "Editorial preview: the copy on this page is provisional and does not describe verified work or outcomes.",
+      "backToArchive": "All projects",
+      "context": "Context",
+      "challenge": "Need",
+      "approach": "Approach",
+      "activities": "Areas of work",
+      "technologies": "Available technologies",
+      "coverPending": "Cover in preparation",
+      "nextProject": "Next project",
+      "externalSite": "Visit the website",
+      "sourceCode": "Source code",
+      "systemMarker": "07 / SYSTEM",
+      "technicalMarker": "08 / TECH"
+    },
     "othersTitle": "More <highlight>projects</highlight>",
     "items": {
       "radici": {
@@ -632,6 +650,28 @@
     "description": "Custom websites, e-commerce and web apps for businesses, wineries, hospitality and professionals. Fast, well-crafted and SEO-optimized. Based in Chianti between Siena and Florence, working across Italy.",
     "ogDescription": "Custom websites, e-commerce and web apps — fast and SEO-optimized.",
     "jobTitle": "Freelance Web Developer"
+  },
+  "Blog": {
+    "archive": {
+      "title": "Ideas, structure and interfaces.",
+      "featured": "Featured article",
+      "allArticles": "All articles"
+    },
+    "article": {
+      "breadcrumbLabel": "Article breadcrumb",
+      "backToBlog": "Back to the Blog",
+      "read": "Read article",
+      "by": "By {author}",
+      "readTime": "{time} read",
+      "draftNotice": "Editorial draft: demonstration content to review before publication.",
+      "contents": "In this article",
+      "related": "Keep exploring",
+      "ctaEyebrow": "A web project",
+      "ctaText": "Have an idea to shape?",
+      "ctaLink": "Let’s talk"
+    },
+    "minute": "min",
+    "minutes": "min"
   },
   "NotFound": {
     "eyebrow": "Error 404",

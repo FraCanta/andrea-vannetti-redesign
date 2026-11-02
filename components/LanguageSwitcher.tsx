@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
@@ -15,6 +16,7 @@ const switchLabel: Record<Locale, string> = {
 export function LanguageSwitcher({ size = "md" }: { size?: "md" | "lg" }) {
   const locale = useLocale();
   const pathname = usePathname();
+  const params = useParams<{ slug?: string }>();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -25,7 +27,27 @@ export function LanguageSwitcher({ size = "md" }: { size?: "md" | "lg" }) {
     <button
       type="button"
       onClick={() =>
-        startTransition(() => router.replace(pathname, { locale: nextLocale }))
+        startTransition(() => {
+          if (pathname === "/progetti/[slug]" && typeof params.slug === "string") {
+            router.replace(
+              { pathname: "/progetti/[slug]", params: { slug: params.slug } },
+              { locale: nextLocale },
+            );
+            return;
+          }
+          if (pathname === "/blog/[slug]" && typeof params.slug === "string") {
+            router.replace(
+              { pathname: "/blog/[slug]", params: { slug: params.slug } },
+              { locale: nextLocale },
+            );
+            return;
+          }
+
+          router.replace(
+            pathname as Exclude<typeof pathname, "/progetti/[slug]" | "/blog/[slug]">,
+            { locale: nextLocale },
+          );
+        })
       }
       disabled={isPending}
       lang={nextLocale}

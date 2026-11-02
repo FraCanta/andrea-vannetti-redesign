@@ -3,7 +3,7 @@ import { routing } from "@/i18n/routing";
 
 const BASE_URL = "https://www.andreavannetti.dev";
 
-type Href = keyof typeof routing.pathnames;
+type Href = Exclude<keyof typeof routing.pathnames, "/progetti/[slug]" | "/blog/[slug]">;
 type Locale = (typeof routing.locales)[number];
 
 export function getUrl(href: Href, locale: string) {

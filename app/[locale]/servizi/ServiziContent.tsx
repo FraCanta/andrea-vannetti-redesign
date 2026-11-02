@@ -1,29 +1,36 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useLayoutEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import {
+  useMotionValueEvent,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { useTranslations } from "next-intl";
-
 import { Link } from "@/i18n/navigation";
 import {
   ArrowRight,
+  BarChart3,
+  Code,
+  FileSearch,
   Globe,
+  Headphones,
+  Layout,
+  MessageSquare,
+  Palette,
+  Pencil,
+  Rocket,
   Search,
   ShoppingCart,
-  Layout,
-  Palette,
-  BarChart3,
-  MessageSquare,
-  FileSearch,
-  Pencil,
-  Code,
-  Rocket,
-  Headphones,
 } from "lucide-react";
-import { SectionReveal } from "@/components/SectionReveal";
-import { highlight } from "@/components/highlight";
+import { HomeReveal } from "@/components/redesign/HomeReveal";
+import styles from "./ServiziContent.module.css";
 
-/* ───────────────────── DATA ───────────────────── */
+const highlight = (chunks: ReactNode) => (
+  <span className={styles.accent}>{chunks}</span>
+);
 
 const services = [
   { id: "web-dev", icon: Globe, number: "01" },
@@ -44,400 +51,324 @@ const workflowSteps = [
 ] as const;
 
 const problems = [
-  { emoji: "🔍", key: "seo" },
-  { emoji: "📱", key: "mobile" },
-  { emoji: "🐌", key: "speed" },
-  { emoji: "🤷", key: "start" },
-  { emoji: "🔒", key: "security" },
-  { emoji: "🛒", key: "ecommerce" },
+  "seo",
+  "mobile",
+  "speed",
+  "start",
+  "security",
+  "ecommerce",
 ] as const;
 
 function HorizontalServices() {
   const t = useTranslations("Services.details");
-  const containerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
+  const homeServices = useTranslations("HomeRedesign.services");
+  const containerRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [scrollRange, setScrollRange] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [scrollPercent, setScrollPercent] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-
-    const calc = () => {
-      if (innerRef.current) {
-        setScrollRange(innerRef.current.scrollWidth - window.innerWidth);
-      }
-    };
-
-    const onResize = () => {
-      checkMobile();
-      calc();
-    };
-
-    checkMobile();
-    requestAnimationFrame(() => requestAnimationFrame(calc));
-
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
-  // Mobile: vertical stack
-  if (isMobile) {
-    return (
-      <section className="pb-section section-padding">
-        <div className="text-center mb-12">
-          <h2 className="font-display font-bold text-display-md">
-            {t.rich("title", { highlight })}
-          </h2>
-        </div>
-        <div className="space-y-6">
-          {services.map((service) => (
-            <SectionReveal key={service.id}>
-              <div
-                id={service.id}
-                className="p-6 bg-background-card border border-border rounded-2xl space-y-4"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <service.icon size={24} className="text-primary" />
-                  </div>
-                  <span className="font-mono text-primary text-xs">
-                    {service.number} /{" "}
-                    {String(services.length).padStart(2, "0")}
-                  </span>
-                </div>
-                <h2 className="font-display font-bold text-xl">
-                  {t(`items.${service.id}.title`)}
-                </h2>
-                <p className="text-primary text-xs uppercase tracking-widest font-semibold">
-                  {t(`items.${service.id}.subtitle`)}
-                </p>
-                <p className="text-typography/80 leading-relaxed text-sm">
-                  {t(`items.${service.id}.description`)}
-                </p>
-                <div className="pt-4 border-t border-border">
-                  <p className="text-xs uppercase tracking-widest text-typography-muted mb-3">
-                    {t("includes")}
-                  </p>
-                  <ul className="space-y-2">
-                    {(t.raw(`items.${service.id}.features`) as string[]).map(
-                      (feature) => (
-                        <li key={feature} className="flex items-start gap-2">
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                          <span className="text-sm text-typography leading-relaxed">
-                            {feature}
-                          </span>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-              </div>
-            </SectionReveal>
-          ))}
-        </div>
-      </section>
-    );
-  }
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    const next = Math.round(progress * 100);
+    setScrollPercent((current) => (current === next ? current : next));
+  });
 
-  // Desktop: horizontal scroll
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+
+    const measure = () => {
+      const isCompact =
+        window.matchMedia("(max-width: 1023px)").matches || Boolean(reduceMotion);
+      const nextRange = isCompact
+        ? 0
+        : Math.max(0, track.scrollWidth - container.clientWidth);
+      setScrollRange((current) => (current === nextRange ? current : nextRange));
+    };
+
+    measure();
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(measure);
+    observer?.observe(container);
+    observer?.observe(track);
+    window.addEventListener("resize", measure);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [reduceMotion]);
+
+  const sectionStyle = {
+    "--service-scroll-range": `${scrollRange}px`,
+  } as CSSProperties;
+
   return (
     <section
       ref={containerRef}
-      className="relative"
-      style={{ height: `${services.length * 120}vh` }}
+      className={styles.carouselSection}
+      style={sectionStyle}
+      aria-labelledby="services-details-title"
     >
-      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
-        <div className="section-padding pt-10 pb-4 shrink-0 text-center">
-          <h2 className="font-display font-bold text-display-md">
-            {t.rich("title", { highlight })}
-          </h2>
+      <div className={styles.carouselViewport}>
+        <div className={styles.carouselHeading}>
+          <HomeReveal className={styles.carouselHeadingText}>
+            <p className={styles.sectionLabel}>
+              <span className={styles.labelNumber}>03</span>
+              <span>{homeServices("eyebrow")}</span>
+            </p>
+            <h2 id="services-details-title">
+              {t.rich("title", { highlight })}
+            </h2>
+          </HomeReveal>
+          <p className={styles.carouselNote}>{t("includes")}</p>
         </div>
 
-        <div className="flex-1 flex items-center overflow-hidden">
-          <motion.div
-            ref={innerRef}
-            style={{ x }}
-            className="flex gap-10 pl-6 md:pl-12 lg:pl-20 xl:pl-28 pr-[20vw] will-change-transform [backface-visibility:hidden]"
-          >
-            {services.map((service) => (
-              <div
-                key={service.id}
+        <motion.div
+          ref={trackRef}
+          className={styles.carouselTrack}
+          style={{ x: reduceMotion ? 0 : x }}
+        >
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const features = t.raw(`items.${service.id}.features`) as string[];
+
+            return (
+              <HomeReveal
+                as="article"
                 id={service.id}
-                className="w-[42vw] shrink-0"
+                aria-labelledby={`service-title-${service.id}`}
+                className={styles.serviceSlide}
+                key={service.id}
+                delay={index * 0.035}
+                y={16}
               >
-                <div className="h-full p-8 md:p-10 bg-background-card border border-border rounded-2xl space-y-6 hover:border-primary/30 transition-all duration-500">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <service.icon size={28} className="text-primary" />
-                    </div>
-                    <span className="font-mono text-primary text-sm">
-                      {service.number} /{" "}
-                      {String(services.length).padStart(2, "0")}
+                <div className={styles.serviceCard}>
+                  <div className={styles.serviceCardTop}>
+                    <span className={styles.serviceNumber}>
+                      {service.number} / {String(services.length).padStart(2, "0")}
                     </span>
+                    <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
                   </div>
-                  <h2 className="font-display font-bold text-display-sm">
+                  <h3 id={`service-title-${service.id}`}>
                     {t(`items.${service.id}.title`)}
-                  </h2>
-                  <p className="text-primary text-sm uppercase tracking-widest font-semibold">
+                  </h3>
+                  <p className={styles.serviceSubtitle}>
                     {t(`items.${service.id}.subtitle`)}
                   </p>
-                  <p className="text-typography/80 leading-relaxed">
+                  <p className={styles.serviceDescription}>
                     {t(`items.${service.id}.description`)}
                   </p>
-                  <div className="pt-4 border-t border-border">
-                    <p className="text-xs uppercase tracking-widest text-typography-muted mb-4">
-                      {t("includes")}
-                    </p>
-                    <ul className="space-y-3">
-                      {(t.raw(`items.${service.id}.features`) as string[]).map(
-                        (feature) => (
-                          <li key={feature} className="flex items-start gap-3">
-                            <span className="mt-1.5 w-2 h-2 rounded-full bg-primary shrink-0" />
-                            <span className="text-sm text-typography leading-relaxed">
-                              {feature}
-                            </span>
-                          </li>
-                        ),
-                      )}
+                  <div className={styles.serviceFeatures}>
+                    <p className={styles.featuresLabel}>{t("includes")}</p>
+                    <ul>
+                      {features.map((feature, featureIndex) => (
+                        <li key={feature}>
+                          <span aria-hidden="true">
+                            {String(featureIndex + 1).padStart(2, "0")}
+                          </span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+              </HomeReveal>
+            );
+          })}
+        </motion.div>
 
-        <div className="shrink-0 section-padding py-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="h-[2px] bg-border rounded-full overflow-hidden">
-              <motion.div
-                style={{ scaleX: scrollYProgress }}
-                className="h-full bg-primary origin-left"
-              />
-            </div>
+        <div className={styles.carouselProgress}>
+          <span>{homeServices("indexLabel")}</span>
+          <div
+            className={styles.progressTrack}
+            role="progressbar"
+            aria-label={homeServices("indexLabel")}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={scrollPercent}
+          >
+            <motion.span
+              className={styles.progressValue}
+              style={{ scaleX: scrollYProgress }}
+            />
           </div>
+          <span className={styles.progressCount}>
+            {String(Math.min(services.length, Math.max(1, Math.ceil((scrollPercent / 100) * services.length)))).padStart(2, "0")}
+            <span aria-hidden="true"> / {String(services.length).padStart(2, "0")}</span>
+          </span>
         </div>
       </div>
     </section>
   );
 }
 
-/* ───────────────────── COMPONENT ───────────────────── */
-
 export function ServiziContent() {
   const t = useTranslations("Services");
+  const homeServices = useTranslations("HomeRedesign.services");
   const faqs = t.raw("faq.items") as { q: string; a: string }[];
 
   return (
-    <>
-      {/* Hero */}
-      <section className="pt-44 md:pt-80 pb-section section-padding">
-        <div className="max-w-7xl mx-auto text-center">
-          <SectionReveal>
-            <h1 className="font-display font-bold text-display-xl mt-4">
-              {t.rich("hero.title", { highlight })}
-            </h1>
-            <p className="mt-6 text-lg text-typography/80 leading-relaxed font-light max-w-xl mx-auto">
-              {t("hero.text")}
-            </p>
-          </SectionReveal>
+    <div className={styles.page}>
+      <section className={styles.hero} aria-labelledby="services-title">
+        <div className={styles.shell}>
+          <HomeReveal as="p" className={styles.sectionLabel}>
+            <span className={styles.labelNumber}>01</span>
+            <span>{homeServices("eyebrow")}</span>
+          </HomeReveal>
+          <div className={styles.heroGrid}>
+            <HomeReveal className={styles.heroTitleBlock} delay={0.06}>
+              <h1 id="services-title">
+                {t.rich("hero.title", { highlight })}
+              </h1>
+            </HomeReveal>
+            <HomeReveal className={styles.heroIntro} delay={0.14} y={18}>
+              <p>{t("hero.text")}</p>
+            </HomeReveal>
+          </div>
         </div>
       </section>
 
-      {/* Problemi che risolvo */}
-      <section className="pt-section pb-section section-padding">
-        <div className="max-w-7xl mx-auto">
-          <SectionReveal>
-            <div className="text-center mb-16">
-              <h2 className="font-display font-bold text-display-md">
-                {t.rich("problems.title", { highlight })}
-              </h2>
-            </div>
-          </SectionReveal>
+      <section className={styles.problems} aria-labelledby="problems-title">
+        <div className={styles.shell}>
+          <HomeReveal className={styles.sectionHeading}>
+            <p className={styles.sectionLabel}>
+              <span className={styles.labelNumber}>02</span>
+            </p>
+            <h2 id="problems-title">
+              {t.rich("problems.title", { highlight })}
+            </h2>
+          </HomeReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {problems.map((item, i) => (
-              <SectionReveal key={i} delay={i * 0.08}>
-                <div className="h-full p-8 bg-background-card border border-border rounded-2xl group hover:border-primary/30 transition-all duration-500">
-                  <span className="text-3xl">{item.emoji}</span>
-                  <h3 className="font-display font-semibold text-lg mt-4 mb-2 text-typography group-hover:text-primary transition-colors">
-                    {t(`problems.items.${item.key}.problem`)}
-                  </h3>
-                  <p className="text-typography-muted text-sm leading-relaxed">
-                    {t(`problems.items.${item.key}.solution`)}
-                  </p>
+          <div className={styles.problemGrid}>
+            {problems.map((key, index) => (
+              <HomeReveal
+                as="article"
+                className={styles.problemItem}
+                key={key}
+                delay={index * 0.055}
+                y={16}
+              >
+                <span className={styles.problemNumber} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3>{t(`problems.items.${key}.problem`)}</h3>
+                  <p>{t(`problems.items.${key}.solution`)}</p>
                 </div>
-              </SectionReveal>
+              </HomeReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Detailed services */}
       <HorizontalServices />
 
-      {/* Workflow */}
-      <section className="py-section section-padding">
-        <div className="max-w-5xl mx-auto">
-          <SectionReveal>
-            <div className="text-center mb-20">
-              <span className="text-xl uppercase tracking-[0.2em]">
-                <span className="text-typography-muted">
-                  {t("workflow.eyebrow")}
-                </span>
-              </span>
-              <h2 className="font-display font-bold text-display-md mt-4">
-                {t.rich("workflow.title", { highlight })}
-              </h2>
-              <p className="mt-4 text-lg text-typography/80 max-w-lg mx-auto font-light">
-                {t("workflow.text")}
-              </p>
-            </div>
-          </SectionReveal>
+      <section className={styles.workflow} aria-labelledby="workflow-title">
+        <div className={styles.shell}>
+          <HomeReveal className={styles.workflowHeading}>
+            <p className={styles.sectionLabel}>
+              <span className={styles.labelNumber}>04</span>
+              <span>{t("workflow.eyebrow")}</span>
+            </p>
+            <h2 id="workflow-title">
+              {t.rich("workflow.title", { highlight })}
+            </h2>
+            <p className={styles.workflowIntro}>{t("workflow.text")}</p>
+          </HomeReveal>
 
-          {/* Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden lg:block" />
+          <ol className={styles.workflowList}>
+            {workflowSteps.map((step, index) => {
+              const Icon = step.icon;
 
-            <div className="space-y-12 lg:space-y-0">
-              {workflowSteps.map((step, i) => {
-                const isLeft = i % 2 === 0;
+              return (
+                <li key={step.number}>
+                  <HomeReveal
+                    className={styles.workflowStep}
+                    delay={index * 0.07}
+                    y={16}
+                  >
+                    <span className={styles.workflowNumber}>{step.number}</span>
+                    <Icon
+                      className={styles.workflowIcon}
+                      size={21}
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                    <h3>{t(`workflow.items.${step.key}.title`)}</h3>
+                    <p>{t(`workflow.items.${step.key}.description`)}</p>
+                  </HomeReveal>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
 
-                return (
-                  <SectionReveal key={step.number} delay={i * 0.1}>
-                    <div className="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:py-10">
-                      {/* Dot on the line */}
-                      <div className="absolute left-1/2 top-12 -translate-x-1/2 hidden lg:flex flex-col items-center z-10">
-                        <div className="w-4 h-4 rounded-full bg-primary border-4 border-background" />
-                      </div>
+      <section className={styles.faq} aria-labelledby="faq-title">
+        <div className={styles.shell}>
+          <HomeReveal className={styles.faqHeading}>
+            <p className={styles.sectionLabel}>
+              <span className={styles.labelNumber}>05</span>
+              <span>FAQ</span>
+            </p>
+            <h2 id="faq-title">{t.rich("faq.title", { highlight })}</h2>
+          </HomeReveal>
 
-                      {/* Content card */}
-                      <div
-                        className={`${
-                          isLeft
-                            ? "lg:col-start-1 lg:text-right lg:pr-12"
-                            : "lg:col-start-2 lg:text-left lg:pl-12"
-                        }`}
-                      >
-                        <div
-                          className={`p-6 bg-background-card border border-border rounded-2xl group hover:border-primary/30 transition-all duration-500 ${
-                            isLeft ? "lg:ml-auto" : ""
-                          } max-w-lg`}
-                        >
-                          <div
-                            className={`flex items-center gap-3 mb-4 ${
-                              isLeft ? "lg:flex-row-reverse" : ""
-                            }`}
-                          >
-                            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
-                              <step.icon size={20} className="text-primary" />
-                            </div>
-                            <span className="font-mono text-primary text-xs">
-                              Step {step.number}
-                            </span>
-                          </div>
-                          <h3 className="font-display font-semibold text-xl mb-2 text-typography">
-                            {t(`workflow.items.${step.key}.title`)}
-                          </h3>
-                          <p className="text-typography-muted leading-relaxed text-sm">
-                            {t(`workflow.items.${step.key}.description`)}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Empty column for the other side */}
-                      {isLeft && (
-                        <div className="hidden lg:block lg:col-start-2" />
-                      )}
-                      {!isLeft && (
-                        <div className="hidden lg:block lg:col-start-1 lg:row-start-1" />
-                      )}
-                    </div>
-                  </SectionReveal>
-                );
-              })}
-            </div>
+          <div className={styles.faqList}>
+            {faqs.map((faq, index) => (
+              <HomeReveal
+                className={styles.faqReveal}
+                key={faq.q}
+                delay={index * 0.035}
+                y={14}
+              >
+                <details className={styles.faqItem}>
+                  <summary>
+                    <span className={styles.faqNumber} aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className={styles.faqQuestion}>{faq.q}</span>
+                    <span className={styles.faqToggle} aria-hidden="true">
+                      +
+                    </span>
+                  </summary>
+                  <div className={styles.faqAnswer}>
+                    <p>{faq.a}</p>
+                  </div>
+                </details>
+              </HomeReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <>
-        <div className="section-divider" />
-        <section className="py-section section-padding">
-          <div className="max-w-3xl mx-auto">
-            <SectionReveal>
-              <div className="text-center mb-16">
-                <span className="text-xl uppercase tracking-[0.2em]">
-                  <span className="text-typography-muted">FAQ</span>
-                </span>
-                <h2 className="font-display font-bold text-display-md mt-4">
-                  {t.rich("faq.title", { highlight })}
-                </h2>
-              </div>
-            </SectionReveal>
-
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <SectionReveal key={i} delay={i * 0.05}>
-                  <details className="group p-6 bg-background-card border border-border rounded-xl hover:border-primary/30 transition-all duration-300">
-                    <summary className="flex items-center justify-between cursor-pointer list-none">
-                      <span className="font-display font-semibold text-lg text-typography group-hover:text-primary transition-colors pr-4">
-                        {faq.q}
-                      </span>
-                      <span className="shrink-0 w-8 h-8 rounded-full border border-border flex items-center justify-center text-typography-muted group-hover:border-primary group-hover:text-primary transition-all duration-300">
-                        <span className="text-lg leading-none group-open:rotate-45 transition-transform duration-300">
-                          +
-                        </span>
-                      </span>
-                    </summary>
-                    <p className="mt-4 text-typography-muted leading-relaxed">
-                      {faq.a}
-                    </p>
-                  </details>
-                </SectionReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      </>
-
-      {/* CTA */}
-      <>
-        <div className="section-divider" />
-        <section className="py-section section-padding">
-          <div className="max-w-3xl mx-auto text-center">
-            <SectionReveal>
-              <h2 className="font-display font-bold text-display-sm">
-                {t("cta.title")}
-              </h2>
-              <p className="mt-4 text-typography-muted text-lg">
-                {t("cta.text")}
-              </p>
-              <Link
-                href="/contatti"
-                className="group inline-flex items-center gap-3 mt-8 px-10 py-5 bg-primary text-background font-display font-bold uppercase tracking-wider text-sm rounded-full hover:gap-5 transition-all duration-300"
-              >
-                {t("cta.button")}
-                <ArrowRight
-                  size={18}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </Link>
-            </SectionReveal>
-          </div>
-        </section>
-        {/* Divider */}
-        <div className="section-divider" />
-      </>
-    </>
+      <section className={styles.cta} aria-labelledby="services-cta-title">
+        <div className={`${styles.shell} ${styles.ctaGrid}`}>
+          <HomeReveal className={styles.ctaTitleBlock}>
+            <p className={styles.sectionLabel}>
+              <span className={styles.labelNumber}>06</span>
+            </p>
+            <h2 id="services-cta-title">{t("cta.title")}</h2>
+          </HomeReveal>
+          <HomeReveal className={styles.ctaAction} delay={0.1} y={18}>
+            <p>{t("cta.text")}</p>
+            <Link href="/contatti" className={styles.ctaLink}>
+              <span>{t("cta.button")}</span>
+              <ArrowRight size={19} aria-hidden="true" />
+            </Link>
+          </HomeReveal>
+        </div>
+      </section>
+    </div>
   );
 }

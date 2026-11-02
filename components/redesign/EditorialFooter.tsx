@@ -16,6 +16,7 @@ const services = [
 const exploreLinks = [
   { href: "/", key: "home" },
   { href: "/progetti", key: "projects" },
+  { href: "/blog", key: "blog" },
   { href: "/servizi", key: "services" },
   { href: "/chi-sono", key: "about" },
   { href: "/contatti", key: "contact" },

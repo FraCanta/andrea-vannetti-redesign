@@ -273,6 +273,22 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+.blogAllArticles {
+  justify-self: end;
+}
+.blogAllArticles a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 2.75rem;
+  color: var(--home-method-fg);
+  font: 600 .68rem/1.4 var(--font-mono), monospace;
+  letter-spacing: .04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.blogAllArticles a:hover { color: var(--home-lime); }
+.blogAllArticles a:focus-visible { outline: 3px solid var(--home-lime); outline-offset: 4px; }
 .contact {
   background: var(--home-contact-bg);
   color: var(--home-contact-fg);
