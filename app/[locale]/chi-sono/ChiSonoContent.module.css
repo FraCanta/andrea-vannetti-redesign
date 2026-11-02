@@ -55,7 +55,7 @@
 }
 
 .heroTitleReveal {
-  grid-column: 1 / span 8;
+  grid-column: 1 / span 6;
   grid-row: 2;
   min-width: 0;
 }
@@ -69,49 +69,54 @@
 }
 
 .portraitReveal {
-  grid-column: 9 / -1;
+  grid-column: 7 / -1;
   grid-row: 2 / 5;
   min-width: 0;
 }
 
-.portraitFrame {
+.portraitArtwork {
   position: relative;
-  min-height: clamp(28rem, 43vw, 40rem);
+  aspect-ratio: 1334 / 1179;
   margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--home-contact-border);
-  background: var(--home-contact-bg);
-}
-
-.portraitFrame::before {
-  position: absolute;
-  z-index: 0;
-  top: 16%;
-  right: 0;
-  left: 0;
-  height: 1px;
-  background: var(--home-contact-border);
-  content: "";
-}
-
-.portraitFrame::after {
-  position: absolute;
-  z-index: 0;
-  top: 16%;
-  bottom: 0;
-  left: 18%;
-  width: 1px;
-  background: var(--home-contact-border);
-  content: "";
 }
 
 .portrait {
-  z-index: 1;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center;
 }
 
-.portraitCode,
+@media (min-width: 901px) {
+  .heroTitle {
+    font-size: clamp(6rem, calc(7.2vw - 2px), 8.5rem);
+  }
+
+  .portraitArtwork {
+    transform: translateX(4%) scale(1);
+    transform-origin: right center;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1700px) {
+  .hero {
+    padding-bottom: clamp(3rem, 5vw, 5rem);
+  }
+
+  .heroIntro {
+    padding-top: clamp(1rem, 1.5vw, 1.5rem);
+  }
+
+  .heroIntro p {
+    font-size: clamp(0.95rem, calc(1.2vw - 0.25rem), 1rem);
+    line-height: 1.58;
+  }
+
+  .heroActions :global(a) {
+    min-height: 42px;
+    padding: 0.65rem 0.8rem;
+    font-size: 0.6rem;
+  }
+}
+
 .projectCode {
   position: absolute;
   z-index: 2;
@@ -129,7 +134,7 @@
 }
 
 .heroIntro {
-  grid-column: 2 / span 6;
+  grid-column: 2 / span 5;
   grid-row: 3;
   max-width: 42rem;
   padding-top: clamp(1.5rem, 3vw, 2.8rem);
@@ -145,7 +150,7 @@
 }
 
 .heroActions {
-  grid-column: 2 / span 6;
+  grid-column: 2 / span 5;
   grid-row: 4;
 }
 
@@ -394,16 +399,16 @@
   }
 
   .heroTitleReveal {
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 3;
   }
 
   .portraitReveal {
-    grid-column: 5 / -1;
+    grid-column: 4 / -1;
   }
 
   .heroIntro,
   .heroActions {
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 3;
   }
 
   .storyGrid {
@@ -466,13 +471,10 @@
   }
 
   .portraitReveal {
-    width: min(100%, 28rem);
-    justify-self: end;
-  }
-
-  .portraitFrame {
-    min-height: 0;
-    aspect-ratio: 0.75;
+    width: calc(100% + 2.5rem);
+    max-width: none;
+    justify-self: center;
+    margin-inline: -1.25rem;
   }
 
   .heroIntro {
@@ -565,10 +567,6 @@
 @media (max-width: 420px) {
   .heroTitle {
     font-size: clamp(3rem, 12.2vw, 3.35rem);
-  }
-
-  .portraitFrame {
-    aspect-ratio: 0.75;
   }
 
   .principleReveal {

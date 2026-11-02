@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -21,6 +23,17 @@ export function ChiSonoContent() {
   const t = useTranslations("About");
   const contact = useTranslations("HomeRedesign.contact");
   const featuredProject = useTranslations("Home.featured");
+  const { resolvedTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const portraitSrc =
+    isMounted && resolvedTheme === "dark"
+      ? "/images/chi-sono-andrea-dark-v2.png"
+      : "/images/chi-sono-andrea-light.png";
 
   return (
     <div className={styles.page}>
@@ -39,16 +52,13 @@ export function ChiSonoContent() {
             </HomeReveal>
 
             <HomeReveal className={styles.portraitReveal} delay={0.12}>
-              <figure className={styles.portraitFrame}>
-                <span className={styles.portraitCode} aria-hidden="true">
-                  &lt;/&gt;
-                </span>
+              <figure className={styles.portraitArtwork}>
                 <Image
-                  src="/ritratto.png"
+                  src={portraitSrc}
                   alt={t("photoAlt")}
                   fill
                   priority
-                  sizes="(max-width: 760px) 100vw, (max-width: 1100px) 42vw, 34vw"
+                  sizes="(max-width: 760px) 100vw, 44vw"
                   className={styles.portrait}
                 />
               </figure>
