@@ -170,12 +170,7 @@ export async function EditorialFooter() {
             <div className={styles.footerCollaboration}>
               <h3>{collab("collaborationEyebrow")}</h3>
               <p>{collab("collaborationDescription")}</p>
-              <Link
-                href={{
-                  pathname: "/contatti",
-                  query: { subject: "collaboration" },
-                }}
-              >
+              <Link href="/collaboriamo">
                 {collab("collaborationCta")}{" "}
                 <ArrowUpRight size={15} aria-hidden="true" />
               </Link>

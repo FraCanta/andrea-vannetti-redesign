@@ -133,6 +133,140 @@
       "collaborationText": "For agencies, creative studios and freelancers interested in working together."
     }
   },
+  "Collaborate": {
+    "meta": {
+      "title": "Web development partnerships for agencies and professionals",
+      "description": "I work with agencies, creative studios and professionals on frontend development, WordPress, integrations and the quality of web projects."
+    },
+    "eyebrow": "Collaborations",
+    "hero": {
+      "titleFirst": "Inside the project.",
+      "titleSecond": "Not on the sidelines.",
+      "text": "I work with agencies, creative studios and professionals to shape web projects where different skills come together and work towards a shared goal.",
+      "cta": "Propose a collaboration",
+      "diagramLabel": "Collaboration diagram connecting development, team and project",
+      "nodeAndrea": "Andrea / development",
+      "nodeTeam": "Team / skills",
+      "nodeProject": "Project / goal",
+      "diagramIndex": "SHARED SYSTEM / 01"
+    },
+    "ways": {
+      "eyebrow": "02 / THE FIRST CONVERSATION",
+      "title": "Two ways to begin.",
+      "items": [
+        {
+          "number": "01",
+          "title": "Have a project and need a developer?",
+          "body": "You already have a team, a defined project or work in progress, and need someone to handle frontend development, integrations or specific technical tasks.",
+          "tag": "A project to develop"
+        },
+        {
+          "number": "02",
+          "title": "Would you like to propose a collaboration?",
+          "body": "Are you a designer, freelancer or studio with complementary skills? Tell me what you do and what kind of projects we could work on together.",
+          "tag": "Skills brought together"
+        }
+      ]
+    },
+    "skills": {
+      "eyebrow": "03 / SKILLS",
+      "title": "Different skills. One shared project.",
+      "intro": "I can join the workflow where technical expertise is needed, working alongside the people who shape strategy, content and interface.",
+      "diagramLabel": "Technical skills connected to a shared project",
+      "hubLabel": "PROJECT",
+      "items": [
+        {
+          "number": "01",
+          "title": "Frontend development",
+          "body": "Building web interfaces and applications with React, Next.js and technologies that fit the project, including from established designs and prototypes.",
+          "tag": "INTERFACES"
+        },
+        {
+          "number": "02",
+          "title": "WordPress and CMS",
+          "body": "Developing and integrating WordPress solutions, including headless architectures when they suit the project’s needs.",
+          "tag": "CONTENT"
+        },
+        {
+          "number": "03",
+          "title": "Web integrations",
+          "body": "Connecting APIs, services and features to turn an interface into a working digital experience.",
+          "tag": "SYSTEMS"
+        },
+        {
+          "number": "04",
+          "title": "Performance and quality",
+          "body": "Attention to speed, responsive behaviour, accessibility and maintainability throughout development.",
+          "tag": "QUALITY"
+        }
+      ]
+    },
+    "roles": {
+      "eyebrow": "04 / HOW WE WORK TOGETHER",
+      "title": "Clear roles. Fewer overlaps.",
+      "items": [
+        {
+          "number": "01",
+          "title": "My contribution",
+          "body": "I handle the technical and development work agreed together, staying in conversation with the other people involved in the project."
+        },
+        {
+          "number": "02",
+          "title": "Your contribution",
+          "body": "You bring the agreed skills, context and responsibilities: from strategy to design, client relationships and project management."
+        },
+        {
+          "number": "03",
+          "title": "The shared work",
+          "body": "Before starting, we define goals, scope, responsibilities, timing and how we will communicate."
+        }
+      ],
+      "note": "I can work directly with the end client or alongside an agency or studio, depending on the project agreement.",
+      "diagramLabel": "Andrea, team and project coordinating towards a shared goal"
+    },
+    "principles": {
+      "eyebrow": "05 / A SUSTAINABLE PROCESS",
+      "title": "Work together without creating dependencies.",
+      "intro": "A good collaboration should not make things harder for the people who come next. That is why it helps to build solutions that are clear, organised and manageable over time.",
+      "items": [
+        {
+          "number": "01",
+          "title": "Defined roles",
+          "body": "Tasks, responsibilities and points of contact are clarified before work begins."
+        },
+        {
+          "number": "02",
+          "title": "Maintainable code",
+          "body": "Structure and implementation make it easier to work on and evolve the project."
+        },
+        {
+          "number": "03",
+          "title": "Clear handovers",
+          "body": "Materials, access and handover arrangements are agreed based on the work involved."
+        },
+        {
+          "number": "04",
+          "title": "Flexibility",
+          "body": "One-off or ongoing projects, depending on mutual needs and availability."
+        }
+      ]
+    },
+    "next": {
+      "eyebrow": "06 / THE NEXT STEP",
+      "title": "Start with the context.",
+      "text": "You do not need to have every answer already. To understand if and how we could work together, I just need to know about the project, the skills involved and what you need.",
+      "itemsLabel": "Useful details for the first conversation",
+      "items": [
+        "Type of project or proposal",
+        "Skills needed",
+        "Current status and any materials available",
+        "Indicative timing",
+        "Preferred way of working together"
+      ],
+      "cta": "Propose a collaboration",
+      "ctaHint": "The contact form will identify your message as a collaboration request."
+    }
+  },
   "Home": {
     "hero": {
       "badge": "Available for new projects",
@@ -527,9 +661,11 @@
       "description": "Have a web project in mind? Tell me about it via email, phone or WhatsApp and I'll prepare a custom quote. In person around Siena and Florence, remotely across Italy."
     },
     "hero": {
+      "eyebrow": "Contact",
       "titleHighlight": "Everything",
       "titleRest": "starts here.",
-      "text": "Ready to create something that doesn't exist yet?"
+      "text": "Ready to create something that doesn't exist yet?",
+      "ruleLabel": "Contact / Web"
     },
     "links": {
       "email": "Email",
@@ -537,6 +673,8 @@
       "whatsapp": "WhatsApp"
     },
     "whatsappValue": "Message me on WhatsApp",
+    "informationLabel": "Contact information",
+    "formEyebrow": "New project",
     "call": {
       "title": "Prefer a call?",
       "text": "Book 30 minutes to talk about your project",
@@ -553,24 +691,35 @@
     "formTitle": "Got something to <highlight>ask me</highlight>?"
   },
   "ContactForm": {
+    "eyebrow": "Contact",
+    "title": "Tell me what you want to build.",
+    "description": "Share a little about the project or service you have in mind. It will help me understand the context and suggest a useful next step.",
+    "messageHelp": "Add any goals, constraints, or details that may help. You don't need to have every answer yet.",
     "labels": {
-      "firstName": "First name",
-      "lastName": "Last name",
-      "company": "Company",
+      "name": "Full name",
+      "company": "Company / business",
       "email": "Email",
-      "channel": "How should I contact you?",
-      "hasSite": "Do you already have a website?",
-      "hasBudget": "Do you have a budget?",
-      "message": "Message"
+      "site": "Current website, if any",
+      "portfolio": "Website, product, portfolio, or LinkedIn",
+      "subject": "What do you need?",
+      "reason": "Reason for contact",
+      "message": "Request details",
+      "collaborationMessage": "Tell me about your proposal"
     },
     "placeholders": {
-      "firstName": "Your first name",
-      "lastName": "Your last name",
-      "company": "Company name (optional)",
-      "email": "you@email.com",
-      "siteUrl": "https://your-website.com",
-      "budget": "Select a range...",
-      "message": "Tell me about your project..."
+      "site": "https://your-website.com",
+      "subject": "Select an option"
+    },
+    "services": {
+      "web-development": "Web development",
+      "wordpress": "WordPress",
+      "ecommerce": "E-Commerce",
+      "seo-performance": "SEO & Performance",
+      "ui-ux-design": "UI/UX Design",
+      "digital-consulting": "Digital consulting",
+      "collaboration": "Collaboration proposal",
+      "general": "General enquiry",
+      "undecided": "I'm not sure which service I need yet"
     },
     "options": {
       "email": "Email",
@@ -583,28 +732,80 @@
       "budgetMid": "€2,000 – €5,000",
       "budgetHigh": "> €5,000"
     },
+    "projectDetails": {
+      "groupLabel": "Project details",
+      "selectPlaceholder": "Select an option",
+      "stageLabel": "What stage is the project at?",
+      "timelineLabel": "Indicative timeline (optional)",
+      "budgetLabel": "Indicative budget (optional)",
+      "stages": {
+        "idea": "It's still an idea",
+        "defining": "I'm defining the project",
+        "existing": "There is already something to rebuild or improve",
+        "development": "It's already in development",
+        "online": "It's already online"
+      },
+      "timelines": {
+        "asap": "As soon as possible",
+        "1-3-months": "Within 1–3 months",
+        "3-6-months": "Within 3–6 months",
+        "flexible": "I'm flexible"
+      },
+      "budgets": {
+        "under-3000": "Less than €3,000",
+        "3000-6000": "€3,000–€6,000",
+        "6000-10000": "€6,000–€10,000",
+        "over-10000": "Over €10,000",
+        "undecided": "I haven't set a budget yet"
+      },
+      "budgetNote": "The quote is based on the project's goals, features, complexity, and scope."
+    },
     "errors": {
-      "firstName": "Please enter your first name",
-      "lastName": "Please enter your last name",
-      "channel": "Choose how I should contact you",
+      "nameRequired": "Please enter your full name",
       "emailRequired": "Please enter your email",
       "emailInvalid": "Invalid email address",
-      "phone": "Please enter your phone number",
-      "message": "Please write a message",
-      "siteUrl": "Please enter your website URL",
-      "budget": "Please select a budget range",
+      "subjectRequired": "Please select an option",
+      "messageRequired": "Please add some details about your request",
+      "siteUrl": "Please enter a valid website address",
       "privacy": "You must accept the privacy policy",
       "send": "Something went wrong. Please try again later.",
       "network": "Network error. Please try again later."
     },
-    "privacy": "I have read and accept the <link>Privacy Policy</link>",
-    "submit": "Send message",
+    "privacy": "I have read the notice and consent to the processing of my data so I can receive a reply to my request. See the <link>Privacy Policy</link>.",
+    "submit": "Send request",
     "sending": "Sending...",
-    "reset": "Reset form",
+    "collaboration": {
+      "eyebrow": "Collaborations",
+      "title": "Propose a collaboration.",
+      "description": "Tell me what you do and how you picture a possible collaboration. Whether you're a freelancer, creative studio, or agency, let's start with the context and see how we could work together.",
+      "messageHelp": "Briefly introduce your business, skills, and the kind of collaboration you'd like to propose. If you already have a specific project in mind, tell me about it too.",
+      "modeLabel": "How would you like to collaborate?",
+      "modeRequired": "Choose how you would like to collaborate",
+      "modes": {
+        "project-support": "I have a project and need support",
+        "proposal": "I'd like to propose a collaboration",
+        "other": "Other"
+      },
+      "skillsLabel": "What skills are you looking for? (optional)",
+      "skills": {
+        "ux": "UX / experience",
+        "ui-system": "UI / design system",
+        "frontend": "Frontend development",
+        "accessibility-qa": "Accessibility and QA"
+      },
+      "materialsHelp": "If available, add links to a brief or documentation, Figma files or presentations, and public repositories. Please do not share private credentials.",
+      "briefLabel": "Brief or documentation (link)",
+      "figmaLabel": "Figma or presentation (link)",
+      "repositoryLabel": "Public repository (link)",
+      "additionalInfo": "Is there anything else you'd like to add?",
+      "submit": "Send proposal",
+      "changeHint": "Want to send a different enquiry?",
+      "generalLink": "Return to general contact"
+    },
     "success": {
-      "title": "Message sent!",
-      "text": "Thanks for reaching out. I'll get back to you within 24 hours.",
-      "again": "Send another message"
+      "title": "Request sent!",
+      "text": "Thanks for reaching out. I'll reply as soon as I can.",
+      "again": "Send another request"
     }
   },
   "Footer": {

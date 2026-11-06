@@ -46,9 +46,9 @@
   gap: 0.3em;
   color: inherit;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(3rem, 6.2vw, 6rem);
+  font-size: var(--type-marquee);
   font-weight: 600;
-  letter-spacing: -0.035em;
+  letter-spacing: var(--tracking-display);
   line-height: 1;
   text-transform: uppercase;
   word-spacing: 0.2em;
@@ -70,8 +70,8 @@
   }
 
   .group {
-    gap: 2.5rem;
-    padding-right: 2.5rem;
+    gap: var(--space-7);
+    padding-right: var(--space-7);
   }
 }
 

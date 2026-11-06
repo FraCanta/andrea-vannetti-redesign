@@ -4,19 +4,110 @@
 
 @layer base {
   :root {
-    --home-bg: #e9e9e4;
-    --home-fg: #0a0a0a;
-    --home-muted: #41423d;
-    --home-lime: #95e600;
-    --home-violet: #55227f;
+    --site-header-base-height: 78px;
+    --site-header-height: calc(
+      var(--site-header-base-height) + env(safe-area-inset-top)
+    );
+    /* Foundation: shared palette; font faces are supplied by the locale layout */
+    --color-ink: #0a0a0a;
+    --color-paper: #e9e9e4;
+    --color-muted: #41423d;
+    --color-accent: #95e600;
+    --color-accent-secondary: #55227f;
+
+    /* Spacing: numeric scale and semantic relationships */
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+    --space-9: 4rem;
+    --space-10: 5rem;
+    --space-11: 6rem;
+    --space-12: 8rem;
+    --space-eyebrow-title: clamp(0.75rem, 1.25vw, 1.25rem);
+    --space-title-copy: clamp(1rem, 1.5vw, 1.75rem);
+    --space-copy-cta: clamp(1.25rem, 2vw, 2rem);
+    --space-copy-paragraph: clamp(0.85rem, 1.2vw, 1.25rem);
+    --space-component: clamp(1.5rem, 2.5vw, 3rem);
+    --space-section-heading: clamp(2rem, 3.5vw, 4rem);
+    --space-section: clamp(4rem, 7vw, 8rem);
+    --space-section-compact: clamp(3.5rem, 5vw, 6rem);
+    --space-section-spacious: clamp(5rem, 8vw, 10rem);
+    --space-section-editorial: clamp(5.5rem, 8vw, 10rem);
+    --space-section-gap: clamp(3rem, 5vw, 6rem);
+    --space-footer-block: clamp(3.5rem, 5.5vw, 6rem);
+    --space-footer-group: clamp(2rem, 4vw, 5rem);
+    --space-footer-masthead: clamp(3rem, 6vw, 8rem);
+    --space-footer-contact: clamp(0.75rem, 1.2vw, 1.1rem);
+    --space-hero-copy: clamp(1.5rem, 2.5vw, 2.5rem);
+    --space-hero-inset: clamp(2rem, 5vh, 4rem);
+    --space-hero-inset-compact: clamp(1.5rem, 4vh, 3rem);
+
+    /* Layout: gutters, reading measures, containers and shared gaps */
+    --gutter-content: clamp(1.25rem, 5vw, 5.5rem);
+    --gutter-wide: clamp(1.25rem, 6vw, 6rem);
+    --container-reading: 48rem;
+    --container-standard: 90rem;
+    --container-wide: 100rem;
+    --measure-copy: 48rem;
+    --measure-wide: 58rem;
+    --grid-gap: clamp(1rem, 2vw, 2rem);
+    --grid-gap-editorial: clamp(2rem, 5vw, 5rem);
+
+    /* Typography: visual roles, independent from heading semantics */
+    --type-hero-home: clamp(3.25rem, calc(5.2vw + 76px), 11rem);
+    --type-display: clamp(2.5rem, calc(3.2vw + 18.6px), 5rem);
+    --type-page-title: clamp(80px, calc(1.73vw + 67.9px), 110px);
+    --type-section-title: clamp(2.5rem, calc(4vw + 19.2px), 6rem);
+    --type-subsection-title: clamp(1.5rem, calc(1.15vw + 15px), 2.4rem);
+    --type-card-title: clamp(1.35rem, calc(1vw + 11px), 2rem);
+    --type-lead: clamp(1.05rem, 1.25vw, 1.25rem);
+    --type-body: 1rem;
+    --type-small: 0.9rem;
+    --type-eyebrow: 0.7rem;
+    --type-footer-description: clamp(0.95rem, 1.2vw, 1.1rem);
+    --type-marquee: clamp(3rem, 5vw, 6rem);
+    --type-menu-title: clamp(2.7rem, 5vw, 5rem);
+    --type-menu-title-tablet: clamp(2.15rem, 6vw, 3.6rem);
+    --type-menu-title-mobile: clamp(1.9rem, 8.4vw, 2.7rem);
+    --type-menu-title-short: clamp(2.3rem, 4.4vw, 4rem);
+    --type-menu-cta: clamp(0.72rem, 1vw, 0.85rem);
+    --type-menu-copy: clamp(0.95rem, 1.3vw, 1.15rem);
+    --leading-heading: 0.98;
+    --leading-body: 1.65;
+    --leading-reading: 1.75;
+    --leading-copy: 1.7;
+    --leading-body-tight: 1.6;
+    --leading-body-compact: 1.55;
+    --leading-compact: 1.45;
+    --tracking-display: normal;
+    --leading-hero: 0.91;
+    --leading-display: 0.94;
+    --leading-page-title: 0.98;
+    --leading-section-title: 0.98;
+    --leading-subsection-title: 1.05;
+    --leading-card-title: 1.05;
+    --tracking-heading: -0.02em;
+
+    /* Themes: light theme defaults used by the editorial home */
+    --home-bg: var(--color-paper);
+    --home-fg: var(--color-ink);
+    --home-muted: var(--color-muted);
+    --home-lime: var(--color-accent);
+    --home-violet: var(--color-accent-secondary);
     --home-contact-bg: #d6dce3;
     --home-contact-fg: #0a0a0a;
     --home-contact-muted: #41423d;
     --home-contact-border: rgb(10 10 10 / 28%);
     --home-contact-focus: #0a0a0a;
     --home-contact-marker: var(--home-violet);
-    --home-title-accent: #55227f;
-    --home-role: #55227f;
+    --home-title-accent: var(--color-accent-secondary);
+    --home-role: var(--color-accent-secondary);
     --home-grid: rgb(10 10 10 / 14%);
     --home-border: rgb(10 10 10 / 24%);
     --home-method-bg: #0a0a0a;
@@ -39,6 +130,7 @@
     --home-accent-fg: #0a0a0a;
   }
 
+  /* Themes: dark overrides preserve the existing palette */
   html[data-theme="dark"] {
     --home-bg: #0a0a0a;
     --home-fg: #e9e9e4;
@@ -73,6 +165,7 @@
     --home-accent-fg: #0a0a0a;
   }
 
+  /* Base: reset and document defaults */
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -93,25 +186,51 @@
     color: #0a0a0a;
   }
 
-  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
-
   ::-webkit-scrollbar-track {
     background: #0a0a0a;
   }
-
   ::-webkit-scrollbar-thumb {
     background: #2a2a2a;
     border-radius: 3px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
     background: #95e600;
   }
 }
 
+/* Responsive: shared header and typography adjustments */
+@media (max-width: 560px) {
+  :root {
+    --site-header-base-height: 68px;
+    --type-display: clamp(3rem, 12vw, 5.2rem);
+    --type-page-title: clamp(3.25rem, 14vw, 5.625rem);
+    --type-section-title: clamp(2.8rem, 10vw, 4.6rem);
+    --leading-hero: 0.98;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 900px) {
+  :root {
+    --type-hero-home: clamp(5.1rem, 13.5vw, 8rem);
+    --type-page-title: clamp(3.5rem, 10vw, 5.625rem);
+  }
+}
+
+@media (max-width: 1560px) {
+  :root {
+    --type-hero-home: clamp(3.25rem, 14.2vw, 8rem);
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --type-hero-home: clamp(3.25rem, 14.2vw, 4.1rem);
+  }
+}
+/* Base and utilities: shared Tailwind-backed helpers */
 @layer components {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-dark;
@@ -125,15 +244,16 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, #95e600, transparent);
   }
-
 }
 
 @layer utilities {
   .mask-fade-x {
-    mask-image: linear-gradient(to right,
-        transparent,
-        black 10%,
-        black 90%,
-        transparent);
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
   }
 }

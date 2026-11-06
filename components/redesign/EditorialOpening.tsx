@@ -56,7 +56,7 @@ export function EditorialOpening() {
                     {t("projectCta")} <ArrowUpRight size={17} aria-hidden="true" />
                   </Link>
                   <Link
-                    href={{ pathname: "/contatti", query: { subject: "collaboration" } }}
+                    href="/collaboriamo"
                     className={styles.secondaryCta}
                   >
                     {t("collaborationCta")} <ArrowUpRight size={17} aria-hidden="true" />

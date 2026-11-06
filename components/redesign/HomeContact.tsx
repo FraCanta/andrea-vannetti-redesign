@@ -28,10 +28,7 @@ export async function HomeContact() {
           <small>{h("projectText")}</small>
           <ArrowUpRight aria-hidden="true" />
         </Link>
-        <Link
-          href={{ pathname: "/contatti", query: { subject: "collaboration" } }}
-          className={styles.contactPath}
-        >
+        <Link href="/collaboriamo" className={styles.contactPath}>
           <span>02</span>
           <strong>{h("collaboration")}</strong>
           <small>{h("collaborationText")}</small>

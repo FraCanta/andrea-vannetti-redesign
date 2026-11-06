@@ -17,7 +17,7 @@ export async function HomeAbout() {
         <span>{h("eyebrow")}</span>
       </HomeReveal>
       <HomeReveal
-        as="p"
+        as="h2"
         className={styles.aboutStatement}
         id="home-about-title"
         delay={0.08}

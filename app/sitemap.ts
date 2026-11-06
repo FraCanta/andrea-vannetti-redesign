@@ -10,6 +10,7 @@ const pages = [
   { href: "/blog", priority: 0.7 },
   { href: "/contatti", priority: 0.8 },
   { href: "/chi-sono", priority: 0.7 },
+  { href: "/collaboriamo", priority: 0.7 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

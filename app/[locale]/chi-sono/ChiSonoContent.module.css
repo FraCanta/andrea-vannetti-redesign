@@ -18,8 +18,14 @@
 }
 
 .hero {
-  padding-top: clamp(8rem, 16vh, 13rem);
-  padding-bottom: clamp(5.5rem, 10vw, 9rem);
+  display: flex;
+  min-height: calc(100vh - var(--site-header-height));
+  min-height: calc(100svh - var(--site-header-height));
+  min-height: calc(100dvh - var(--site-header-height));
+  flex-direction: column;
+  justify-content: center;
+  margin-block-start: var(--site-header-height);
+  padding-block: clamp(2rem, 5vh, 4rem);
 }
 
 .heroGrid {
@@ -32,10 +38,12 @@
 .eyebrow {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-3);
   margin: 0;
   color: var(--home-role);
-  font: 600 0.7rem/1.4 var(--font-mono), monospace;
+  font:
+    600 0.7rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -63,8 +71,10 @@
 .heroTitle {
   max-width: 10.5ch;
   margin: 0;
-  font: 600 clamp(4rem, 8.2vw, 8.5rem) / 0.9 var(--font-display), sans-serif;
-  letter-spacing: -0.045em;
+  font:
+    600 clamp(4rem, 8.2vw, 8.5rem) / 0.9 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
@@ -96,6 +106,12 @@
   }
 }
 
+@media (min-width: 1701px) {
+  .heroTitle {
+    font-size: clamp(6rem, 6.5vw, 7rem);
+  }
+}
+
 @media (min-width: 901px) and (max-width: 1700px) {
   .hero {
     padding-bottom: clamp(3rem, 5vw, 5rem);
@@ -117,6 +133,42 @@
   }
 }
 
+@media (min-width: 901px) and (max-height: 800px) {
+  .hero {
+    padding-block: clamp(0.75rem, 2vh, 1.25rem);
+  }
+
+  .heroGrid {
+    row-gap: clamp(0.5rem, 1.5vh, 0.75rem);
+  }
+
+  .heroTitle {
+    font-size: clamp(4.75rem, min(6.5vw, 12vh), 6rem);
+    line-height: 0.9;
+  }
+
+  .portraitArtwork {
+    width: min(
+      100%,
+      calc((100dvh - var(--site-header-height) - 7rem) * 1.1315)
+    );
+    justify-self: end;
+  }
+
+  .heroIntro {
+    padding-top: clamp(0.5rem, 1vh, 0.75rem);
+  }
+
+  .heroIntro p {
+    line-height: 1.5;
+  }
+
+  .heroActions :global(a) {
+    min-height: 38px;
+    padding-block: var(--space-2);
+  }
+}
+
 .projectCode {
   position: absolute;
   z-index: 2;
@@ -130,7 +182,9 @@
   border: 1px solid var(--home-contact-border);
   background: var(--home-contact-bg);
   color: var(--home-contact-marker);
-  font: 0.75rem/1 var(--font-mono), monospace;
+  font:
+    0.75rem/1 var(--font-mono),
+    monospace;
 }
 
 .heroIntro {
@@ -145,7 +199,7 @@
 .territoryDescription {
   margin: 0;
   color: var(--home-muted);
-  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  font-size: var(--type-lead);
   line-height: 1.72;
 }
 
@@ -155,7 +209,7 @@
 }
 
 .story {
-  padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 6vw, 6rem);
+  padding: var(--space-section-editorial) var(--gutter-wide);
   background: var(--home-method-bg);
   color: var(--home-method-fg);
 }
@@ -169,14 +223,16 @@
   grid-template-columns: minmax(0, 1.25fr) minmax(15rem, 0.75fr);
   align-items: end;
   gap: clamp(2.5rem, 8vw, 8rem);
-  margin-top: clamp(2.5rem, 5vw, 5rem);
+  margin-top: var(--space-section-heading);
 }
 
 .storyCopy h2 {
   max-width: 11ch;
   margin: 0 0 1.5rem;
-  font: 600 clamp(3rem, 5.8vw, 6.2rem) / 0.96 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  font:
+    600 var(--type-display) / 0.96 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .storyCopy > p {
@@ -199,7 +255,9 @@
 .mottoLabel {
   margin: 0 0 1rem;
   color: var(--home-lime);
-  font: 0.65rem/1.4 var(--font-mono), monospace;
+  font:
+    0.65rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -210,20 +268,24 @@
 
 .motto blockquote p {
   margin: 0;
-  font: 500 clamp(1.25rem, 2vw, 1.8rem) / 1.18 var(--font-display), sans-serif;
-  letter-spacing: -0.025em;
+  font:
+    500 var(--type-subsection-title) / 1.18 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .motto cite {
   display: block;
   margin-top: 0.9rem;
   color: var(--home-method-muted);
-  font: normal 0.7rem/1.4 var(--font-mono), monospace;
+  font:
+    normal 0.7rem/1.4 var(--font-mono),
+    monospace;
 }
 
 .principles {
-  padding-top: clamp(5rem, 10vw, 9rem);
-  padding-bottom: clamp(5.5rem, 10vw, 9rem);
+  padding-top: var(--space-section-editorial);
+  padding-bottom: var(--space-section-editorial);
 }
 
 .principlesHeading {
@@ -237,8 +299,10 @@
 .principlesTitle h2 {
   max-width: 12ch;
   margin: 1.5rem 0 0;
-  font: 600 clamp(3.25rem, 6.4vw, 7rem) / 0.94 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  font:
+    600 var(--type-display) / 0.94 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .titleAccent {
@@ -250,7 +314,7 @@
   margin: 0 0 0.35rem;
   color: var(--home-muted);
   font-size: 0.95rem;
-  line-height: 1.65;
+  line-height: var(--leading-body);
 }
 
 .principleList {
@@ -276,14 +340,18 @@
   grid-column: 1 / span 1;
   padding-top: 0.45rem;
   color: var(--home-role);
-  font: 0.7rem/1.4 var(--font-mono), monospace;
+  font:
+    0.7rem/1.4 var(--font-mono),
+    monospace;
 }
 
 .principle h3 {
   grid-column: 3 / span 5;
   margin: 0;
-  font: 600 clamp(1.65rem, 3.2vw, 3.5rem) / 1 var(--font-display), sans-serif;
-  letter-spacing: -0.035em;
+  font:
+    600 var(--type-subsection-title) / 1 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .principle p {
@@ -292,7 +360,7 @@
   margin: 0.35rem 0 0;
   color: var(--home-muted);
   font-size: 0.95rem;
-  line-height: 1.65;
+  line-height: var(--leading-body);
 }
 
 .principle:nth-child(even) h3 {
@@ -306,8 +374,8 @@
 }
 
 .territory {
-  padding-top: clamp(5rem, 9vw, 8rem);
-  padding-bottom: clamp(5rem, 9vw, 8rem);
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
   background: var(--home-contact-bg);
   color: var(--home-contact-fg);
 }
@@ -326,8 +394,10 @@
 .territoryCopy h2 {
   max-width: 10ch;
   margin: 1.7rem 0 1.4rem;
-  font: 600 clamp(2.9rem, 5vw, 5.2rem) / 0.96 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  font:
+    600 var(--type-section-title) / 0.96 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .territoryDescription {
@@ -377,7 +447,9 @@
   gap: 0.8rem;
   margin-top: 0.8rem;
   color: var(--home-contact-muted);
-  font: 0.65rem/1.4 var(--font-mono), monospace;
+  font:
+    0.65rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -413,7 +485,7 @@
 
   .storyGrid {
     grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
-    gap: 2.5rem;
+    gap: var(--space-7);
   }
 
   .principle h3 {
@@ -434,7 +506,28 @@
 
   .territoryGrid {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 2.5rem;
+    gap: var(--space-7);
+  }
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .heroTitleReveal,
+  .heroIntro,
+  .heroActions {
+    grid-column: 1 / span 8;
+  }
+
+  .portraitReveal {
+    grid-column: 9 / -1;
+  }
+
+  .heroTitle {
+    max-width: 12ch;
+    font-size: var(--type-page-title);
   }
 }
 
@@ -446,8 +539,7 @@
   }
 
   .hero {
-    padding-top: 7.5rem;
-    padding-bottom: 5rem;
+    padding-block: clamp(1.5rem, 4vh, 2.5rem);
   }
 
   .heroGrid {
@@ -479,7 +571,7 @@
 
   .heroIntro {
     max-width: 38rem;
-    padding-top: 0.5rem;
+    padding-top: var(--space-2);
   }
 
   .story {
@@ -488,12 +580,12 @@
 
   .storyGrid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: var(--space-7);
     margin-top: 2.2rem;
   }
 
   .storyCopy h2 {
-    font-size: clamp(2.8rem, 10vw, 4.6rem);
+    font-size: var(--type-section-title);
   }
 
   .mottoReveal {
@@ -502,19 +594,19 @@
   }
 
   .principles {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
   }
 
   .principlesHeading {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    gap: var(--space-5);
+    margin-bottom: var(--space-7);
   }
 
   .principlesTitle h2 {
     margin-top: 1.2rem;
-    font-size: clamp(3rem, 11vw, 5rem);
+    font-size: var(--type-section-title);
   }
 
   .principleReveal {
@@ -532,7 +624,7 @@
   .principle:nth-child(even) h3 {
     grid-column: 2;
     grid-row: 1;
-    font-size: clamp(1.65rem, 7vw, 2.3rem);
+    font-size: var(--type-subsection-title);
   }
 
   .principle p,
@@ -540,12 +632,12 @@
     grid-column: 2;
     grid-row: 2;
     margin-top: 0;
-    font-size: 0.9rem;
+    font-size: var(--type-small);
   }
 
   .territory {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
   }
 
   .territoryGrid {
@@ -555,13 +647,12 @@
 
   .territoryCopy h2 {
     margin-top: 1.2rem;
-    font-size: clamp(2.8rem, 10vw, 4.4rem);
+    font-size: var(--type-section-title);
   }
 
   .projectImageFrame {
     aspect-ratio: 1.2;
   }
-
 }
 
 @media (max-width: 420px) {
@@ -573,12 +664,17 @@
     grid-template-columns: 1.8rem minmax(0, 1fr);
     column-gap: 0.7rem;
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
   .projectImage {
     transition: none;
   }
+}
 
+/* Scala condivisa H1 Hero: 80–110px, con crescita controllata sui desktop. */
+@media (min-width: 901px) {
+  .heroTitle {
+    font-size: var(--type-page-title);
+  }
 }

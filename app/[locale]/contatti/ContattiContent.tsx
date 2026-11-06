@@ -11,6 +11,7 @@ import { SectionReveal } from "@/components/SectionReveal";
 import { SocialIcons } from "@/components/SocialIcons";
 import { ContactForm } from "@/components/ContactForm";
 import { useTranslations } from "next-intl";
+import styles from "./ContattiContent.module.css";
 
 const contactLinks = [
   {
@@ -33,150 +34,96 @@ const contactLinks = [
   },
 ];
 
-export function ContattiContent() {
+export function ContattiContent({
+  requestSubject,
+}: {
+  requestSubject: "collaboration" | null;
+}) {
   const t = useTranslations("Contact");
 
   return (
     <>
-      <section className="pt-52 pb-section section-padding">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
+      <section className={`${styles.hero} section-padding`} aria-labelledby="contact-title">
+        <div className={styles.shell}>
           <SectionReveal>
-            <div className="text-center">
-              <h1 className="font-display font-bold text-display-xl tracking-[0.08em]">
-                <span className="text-primary">{t("hero.titleHighlight")}</span>{" "}
-                <br />
-                {t("hero.titleRest")}
+            <p className={styles.heroEyebrow}><span>01</span>{t("hero.eyebrow")}</p>
+            <div className={styles.heroGrid}>
+              <h1 id="contact-title" className={styles.heroTitle}>
+                <span className={styles.heroTitleAccent}>{t("hero.titleHighlight")}</span>
+                <span>{t("hero.titleRest")}</span>
               </h1>
-              <p className="mt-4 text-lg text-typography/80 max-w-xl mx-auto leading-relaxed font-light">
-                {t("hero.text")}
-              </p>
+              <p className={styles.heroText}>{t("hero.text")}</p>
+            </div>
+            <div className={styles.heroRule} aria-hidden="true">
+              <span>01</span><i /><span>{t("hero.ruleLabel")}</span>
             </div>
           </SectionReveal>
+        </div>
+      </section>
 
-          {/* Split layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 mt-48">
-            {/* Left — Contact info + Calendly + Socials */}
+      <section className={`${styles.contactBody} section-padding`}>
+        <div className={styles.shell}>
+          <div className={styles.contactGrid}>
             <SectionReveal>
-              <div className="space-y-10">
-                {/* Contact links */}
-                <div className="space-y-4">
-                  {contactLinks.map((contact) => (
+              <aside className={styles.contactAside} aria-label={t("informationLabel")}>
+                <p className={styles.sectionEyebrow}><span>02</span>{t("informationLabel")}</p>
+                <div className={styles.contactLinks}>
+                  {contactLinks.map((contact, index) => (
                     <a
                       key={contact.key}
                       href={contact.href}
-                      target={
-                        contact.href.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        contact.href.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="group flex items-center gap-4 p-4 bg-background-card border border-border rounded-xl hover:border-primary/30 transition-all duration-300"
+                      target={contact.href.startsWith("http") ? "_blank" : undefined}
+                      rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className={styles.contactLink}
                     >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <contact.icon size={18} className="text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm uppercase tracking-widest text-typography-muted">
-                          {t(`links.${contact.key}`)}
-                        </p>
-                        <p className="text-base text-typography group-hover:text-primary transition-colors">
-                          {contact.value ?? t("whatsappValue")}
-                        </p>
-                      </div>
-                      <ArrowUpRight
-                        size={16}
-                        className="text-typography-dim group-hover:text-primary transition-colors"
-                      />
+                      <span className={styles.contactIndex}>0{index + 1}</span>
+                      <contact.icon size={18} aria-hidden="true" className={styles.contactIcon} />
+                      <span className={styles.contactLinkCopy}>
+                        <span className={styles.contactLabel}>{t(`links.${contact.key}`)}</span>
+                        <span className={styles.contactValue}>{contact.value ?? t("whatsappValue")}</span>
+                      </span>
+                      <ArrowUpRight size={16} aria-hidden="true" className={styles.contactArrow} />
                     </a>
                   ))}
                 </div>
 
-                {/* Calendly CTA */}
-                <div className="p-6 bg-background-card border border-border rounded-xl space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Calendar size={18} className="text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-base font-semibold text-typography">
-                        {t("call.title")}
-                      </p>
-                      <p className="text-sm text-typography-muted">
-                        {t("call.text")}
-                      </p>
-                    </div>
+                <div className={styles.infoBlock}>
+                  <div className={styles.infoBlockHeading}>
+                    <Calendar size={18} aria-hidden="true" />
+                    <h2>{t("call.title")}</h2>
                   </div>
-                  <a
-                    href="https://calendly.com/andreavannetti-dev/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-center gap-2 w-full py-3 border border-primary text-primary text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-primary hover:text-background transition-all duration-300"
-                  >
-                    {t("call.button")}
-                    <ArrowUpRight
-                      size={14}
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                    />
+                  <p>{t("call.text")}</p>
+                  <a className={styles.outlineCta} href="https://calendly.com/andreavannetti-dev/30min" target="_blank" rel="noopener noreferrer">
+                    {t("call.button")}<ArrowUpRight size={15} aria-hidden="true" />
                   </a>
                 </div>
 
-                {/* Social icons */}
-                <div className="space-y-4">
-                  <h4 className="text-sm uppercase tracking-widest text-typography-muted">
-                    {t("follow")}
-                  </h4>
-                  <SocialIcons />
+                <div className={styles.socialBlock}>
+                  <h2 className={styles.sectionEyebrow}><span>03</span>{t("follow")}</h2>
+                  <SocialIcons className={styles.socialIcons} />
                 </div>
-                {/* Recensione */}
-                <div className="p-6 bg-background-card border border-border rounded-xl space-y-4">
-                  <p className="text-base font-semibold text-typography">
-                    {t("review.title")}
-                  </p>
-                  <p className="text-sm text-typography-muted">
-                    {t("review.text")}
-                  </p>
-                  <div className="flex items-center gap-5">
-                    <img
-                      src="/google-review-qr.png"
-                      alt={t("review.qrAlt")}
-                      className="w-24 h-24 rounded-lg border border-border"
-                    />
-                    <div className="flex-1 space-y-2">
-                      <p className="text-xs text-typography-dim">
-                        {t("review.hint")}
-                      </p>
-                      <a
-                        href="https://g.page/r/Cay5IXmg_6ixEBM/review"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center justify-center gap-2 w-full py-2.5 border border-border text-typography-muted text-sm font-semibold uppercase tracking-wider rounded-full hover:border-primary hover:text-primary transition-all duration-300"
-                      >
-                        {t("review.button")}
-                        <ArrowUpRight
-                          size={14}
-                          className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                        />
+
+                <div className={styles.reviewBlock}>
+                  <div>
+                    <h2>{t("review.title")}</h2>
+                    <p>{t("review.text")}</p>
+                  </div>
+                  <div className={styles.reviewAction}>
+                    <img src="/google-review-qr.png" alt={t("review.qrAlt")} />
+                    <div>
+                      <p>{t("review.hint")}</p>
+                      <a className={styles.outlineCta} href="https://g.page/r/Cay5IXmg_6ixEBM/review" target="_blank" rel="noopener noreferrer">
+                        {t("review.button")}<ArrowUpRight size={15} aria-hidden="true" />
                       </a>
                     </div>
                   </div>
                 </div>
-              </div>
+              </aside>
             </SectionReveal>
 
-            {/* Right — Tally form */}
             <SectionReveal delay={0.15}>
-              <h3 className="font-display font-semibold text-xl mb-6 text-typography">
-                {t.rich("formTitle", {
-                  highlight: (chunks) => (
-                    <span className="text-primary">{chunks}</span>
-                  ),
-                })}
-              </h3>
-              <div className="p-6 md:p-8 bg-background-card border border-border rounded-2xl">
-                <ContactForm />
+              <div className={styles.formPanel}>
+                <ContactForm requestSubject={requestSubject} />
               </div>
             </SectionReveal>
           </div>

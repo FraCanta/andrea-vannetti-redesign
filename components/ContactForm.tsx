@@ -1,149 +1,224 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Loader2, CheckCircle } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { CheckCircle, Loader2, Send } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, useRouter } from "@/i18n/navigation";
 import { SEND_TO } from "@/components/ContactConversionTracker";
+import { usePageTransition } from "@/components/PageTransition";
+import styles from "./ContactForm.module.css";
 
-interface FormData {
+type Service =
+  | "web-development"
+  | "wordpress"
+  | "ecommerce"
+  | "seo-performance"
+  | "ui-ux-design"
+  | "digital-consulting"
+  | "collaboration"
+  | "general"
+  | "undecided";
+
+type CollaborationSkill = "ux" | "ui-system" | "frontend" | "accessibility-qa";
+
+const projectServices: Service[] = [
+  "web-development",
+  "wordpress",
+  "ecommerce",
+  "seo-performance",
+  "ui-ux-design",
+];
+
+const services: Service[] = [
+  "web-development",
+  "wordpress",
+  "ecommerce",
+  "seo-performance",
+  "ui-ux-design",
+  "digital-consulting",
+  "collaboration",
+  "general",
+  "undecided",
+];
+
+type FormValues = {
   nome: string;
-  cognome: string;
-  azienda: string;
-  canaleContatto: string;
   email: string;
-  telefono: string;
-  haUnSito: string;
+  azienda: string;
   sitoUrl: string;
-  haBudget: string;
-  budget: string;
+  briefUrl: string;
+  figmaUrl: string;
+  repositoryUrl: string;
+  collaborationSkills: CollaborationSkill[];
+  subject: Service | "";
+  projectStage: "idea" | "defining" | "existing" | "development" | "online" | "";
+  timeline: "asap" | "1-3-months" | "3-6-months" | "flexible" | "";
+  budget: "under-3000" | "3000-6000" | "6000-10000" | "over-10000" | "undecided" | "";
+  collaborationMode: "project-support" | "proposal" | "other" | "";
   messaggio: string;
   privacy: boolean;
-}
-
-const initialForm: FormData = {
-  nome: "",
-  cognome: "",
-  azienda: "",
-  canaleContatto: "",
-  email: "",
-  telefono: "",
-  haUnSito: "",
-  sitoUrl: "",
-  haBudget: "",
-  budget: "",
-  messaggio: "",
-  privacy: false,
+  website: string;
 };
 
-const channelOptions = [
-  { value: "Email", key: "email" },
-  { value: "Telefono", key: "phone" },
-  { value: "WhatsApp", key: "whatsapp" },
-] as const;
+const initialForm: FormValues = {
+  nome: "",
+  email: "",
+  azienda: "",
+  sitoUrl: "",
+  briefUrl: "",
+  figmaUrl: "",
+  repositoryUrl: "",
+  collaborationSkills: [],
+  subject: "",
+  projectStage: "",
+  timeline: "",
+  budget: "",
+  collaborationMode: "",
+  messaggio: "",
+  privacy: false,
+  website: "",
+};
 
-const siteOptions = [
-  { value: "No", key: "no" },
-  { value: "Sì", key: "yes" },
-  { value: "Sì, ma va rifatto", key: "redo" },
-] as const;
-
-const budgetOptions = [
-  { value: "Sì", key: "yes" },
-  { value: "No", key: "no" },
-] as const;
-
-export function ContactForm() {
+export function ContactForm({
+  requestSubject,
+}: {
+  requestSubject: "collaboration" | null;
+}) {
   const t = useTranslations("ContactForm");
   const locale = useLocale();
-  const [form, setForm] = useState<FormData>(initialForm);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle",
+  const router = useRouter();
+  const navigate = usePageTransition();
+  const [fixedCollaboration, setFixedCollaboration] = useState(
+    requestSubject === "collaboration",
   );
+  const [form, setForm] = useState<FormValues>(() => ({
+    ...initialForm,
+    subject: fixedCollaboration ? "collaboration" : "",
+  }));
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const collaboration = form.subject === "collaboration";
+  const showProjectDetails = projectServices.includes(form.subject as Service);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = e.target;
-
-    // Clear field error on change
-    setFieldErrors((prev) => {
-      const updated = { ...prev };
-      delete updated[name];
-      return updated;
+  const updateField = (name: Exclude<keyof FormValues, "collaborationSkills">, value: string | boolean) => {
+    setForm((current) => ({ ...current, [name]: value }));
+    setFieldErrors((current) => {
+      const next = { ...current };
+      delete next[name];
+      return next;
     });
-
-    setForm((prev) => {
-      const updated = { ...prev, [name]: value };
-
-      if (name === "canaleContatto") {
-        updated.telefono = "";
-      }
-      if (name === "haUnSito" && value === "No") {
-        updated.sitoUrl = "";
-      }
-      if (name === "haBudget" && value === "No") {
-        updated.budget = "";
-      }
-
-      return updated;
-    });
+    setStatus("idle");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const toggleCollaborationSkill = (skill: CollaborationSkill) => {
+    setForm((current) => ({
+      ...current,
+      collaborationSkills: current.collaborationSkills.includes(skill)
+        ? current.collaborationSkills.filter((item) => item !== skill)
+        : [...current.collaborationSkills, skill],
+    }));
+    setStatus("idle");
+  };
+
+  const chooseSubject = (subject: Service) => {
+    setForm((current) => ({
+      ...current,
+      subject,
+      ...(projectServices.includes(subject) ? {} : { projectStage: "", timeline: "", budget: "" }),
+      ...(subject === "collaboration" ? {} : { collaborationMode: "" }),
+      ...(subject === "collaboration" ? {} : { collaborationSkills: [], briefUrl: "", figmaUrl: "", repositoryUrl: "" }),
+    }));
+    setFieldErrors((current) => {
+      const next = { ...current };
+      delete next.subject;
+      delete next.projectStage;
+      delete next.timeline;
+      delete next.budget;
+      delete next.collaborationMode;
+      return next;
+    });
+    setStatus("idle");
+    navigate(() => router.replace(
+      subject === "collaboration"
+        ? { pathname: "/contatti", query: { subject: "collaboration" } }
+        : { pathname: "/contatti" },
+      { scroll: false },
+    ));
+  };
+
+  const handleSubjectChange = (value: string) => {
+    if (value === "") {
+      setForm((current) => ({
+        ...current,
+        subject: "",
+        projectStage: "",
+        timeline: "",
+        budget: "",
+        collaborationMode: "",
+        collaborationSkills: [],
+        briefUrl: "",
+        figmaUrl: "",
+        repositoryUrl: "",
+      }));
+      setFieldErrors((current) => {
+        const next = { ...current };
+        delete next.subject;
+        delete next.collaborationMode;
+        return next;
+      });
+      setStatus("idle");
+      navigate(() => router.replace({ pathname: "/contatti" }, { scroll: false }));
+      return;
+    }
+    chooseSubject(value as Service);
+  };
+
+  const returnToGeneral = () => {
+    setFixedCollaboration(false);
+    setForm((current) => ({
+      ...current,
+      subject: "",
+      collaborationMode: "",
+      collaborationSkills: [],
+      briefUrl: "",
+      figmaUrl: "",
+      repositoryUrl: "",
+    }));
+    setStatus("idle");
+    navigate(() => router.replace({ pathname: "/contatti" }, { scroll: false }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === "sending") return;
     setErrorMsg("");
-
     const errors: Record<string, string> = {};
-    if (!form.nome.trim()) errors.nome = t("errors.firstName");
-    if (!form.cognome.trim()) errors.cognome = t("errors.lastName");
-    if (!form.canaleContatto) errors.canaleContatto = t("errors.channel");
+    if (!form.nome.trim()) errors.nome = t("errors.nameRequired");
     if (!form.email.trim()) errors.email = t("errors.emailRequired");
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      errors.email = t("errors.emailInvalid");
-    if (
-      (form.canaleContatto === "Telefono" ||
-        form.canaleContatto === "WhatsApp") &&
-      !form.telefono.trim()
-    )
-      errors.telefono = t("errors.phone");
-    if (!form.messaggio.trim()) errors.messaggio = t("errors.message");
-    if (
-      (form.haUnSito === "Sì" || form.haUnSito === "Sì, ma va rifatto") &&
-      !form.sitoUrl.trim()
-    )
-      errors.sitoUrl = t("errors.siteUrl");
-    if (form.haBudget === "Sì" && !form.budget)
-      errors.budget = t("errors.budget");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errors.email = t("errors.emailInvalid");
+    if (!form.subject) errors.subject = t("errors.subjectRequired");
+    if (collaboration && !form.collaborationMode) errors.collaborationMode = t("collaboration.modeRequired");
+    if (!form.messaggio.trim()) errors.messaggio = t("errors.messageRequired");
     if (!form.privacy) errors.privacy = t("errors.privacy");
-
     setFieldErrors(errors);
-    if (Object.keys(errors).length > 0) return;
+    if (Object.keys(errors).length) return;
 
     setStatus("sending");
-
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, locale }),
       });
-
-      if (!res.ok) {
+      if (!response.ok) {
         setErrorMsg(t("errors.send"));
         setStatus("error");
         return;
       }
-
       setStatus("sent");
       window.gtag?.("event", "conversion", { send_to: SEND_TO });
       window.gtag?.("event", "generate_lead", { method: "form" });
-      setForm(initialForm);
-      setFieldErrors({});
     } catch {
       setErrorMsg(t("errors.network"));
       setStatus("error");
@@ -152,387 +227,186 @@ export function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center space-y-4">
-        <CheckCircle size={48} className="text-primary" />
-        <h3 className="font-display font-bold text-2xl text-typography">
-          {t("success.title")}
-        </h3>
-        <p className="text-typography-muted max-w-sm">{t("success.text")}</p>
-        <button
-          onClick={() => setStatus("idle")}
-          className="mt-4 text-primary underline underline-offset-4 hover:text-typography transition-colors"
-        >
+      <div className={styles.success} role="status" aria-live="polite">
+        <CheckCircle size={40} aria-hidden="true" />
+        <h3>{t("success.title")}</h3>
+        <p>{t("success.text")}</p>
+        <button type="button" className={styles.textButton} onClick={() => { setStatus("idle"); setForm({ ...initialForm, subject: fixedCollaboration ? "collaboration" : "" }); }}>
           {t("success.again")}
         </button>
       </div>
     );
   }
 
-  const inputBase =
-    "w-full bg-background border border-border rounded-lg px-4 py-3.5 text-base text-typography placeholder:text-typography-dim focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all duration-300";
-
-  const inputClass = (field: string) =>
-    `${inputBase} ${fieldErrors[field] ? "border-red-400/50" : ""}`;
-
-  const labelBase =
-    "block text-sm uppercase tracking-widest text-typography-muted mb-2.5";
-
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6">
-      {/* Nome / Cognome */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <label htmlFor="nome" className={labelBase}>
-            {t("labels.firstName")} <span className="text-primary">*</span>
-          </label>
-          <input
-            id="nome"
-            name="nome"
-            type="text"
-            value={form.nome}
-            onChange={handleChange}
-            placeholder={t("placeholders.firstName")}
-            className={inputClass("nome")}
-          />
-          {fieldErrors.nome && (
-            <p className="mt-1.5 text-sm text-red-400">{fieldErrors.nome}</p>
-          )}
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
+      <div className={styles.fields}>
+        <div className={styles.field}>
+          <label htmlFor="contact-name">{t("labels.name")} <span aria-hidden="true">*</span></label>
+          <input className={`${styles.control} ${fieldErrors.nome ? styles.invalid : ""}`} id="contact-name" name="nome" type="text" autoComplete="name" maxLength={120} value={form.nome} onChange={(e) => updateField("nome", e.target.value)} aria-invalid={!!fieldErrors.nome} aria-describedby={fieldErrors.nome ? "error-name" : undefined} />
+          {fieldErrors.nome && <p className={styles.error} id="error-name">{fieldErrors.nome}</p>}
         </div>
-        <div>
-          <label htmlFor="cognome" className={labelBase}>
-            {t("labels.lastName")} <span className="text-primary">*</span>
-          </label>
-          <input
-            id="cognome"
-            name="cognome"
-            type="text"
-            value={form.cognome}
-            onChange={handleChange}
-            placeholder={t("placeholders.lastName")}
-            className={inputClass("cognome")}
-          />
-          {fieldErrors.cognome && (
-            <p className="mt-1.5 text-sm text-red-400">{fieldErrors.cognome}</p>
-          )}
+
+        <div className={styles.field}>
+          <label htmlFor="contact-email">{t("labels.email")} <span aria-hidden="true">*</span></label>
+          <input className={`${styles.control} ${fieldErrors.email ? styles.invalid : ""}`} id="contact-email" name="email" type="email" autoComplete="email" maxLength={254} value={form.email} onChange={(e) => updateField("email", e.target.value)} aria-invalid={!!fieldErrors.email} aria-describedby={fieldErrors.email ? "error-email" : undefined} />
+          {fieldErrors.email && <p className={styles.error} id="error-email">{fieldErrors.email}</p>}
         </div>
-      </div>
 
-      {/* Azienda */}
-      <div>
-        <label htmlFor="azienda" className={labelBase}>
-          {t("labels.company")}
-        </label>
-        <input
-          id="azienda"
-          name="azienda"
-          type="text"
-          value={form.azienda}
-          onChange={handleChange}
-          placeholder={t("placeholders.company")}
-          className={inputBase}
-        />
-      </div>
-
-      {/* Email */}
-      <div>
-        <label htmlFor="email" className={labelBase}>
-          {t("labels.email")} <span className="text-primary">*</span>
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder={t("placeholders.email")}
-          className={inputClass("email")}
-        />
-        {fieldErrors.email && (
-          <p className="mt-1.5 text-sm text-red-400">{fieldErrors.email}</p>
-        )}
-      </div>
-
-      {/* Canale di contatto */}
-      <div>
-        <p className={labelBase}>
-          {t("labels.channel")} <span className="text-primary">*</span>
-        </p>
-        <div className="flex flex-wrap gap-3">
-          {channelOptions.map(({ value: option, key }) => (
-            <label
-              key={option}
-              className={`flex items-center gap-2.5 px-4 py-3 border rounded-lg cursor-pointer transition-all duration-300 ${
-                form.canaleContatto === option
-                  ? "border-primary bg-primary/10 text-primary"
-                  : fieldErrors.canaleContatto
-                    ? "border-red-400/50 text-typography-muted"
-                    : "border-border text-typography-muted hover:border-typography-dim"
-              }`}
-            >
-              <input
-                type="radio"
-                name="canaleContatto"
-                value={option}
-                checked={form.canaleContatto === option}
-                onChange={handleChange}
-                className="sr-only"
-              />
-              <span
-                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-                  form.canaleContatto === option
-                    ? "border-primary"
-                    : "border-typography-dim"
-                }`}
-              >
-                {form.canaleContatto === option && (
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                )}
-              </span>
-              <span className="text-base">{t(`options.${key}`)}</span>
-            </label>
-          ))}
+        <div className={styles.field}>
+          <label htmlFor="contact-company">{t("labels.company")}</label>
+          <input className={styles.control} id="contact-company" name="azienda" type="text" autoComplete="organization" maxLength={160} value={form.azienda} onChange={(e) => updateField("azienda", e.target.value)} />
         </div>
-        {fieldErrors.canaleContatto && (
-          <p className="mt-1.5 text-sm text-red-400">
-            {fieldErrors.canaleContatto}
-          </p>
-        )}
 
-        {/* Conditional: Phone field */}
-        {(form.canaleContatto === "Telefono" ||
-          form.canaleContatto === "WhatsApp") && (
-          <div className="mt-4">
-            <input
-              id="telefono"
-              name="telefono"
-              type="tel"
-              value={form.telefono}
-              onChange={handleChange}
-              placeholder="+39 ..."
-              className={inputClass("telefono")}
-            />
-            {fieldErrors.telefono && (
-              <p className="mt-1.5 text-sm text-red-400">
-                {fieldErrors.telefono}
-              </p>
-            )}
+        {!collaboration && <div className={styles.field}>
+          <label htmlFor="contact-site">{t("labels.site")}</label>
+          <input className={`${styles.control} ${fieldErrors.sitoUrl ? styles.invalid : ""}`} id="contact-site" name="sitoUrl" type="url" inputMode="url" autoComplete="url" maxLength={500} placeholder={t("placeholders.site")} value={form.sitoUrl} onChange={(e) => updateField("sitoUrl", e.target.value)} aria-invalid={!!fieldErrors.sitoUrl} aria-describedby={fieldErrors.sitoUrl ? "error-site" : undefined} />
+          {fieldErrors.sitoUrl && <p className={styles.error} id="error-site">{fieldErrors.sitoUrl}</p>}
+        </div>}
+
+        {fixedCollaboration ? (
+          <div className={styles.field}>
+            <span className={styles.label}>{t("labels.reason")}</span>
+            <div className={styles.fixedValue}>{t("services.collaboration")}</div>
           </div>
-        )}
-      </div>
-
-      {/* Hai già un sito? */}
-      <div>
-        <p className={labelBase}>{t("labels.hasSite")}</p>
-        <div className="flex flex-wrap gap-3">
-          {siteOptions.map(({ value: option, key }) => (
-            <label
-              key={option}
-              className={`flex items-center gap-2.5 px-4 py-3 border rounded-lg cursor-pointer transition-all duration-300 ${
-                form.haUnSito === option
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-typography-muted hover:border-typography-dim"
-              }`}
-            >
-              <input
-                type="radio"
-                name="haUnSito"
-                value={option}
-                checked={form.haUnSito === option}
-                onChange={handleChange}
-                className="sr-only"
-              />
-              <span
-                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-                  form.haUnSito === option
-                    ? "border-primary"
-                    : "border-typography-dim"
-                }`}
-              >
-                {form.haUnSito === option && (
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                )}
-              </span>
-              <span className="text-base">{t(`options.${key}`)}</span>
-            </label>
-          ))}
-        </div>
-
-        {/* Conditional: Site URL */}
-        {(form.haUnSito === "Sì" || form.haUnSito === "Sì, ma va rifatto") && (
-          <div className="mt-4">
-            <input
-              id="sitoUrl"
-              name="sitoUrl"
-              type="url"
-              value={form.sitoUrl}
-              onChange={handleChange}
-              placeholder={t("placeholders.siteUrl")}
-              className={inputClass("sitoUrl")}
-            />
-            {fieldErrors.sitoUrl && (
-              <p className="mt-1.5 text-sm text-red-400">
-                {fieldErrors.sitoUrl}
-              </p>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Hai un budget? */}
-      <div>
-        <p className={labelBase}>{t("labels.hasBudget")}</p>
-        <div className="flex flex-wrap gap-3">
-          {budgetOptions.map(({ value: option, key }) => (
-            <label
-              key={option}
-              className={`flex items-center gap-2.5 px-4 py-3 border rounded-lg cursor-pointer transition-all duration-300 ${
-                form.haBudget === option
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-typography-muted hover:border-typography-dim"
-              }`}
-            >
-              <input
-                type="radio"
-                name="haBudget"
-                value={option}
-                checked={form.haBudget === option}
-                onChange={handleChange}
-                className="sr-only"
-              />
-              <span
-                className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
-                  form.haBudget === option
-                    ? "border-primary"
-                    : "border-typography-dim"
-                }`}
-              >
-                {form.haBudget === option && (
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                )}
-              </span>
-              <span className="text-base">{t(`options.${key}`)}</span>
-            </label>
-          ))}
-        </div>
-
-        {/* Conditional: Budget options */}
-        {form.haBudget === "Sì" && (
-          <div className="mt-4">
-            <select
-              id="budget"
-              name="budget"
-              value={form.budget}
-              onChange={handleChange}
-              className={`${inputClass("budget")} appearance-none cursor-pointer`}
-            >
-              <option value="">{t("placeholders.budget")}</option>
-              <option value="< 2.000€">{t("options.budgetLow")}</option>
-              <option value="2.000€ - 5.000€">{t("options.budgetMid")}</option>
-              <option value="> 5.000€">{t("options.budgetHigh")}</option>
-            </select>
-            {fieldErrors.budget && (
-              <p className="mt-1.5 text-sm text-red-400">
-                {fieldErrors.budget}
-              </p>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Messaggio */}
-      <div>
-        <label htmlFor="messaggio" className={labelBase}>
-          {t("labels.message")} <span className="text-primary">*</span>
-        </label>
-        <textarea
-          id="messaggio"
-          name="messaggio"
-          rows={5}
-          value={form.messaggio}
-          onChange={handleChange}
-          placeholder={t("placeholders.message")}
-          className={`${inputClass("messaggio")} resize-none`}
-        />
-        {fieldErrors.messaggio && (
-          <p className="mt-1.5 text-sm text-red-400">{fieldErrors.messaggio}</p>
-        )}
-      </div>
-
-      {/* Error message */}
-      {status === "error" && (
-        <p className="text-base text-red-400">{errorMsg}</p>
-      )}
-
-      {/* Privacy consent */}
-      <div>
-        <label className="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            name="privacy"
-            checked={form.privacy}
-            onChange={(e) => {
-              setForm((prev) => ({ ...prev, privacy: e.target.checked }));
-              setFieldErrors((prev) => {
-                const updated = { ...prev };
-                delete updated.privacy;
-                return updated;
-              });
-            }}
-            className="mt-1 w-4 h-4 accent-primary cursor-pointer"
-          />
-          <span className="text-sm text-typography-muted leading-relaxed">
-            {t.rich("privacy", {
-              link: (chunks) => (
-                <Link
-                  href="/privacy-policy"
-                  target="_blank"
-                  className="text-primary hover:underline"
-                >
-                  {chunks}
-                </Link>
-              ),
-            })}{" "}
-            <span className="text-primary">*</span>
-          </span>
-        </label>
-        {fieldErrors.privacy && (
-          <p className="mt-1.5 text-sm text-red-400">{fieldErrors.privacy}</p>
-        )}
-      </div>
-
-      {/* Submit */}
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="group w-full flex items-center justify-center gap-3 py-4 bg-primary text-background font-display font-bold uppercase tracking-wider text-base rounded-full hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-      >
-        {status === "sending" ? (
-          <>
-            <Loader2 size={20} className="animate-spin" />
-            {t("sending")}
-          </>
         ) : (
-          <>
-            {t("submit")}
-            <Send
-              size={18}
-              className="group-hover:translate-x-1 transition-transform"
-            />
-          </>
+          <div className={styles.field}>
+            <label htmlFor="contact-subject">{t("labels.subject")} <span aria-hidden="true">*</span></label>
+            <select className={styles.control} id="contact-subject" name="subject" value={form.subject} onChange={(e) => handleSubjectChange(e.target.value)} aria-invalid={!!fieldErrors.subject} aria-describedby={fieldErrors.subject ? "error-subject" : undefined}>
+              <option value="">{t("placeholders.subject")}</option>
+              {services.map((service) => <option key={service} value={service}>{t(`services.${service}`)}</option>)}
+            </select>
+            {fieldErrors.subject && <p className={styles.error} id="error-subject">{fieldErrors.subject}</p>}
+          </div>
         )}
+
+        {showProjectDetails && (
+          <div className={styles.projectDetails} role="group" aria-label={t("projectDetails.groupLabel")}>
+            <div className={styles.projectDetailField}>
+              <label htmlFor="contact-project-stage">{t("projectDetails.stageLabel")}</label>
+              <select className={styles.control} id="contact-project-stage" name="projectStage" value={form.projectStage} onChange={(e) => updateField("projectStage", e.target.value as FormValues["projectStage"])}>
+                <option value="">{t("projectDetails.selectPlaceholder")}</option>
+                {(["idea", "defining", "existing", "development", "online"] as const).map((option) => (
+                  <option key={option} value={option}>{t(`projectDetails.stages.${option}`)}</option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.projectDetailField}>
+              <label htmlFor="contact-timeline">{t("projectDetails.timelineLabel")}</label>
+              <select className={styles.control} id="contact-timeline" name="timeline" value={form.timeline} onChange={(e) => updateField("timeline", e.target.value as FormValues["timeline"])}>
+                <option value="">{t("projectDetails.selectPlaceholder")}</option>
+                {(["asap", "1-3-months", "3-6-months", "flexible"] as const).map((option) => (
+                  <option key={option} value={option}>{t(`projectDetails.timelines.${option}`)}</option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.projectDetailField}>
+              <label htmlFor="contact-budget">{t("projectDetails.budgetLabel")}</label>
+              <select className={styles.control} id="contact-budget" name="budget" value={form.budget} onChange={(e) => updateField("budget", e.target.value as FormValues["budget"])}>
+                <option value="">{t("projectDetails.selectPlaceholder")}</option>
+                {(["under-3000", "3000-6000", "6000-10000", "over-10000", "undecided"] as const).map((option) => (
+                  <option key={option} value={option}>{t(`projectDetails.budgets.${option}`)}</option>
+                ))}
+              </select>
+            </div>
+            <p className={styles.projectDetailsNote}>{t("projectDetails.budgetNote")}</p>
+          </div>
+        )}
+
+        {collaboration && (
+          <fieldset className={`${styles.field} ${styles.collaborationField}`} aria-describedby={fieldErrors.collaborationMode ? "error-collaboration-mode" : undefined}>
+            <legend className={styles.groupLabel}>{t("collaboration.modeLabel")} <span aria-hidden="true">*</span></legend>
+            <div className={styles.collaborationOptions}>
+              {(["project-support", "proposal", "other"] as const).map((mode) => (
+                <label className={styles.collaborationOption} key={mode}>
+                  <input
+                    type="radio"
+                    name="collaborationMode"
+                    value={mode}
+                    checked={form.collaborationMode === mode}
+                    onChange={() => updateField("collaborationMode", mode)}
+                    aria-invalid={!!fieldErrors.collaborationMode}
+                    aria-describedby={fieldErrors.collaborationMode ? "error-collaboration-mode" : undefined}
+                  />
+                  <span>{t(`collaboration.modes.${mode}`)}</span>
+                </label>
+              ))}
+            </div>
+            {fieldErrors.collaborationMode && <p className={styles.error} id="error-collaboration-mode">{fieldErrors.collaborationMode}</p>}
+          </fieldset>
+        )}
+
+        {collaboration && (
+          <div className={styles.collaborationDetails}>
+            <div className={styles.field}>
+              <label htmlFor="contact-site">{t("labels.portfolio")}</label>
+              <input className={`${styles.control} ${fieldErrors.sitoUrl ? styles.invalid : ""}`} id="contact-site" name="sitoUrl" type="url" inputMode="url" autoComplete="url" maxLength={500} placeholder={t("placeholders.site")} value={form.sitoUrl} onChange={(e) => updateField("sitoUrl", e.target.value)} aria-invalid={!!fieldErrors.sitoUrl} aria-describedby={fieldErrors.sitoUrl ? "error-site" : undefined} />
+              {fieldErrors.sitoUrl && <p className={styles.error} id="error-site">{fieldErrors.sitoUrl}</p>}
+            </div>
+
+            <fieldset className={styles.collaborationSkills}>
+              <legend className={styles.groupLabel}>{t("collaboration.skillsLabel")}</legend>
+              <div className={styles.skillOptions}>
+                {(["ux", "ui-system", "frontend", "accessibility-qa"] as const).map((skill) => (
+                  <label className={styles.skillOption} key={skill}>
+                    <input
+                      type="checkbox"
+                      name="collaborationSkills"
+                      value={skill}
+                      checked={form.collaborationSkills.includes(skill)}
+                      onChange={() => toggleCollaborationSkill(skill)}
+                    />
+                    <span>{t(`collaboration.skills.${skill}`)}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <p className={styles.materialsHelp}>{t("collaboration.materialsHelp")}</p>
+            <div className={styles.materialsGrid}>
+              <div className={styles.field}>
+                <label htmlFor="contact-brief">{t("collaboration.briefLabel")}</label>
+                <input className={styles.control} id="contact-brief" name="briefUrl" type="url" inputMode="url" maxLength={500} placeholder={t("placeholders.site")} value={form.briefUrl} onChange={(e) => updateField("briefUrl", e.target.value)} />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="contact-figma">{t("collaboration.figmaLabel")}</label>
+                <input className={styles.control} id="contact-figma" name="figmaUrl" type="url" inputMode="url" maxLength={500} placeholder={t("placeholders.site")} value={form.figmaUrl} onChange={(e) => updateField("figmaUrl", e.target.value)} />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="contact-repository">{t("collaboration.repositoryLabel")}</label>
+                <input className={styles.control} id="contact-repository" name="repositoryUrl" type="url" inputMode="url" maxLength={500} placeholder={t("placeholders.site")} value={form.repositoryUrl} onChange={(e) => updateField("repositoryUrl", e.target.value)} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className={styles.field}>
+          <label htmlFor="contact-message">{collaboration ? t("collaboration.additionalInfo") : t("labels.message")} <span aria-hidden="true">*</span></label>
+          <textarea id="contact-message" name="messaggio" rows={6} maxLength={5000} value={form.messaggio} onChange={(e) => updateField("messaggio", e.target.value)} aria-invalid={!!fieldErrors.messaggio} aria-describedby={`message-help${fieldErrors.messaggio ? " error-message" : ""}`} />
+          <p className={styles.help} id="message-help">{collaboration ? t("collaboration.messageHelp") : t("messageHelp")}</p>
+          {fieldErrors.messaggio && <p className={styles.error} id="error-message">{fieldErrors.messaggio}</p>}
+        </div>
+      </div>
+
+      <div className={styles.honeypot} aria-hidden="true">
+        <label htmlFor="contact-website">Leave this field empty</label>
+        <input id="contact-website" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => updateField("website", e.target.value)} />
+      </div>
+
+      <div className={styles.privacy}>
+        <label htmlFor="contact-privacy">
+          <input id="contact-privacy" name="privacy" type="checkbox" checked={form.privacy} onChange={(e) => updateField("privacy", e.target.checked)} aria-invalid={!!fieldErrors.privacy} aria-describedby={fieldErrors.privacy ? "error-privacy" : undefined} />
+          <span>{t.rich("privacy", { link: (chunks) => <Link href="/privacy-policy" target="_blank" rel="noreferrer">{chunks}</Link> })} <span aria-hidden="true">*</span></span>
+        </label>
+        {fieldErrors.privacy && <p className={styles.error} id="error-privacy">{fieldErrors.privacy}</p>}
+      </div>
+
+      {status === "error" && <p className={styles.errorSummary} role="alert">{errorMsg}</p>}
+      <button className={styles.submit} type="submit" disabled={status === "sending"}>
+        {status === "sending" ? <><Loader2 size={18} className={styles.spinner} aria-hidden="true" />{t("sending")}</> : <>{collaboration ? t("collaboration.submit") : t("submit")}<Send size={17} aria-hidden="true" /></>}
       </button>
-      <button
-        type="button"
-        onClick={() => {
-          setForm(initialForm);
-          setFieldErrors({});
-          setErrorMsg("");
-          setStatus("idle");
-        }}
-        className="w-full text-center text-sm text-typography-dim hover:text-typography-muted transition-colors duration-300"
-      >
-        {t("reset")}
-      </button>
+      {collaboration && !fixedCollaboration && <p className={styles.backLink}>{t("collaboration.changeHint")} <button type="button" className={styles.textButton} onClick={() => chooseSubject("general")}>{t("collaboration.generalLink")}</button></p>}
+      {fixedCollaboration && <p className={styles.backLink}><button type="button" className={styles.textButton} onClick={returnToGeneral}>{t("collaboration.generalLink")}</button></p>}
     </form>
   );
 }

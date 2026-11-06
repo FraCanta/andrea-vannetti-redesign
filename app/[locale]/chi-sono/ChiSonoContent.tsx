@@ -224,13 +224,7 @@ export function ChiSonoContent() {
             <small>{contact("projectText")}</small>
             <ArrowUpRight aria-hidden="true" />
           </Link>
-          <Link
-            href={{
-              pathname: "/contatti",
-              query: { subject: "collaboration" },
-            }}
-            className={homeStyles.contactPath}
-          >
+          <Link href="/collaboriamo" className={homeStyles.contactPath}>
             <span>02</span>
             <strong>{contact("collaboration")}</strong>
             <small>{contact("collaborationText")}</small>

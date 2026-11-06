@@ -1,0 +1,710 @@
+.page {
+  overflow: clip;
+  background: var(--home-bg);
+  color: var(--home-fg);
+}
+
+.shell {
+  width: min(100% - 2 * var(--gutter-content), var(--container-standard));
+  margin-inline: auto;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: calc(100vh - var(--site-header-height));
+  min-height: calc(100svh - var(--site-header-height));
+  min-height: calc(100dvh - var(--site-header-height));
+  flex-direction: column;
+  justify-content: center;
+  margin-block-start: var(--site-header-height);
+  padding-block: var(--space-hero-inset);
+  background-image:
+    linear-gradient(var(--home-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
+  background-size:
+    25% 100%,
+    25% 100%;
+  background-position: center;
+}
+
+.heroEyebrow,
+.eyebrow,
+.heroRule,
+.wayTag,
+.largeIndex,
+.roleNumber,
+.principle > span,
+.nextLabel,
+.nextDetails li > span,
+.skillNumber {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.69rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.heroEyebrow,
+.eyebrow {
+  margin: 0;
+  color: var(--home-title-accent);
+}
+
+.heroEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.heroEyebrow span {
+  display: grid;
+  width: 2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid currentColor;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 7vw, 7rem);
+  margin-top: clamp(2rem, 5vw, 4.5rem);
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 1;
+}
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  max-width: 11ch;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--type-page-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+.heroTitleAccent {
+  color: var(--home-title-accent);
+}
+.heroText {
+  max-width: 39rem;
+  margin: var(--space-hero-copy) 0 0;
+  color: var(--home-muted);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: var(--leading-body);
+}
+
+.primaryCta {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-7);
+  margin-top: 1.8rem;
+  padding: 0.95rem 1.2rem;
+  background: var(--home-lime);
+  color: #0a0a0a;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+.primaryCta:hover {
+  transform: translateY(-2px);
+}
+.primaryCta:focus-visible,
+.skillButton:focus-visible {
+  outline: 2px solid var(--home-title-accent);
+  outline-offset: 4px;
+}
+
+.projectDiagram {
+  position: relative;
+  aspect-ratio: 724 / 566;
+  background-image: url("/images/collaboriamo-hero-light.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.heroRule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-section-gap);
+  color: var(--home-muted);
+  font-size: 0.6rem;
+}
+.heroRule i {
+  height: 1px;
+  flex: 1;
+  background: var(--home-border);
+}
+
+.ways,
+.skills,
+.roles,
+.principles,
+.next {
+  padding-block: var(--space-section-spacious);
+}
+.ways {
+  background: color-mix(in srgb, var(--home-bg) 76%, #d6dce3);
+}
+.sectionHeading {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.55fr) 1.45fr;
+  align-items: start;
+  gap: var(--space-6);
+}
+.sectionHeading h2,
+.skillsIntro h2,
+.principlesHeading h2,
+.nextCopy h2 {
+  max-width: 15ch;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--type-section-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+.sectionHeading .eyebrow {
+  padding-top: 0.5rem;
+}
+
+.waysGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--space-section-gap);
+  border-top: 1px solid var(--home-border);
+}
+.way {
+  min-width: 0;
+  padding: clamp(1.4rem, 3vw, 2.5rem) clamp(1.2rem, 3vw, 3rem) 0 0;
+}
+.way + .way {
+  padding-right: 0;
+  padding-left: clamp(1.2rem, 3vw, 3rem);
+  border-left: 1px solid var(--home-border);
+}
+.wayTop {
+  display: flex;
+  min-height: 3rem;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.largeIndex {
+  color: var(--home-title-accent);
+  font-size: 1.1rem;
+}
+.wayTag {
+  color: var(--home-muted);
+  font-size: 0.58rem;
+  text-align: right;
+}
+.way h3 {
+  max-width: 17ch;
+  margin: clamp(1.7rem, 3vw, 2.4rem) 0 1rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--type-subsection-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.98;
+}
+.way p {
+  max-width: 35rem;
+  margin: 0;
+  color: var(--home-muted);
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.skillsIntro {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.55fr) 1.45fr;
+  gap: 1.2rem 2rem;
+}
+.skillsIntro .eyebrow {
+  grid-column: 1;
+}
+.skillsIntro h2 {
+  grid-column: 2;
+}
+.skillsIntro > p:last-child {
+  grid-column: 2;
+  max-width: 43rem;
+  margin: 0.4rem 0 0;
+  color: var(--home-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.skillComposition {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: stretch;
+  margin-top: var(--space-section-gap);
+}
+.skillList {
+  border-top: 1px solid var(--home-border);
+}
+.skillButton {
+  display: grid;
+  width: 100%;
+  min-height: 5.2rem;
+  grid-template-columns: 2.6rem 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--home-border);
+  background: transparent;
+  color: var(--home-fg);
+  cursor: pointer;
+  font:
+    600 clamp(1.05rem, 1.8vw, 1.45rem)/1.1 var(--font-display),
+    sans-serif;
+  text-align: left;
+  transition:
+    color 160ms ease,
+    padding 160ms ease;
+}
+.skillButton[aria-pressed="true"] {
+  padding-left: 0.8rem;
+  color: var(--home-title-accent);
+}
+.skillButton svg {
+  color: var(--home-title-accent);
+}
+.skillNumber {
+  color: var(--home-muted);
+  font-size: 0.61rem;
+}
+.skillDetail {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--home-border);
+}
+.skillMap {
+  position: relative;
+  min-height: clamp(15rem, 25vw, 22rem);
+  aspect-ratio: 724 / 512;
+  overflow: hidden;
+  background-image: url("/images/collaboriamo-skills-dark.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.skillDescription {
+  min-height: 10rem;
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border-top: 1px solid var(--home-border);
+}
+.skillDescription .eyebrow {
+  font-size: 0.6rem;
+}
+.skillDescription h3 {
+  margin: 0.8rem 0 0.6rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--type-subsection-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+}
+.skillDescription p {
+  max-width: 45rem;
+  margin: 0;
+  color: var(--home-muted);
+  line-height: var(--leading-body);
+}
+
+.roles {
+  background: #0a0a0a;
+  color: #e9e9e4;
+}
+.roles .eyebrow {
+  color: var(--home-lime);
+}
+.roleDiagram {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 3rem);
+  margin-top: var(--space-section-gap);
+}
+.roleDiagram::before {
+  position: absolute;
+  top: 1.5rem;
+  right: 12%;
+  left: 12%;
+  height: 1px;
+  background: rgb(233 233 228 / 30%);
+  content: "";
+}
+.roleNode {
+  position: relative;
+  padding-top: 3.7rem;
+}
+.roleNumber {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 3rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgb(233 233 228 / 48%);
+  background: #0a0a0a;
+  color: var(--home-lime);
+}
+.roleNode h3 {
+  margin: 1rem 0 0.7rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--type-subsection-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+}
+.roleNode p {
+  max-width: 25rem;
+  margin: 0;
+  color: rgb(233 233 228 / 76%);
+  line-height: var(--leading-body);
+}
+.roleOutcome {
+  padding: 3.7rem 1.2rem 1.4rem;
+  border: 1px solid rgb(149 230 0 / 58%);
+  background: rgb(149 230 0 / 5%);
+}
+.roleOutcome .roleNumber {
+  top: -1px;
+  left: -1px;
+}
+.rolesNote {
+  max-width: 58rem;
+  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0 auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgb(233 233 228 / 28%);
+  color: rgb(233 233 228 / 72%);
+  font-size: 0.94rem;
+  line-height: var(--leading-body);
+}
+
+.principles {
+  background: color-mix(in srgb, var(--home-bg) 76%, #d6dce3);
+}
+.principlesHeading {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.55fr) 1.45fr;
+  gap: 1.5rem 2rem;
+}
+.principlesHeading .eyebrow {
+  grid-column: 1;
+}
+.principlesHeading h2 {
+  grid-column: 2;
+  max-width: 12ch;
+}
+.principlesHeading > p:last-child {
+  grid-column: 2;
+  max-width: 43rem;
+  margin: 0.3rem 0 0;
+  color: var(--home-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.principlesList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(2rem, 6vw, 6rem);
+  margin-top: var(--space-section-gap);
+  border-top: 1px solid var(--home-border);
+}
+.principle {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 2.7rem 1fr auto;
+  gap: 0.8rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--home-border);
+}
+.principle > span {
+  padding-top: 0.3rem;
+  color: var(--home-title-accent);
+  font-size: 0.61rem;
+}
+.principle h3 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--type-subsection-title);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+}
+.principle p {
+  margin: 0.55rem 0 0;
+  color: var(--home-muted);
+  font-size: 0.93rem;
+  line-height: var(--leading-body-tight);
+}
+.principle svg {
+  margin-top: 0.3rem;
+  color: var(--home-title-accent);
+}
+
+.next {
+  background: #0a0a0a;
+  color: #e9e9e4;
+}
+.nextGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.72fr);
+  gap: clamp(3rem, 9vw, 9rem);
+  align-items: start;
+}
+.next .eyebrow {
+  color: var(--home-lime);
+}
+.nextCopy h2 {
+  margin-top: 1.4rem;
+  font-size: var(--type-section-title);
+}
+.nextCopy > p:last-child {
+  max-width: 38rem;
+  margin: 1.6rem 0 0;
+  color: rgb(233 233 228 / 76%);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.nextDetails {
+  padding-top: 0.6rem;
+}
+.nextLabel {
+  margin: 0 0 1rem;
+  color: var(--home-lime);
+}
+.nextDetails ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgb(233 233 228 / 28%);
+}
+.nextDetails li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 0.7rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgb(233 233 228 / 25%);
+  color: rgb(233 233 228 / 84%);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.nextDetails li > span {
+  color: var(--home-lime);
+  font-size: 0.58rem;
+}
+.nextDetails .primaryCta {
+  width: 100%;
+  margin-top: 1.8rem;
+}
+.ctaHint {
+  margin: 0.9rem 0 0;
+  color: rgb(233 233 228 / 65%);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.82fr);
+    gap: var(--space-6);
+  }
+  .heroTitle {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+  }
+  .sectionHeading,
+  .skillsIntro,
+  .principlesHeading {
+    grid-template-columns: 1fr;
+  }
+  .skillsIntro .eyebrow,
+  .skillsIntro h2,
+  .skillsIntro > p:last-child,
+  .principlesHeading .eyebrow,
+  .principlesHeading h2,
+  .principlesHeading > p:last-child {
+    grid-column: 1;
+  }
+  .sectionHeading {
+    gap: var(--space-4);
+  }
+  .skillComposition {
+    grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--space-5);
+  }
+  .nextGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 680px) {
+  .shell {
+    width: min(100% - 2.5rem, 34rem);
+  }
+  .hero {
+    padding-block: clamp(1.5rem, 4vh, 2.5rem);
+    background-size:
+      50% 100%,
+      50% 100%;
+  }
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2.6rem;
+    margin-top: 1.8rem;
+  }
+  .heroTitle {
+    max-width: 12ch;
+    font-size: var(--type-page-title);
+    line-height: 0.95;
+  }
+  .heroText {
+    margin-top: 1.25rem;
+    font-size: var(--type-body);
+    line-height: var(--leading-body-tight);
+  }
+  .primaryCta {
+    width: 100%;
+    min-height: 3.25rem;
+    gap: var(--space-4);
+    margin-top: 1.35rem;
+  }
+  .projectDiagram {
+    min-height: 19rem;
+  }
+  .heroRule {
+    margin-top: var(--space-7);
+  }
+  .ways,
+  .skills,
+  .roles,
+  .principles,
+  .next {
+    padding-block: 4.5rem;
+  }
+  .sectionHeading h2,
+  .skillsIntro h2,
+  .principlesHeading h2 {
+    font-size: var(--type-section-title);
+  }
+  .waysGrid {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-7);
+  }
+  .way,
+  .way + .way {
+    padding: 1.4rem 0 1.8rem;
+    border-left: 0;
+  }
+  .way + .way {
+    border-top: 1px solid var(--home-border);
+  }
+  .way h3 {
+    margin: 1.2rem 0 0.75rem;
+    font-size: var(--type-subsection-title);
+  }
+  .skillComposition {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+  }
+  .skillButton {
+    min-height: 4.5rem;
+  }
+  .skillMap {
+    min-height: 17rem;
+  }
+  .skillDescription {
+    min-height: 0;
+  }
+  .roleDiagram {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    margin-top: var(--space-7);
+  }
+  .roleDiagram::before {
+    top: 1.5rem;
+    right: auto;
+    bottom: 1.5rem;
+    left: 1.45rem;
+    width: 1px;
+    height: auto;
+  }
+  .roleNode {
+    min-height: 8rem;
+    padding: 0.3rem 0 0 4.2rem;
+  }
+  .roleNode h3 {
+    margin: 0 0 0.65rem;
+  }
+  .roleOutcome {
+    min-height: auto;
+    padding: 1rem 1rem 1rem 4.2rem;
+  }
+  .roleOutcome .roleNumber {
+    top: 1rem;
+    left: 0;
+  }
+  .rolesNote {
+    margin-top: var(--space-6);
+  }
+  .principlesList {
+    grid-template-columns: 1fr;
+    margin-top: var(--space-7);
+  }
+  .principle {
+    padding-block: 1.2rem;
+  }
+  .nextGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  .nextCopy h2 {
+    max-width: 8ch;
+    font-size: var(--type-display);
+  }
+  .nextDetails {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryCta,
+  .skillButton,
+  .skillNode {
+    transition: none;
+  }
+}
+
+/* Scala condivisa H1 Hero: 80–110px, con crescita controllata sui desktop. */
+@media (min-width: 761px) {
+  .heroTitle {
+    font-size: var(--type-page-title);
+  }
+}

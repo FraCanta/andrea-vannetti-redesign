@@ -8,6 +8,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { ThemeSelector } from "@/components/ThemeSelector";
+import { usePageTransition } from "@/components/PageTransition";
 import { useLenis } from "lenis/react";
 import styles from "@/components/redesign/SiteNavigation.module.css";
 
@@ -26,6 +27,7 @@ export function Navbar() {
   const pathname = usePathname();
   const params = useParams<{ slug?: string }>();
   const router = useRouter();
+  const navigate = usePageTransition();
   const lenis = useLenis();
   const reducedMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +43,7 @@ export function Navbar() {
   const switchLocale = () => {
     const nextLocale = locale === "it" ? "en" : "it";
     setMenuOpen(false);
-    startTransition(() => {
+    navigate(() => startTransition(() => {
       if (pathname === "/progetti/[slug]" && typeof params.slug === "string") {
         router.replace(
           { pathname: "/progetti/[slug]", params: { slug: params.slug } },
@@ -61,7 +63,7 @@ export function Navbar() {
         pathname as Exclude<typeof pathname, "/progetti/[slug]" | "/blog/[slug]">,
         { locale: nextLocale },
       );
-    });
+    }));
   };
 
   useEffect(() => {
@@ -203,7 +205,7 @@ export function Navbar() {
                 <section className={styles.collaborationBlock}>
                   <p className={styles.collaborationEyebrow}>{t("collaborationEyebrow")}</p>
                   <p className={styles.collaborationDescription}>{t("collaborationDescription")}</p>
-                  <Link className={styles.collaborationCta} href={{ pathname: "/contatti", query: { subject: "collaboration" } }} onClick={() => setMenuOpen(false)}>
+                  <Link className={styles.collaborationCta} href="/collaboriamo" onClick={() => setMenuOpen(false)}>
                     <span>{t("collaborationCta")}</span><ArrowUpRight aria-hidden="true" />
                   </Link>
                 </section>

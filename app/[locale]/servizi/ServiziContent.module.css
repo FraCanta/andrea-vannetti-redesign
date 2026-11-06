@@ -12,7 +12,7 @@
 }
 
 .shell {
-  width: min(100%, 1440px);
+  width: min(100%, var(--container-standard));
   margin-inline: auto;
 }
 
@@ -29,17 +29,25 @@
 }
 
 .hero {
-  padding-top: clamp(8rem, 16vh, 12rem);
-  padding-bottom: clamp(5rem, 9vw, 8rem);
+  display: flex;
+  min-height: calc(100vh - var(--site-header-height));
+  min-height: calc(100svh - var(--site-header-height));
+  min-height: calc(60dvh - var(--site-header-height));
+  flex-direction: column;
+  justify-content: center;
+  margin-block-start: var(--site-header-height);
+  padding-block: var(--space-hero-inset);
 }
 
 .sectionLabel {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-3);
   margin: 0;
   color: var(--home-role);
-  font: 600 0.7rem/1.4 var(--font-mono), monospace;
+  font:
+    600 0.7rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -70,8 +78,10 @@
 .heroTitleBlock h1 {
   max-width: 9ch;
   margin: 0;
-  font: 600 clamp(4.5rem, 8vw, 9rem) / 0.9 var(--font-display), sans-serif;
-  letter-spacing: -0.045em;
+  font:
+    600 clamp(4.5rem, 8vw, 9rem) / 0.9 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
@@ -86,8 +96,8 @@
 .heroIntro p {
   margin: 0;
   color: var(--home-muted);
-  font-size: clamp(1rem, 1.1vw, 1.12rem);
-  line-height: 1.65;
+  font-size: var(--type-lead);
+  line-height: var(--leading-body);
 }
 
 .problems {
@@ -114,8 +124,10 @@
 .faqHeading h2 {
   max-width: 11ch;
   margin: 0;
-  font: 600 clamp(3.4rem, 6.5vw, 7rem) / 0.94 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  font:
+    600 clamp(3.4rem, 6.5vw, 7rem) / 0.94 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
@@ -144,13 +156,17 @@
 .problemNumber {
   padding-top: 0.35rem;
   color: var(--home-role);
-  font: 0.7rem/1.4 var(--font-mono), monospace;
+  font:
+    0.7rem/1.4 var(--font-mono),
+    monospace;
 }
 
 .problemItem h3 {
   margin: 0;
-  font: 600 clamp(1.45rem, 2.1vw, 2rem) / 1.08 var(--font-display), sans-serif;
-  letter-spacing: -0.025em;
+  font:
+    600 clamp(1.45rem, 2.1vw, 2rem) / 1.08 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .problemItem p {
@@ -158,7 +174,7 @@
   margin: 0.75rem 0 0;
   color: var(--home-muted);
   font-size: 0.96rem;
-  line-height: 1.65;
+  line-height: var(--leading-body);
 }
 
 .carouselSection {
@@ -171,21 +187,24 @@
 .carouselViewport {
   position: sticky;
   top: 0;
-  display: flex;
+  display: grid;
   height: 100svh;
-  flex-direction: column;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
-  padding: calc(108px + env(safe-area-inset-top)) clamp(1.25rem, 5vw, 5rem) clamp(1.25rem, 3vh, 2rem);
+  padding: calc(var(--site-header-height) + clamp(0.75rem, 2.5vh, 1.5rem))
+    var(--gutter-content) clamp(0.75rem, 2.5vh, 1.5rem);
   background: var(--home-method-bg);
   color: var(--home-method-fg);
 }
 
 .carouselHeading {
   display: flex;
-  width: min(100%, 1440px);
+  width: min(100%, var(--container-standard));
   align-items: end;
   justify-content: space-between;
-  gap: 2rem;
+  gap: var(--space-6);
   margin: 0 auto 1rem;
 }
 
@@ -194,21 +213,29 @@
 }
 
 .carouselHeading .sectionLabel {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
+  color: var(--home-lime);
+}
+
+.carouselHeading .accent {
   color: var(--home-lime);
 }
 
 .carouselHeading h2 {
   max-width: 10ch;
   margin: 0;
-  font: 600 clamp(3rem, 5.8vw, 6rem) / 0.92 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  font:
+    600 clamp(3rem, min(5.8vw, 9vh), 6rem) / 0.92 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .carouselNote {
   margin: 0 0 0.35rem;
   color: var(--home-method-muted);
-  font: 0.68rem/1.4 var(--font-mono), monospace;
+  font:
+    0.68rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -220,29 +247,35 @@
   flex: 1 1 auto;
   align-items: stretch;
   gap: clamp(1.75rem, 3.2vw, 3rem);
-  padding: 1rem clamp(1.25rem, 5vw, 5rem) 1.5rem;
+  padding: 2rem 10rem 2rem 10rem;
   will-change: transform;
 }
 
 .serviceSlide {
   display: flex;
-  width: clamp(32rem, 42vw, 42rem);
+  /* width: clamp(32rem, 42vw, 42rem); */
   min-width: 0;
   flex: 0 0 auto;
 }
 
 .serviceCard {
-  display: flex;
+  display: grid;
   width: 100%;
-  flex-direction: column;
-  gap: 0.85rem;
-  padding: clamp(1.35rem, 2.4vw, 2.5rem) 0;
+  height: 100%;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  gap: clamp(0.45rem, 1vh, 0.75rem) clamp(1rem, 2vw, 1.75rem);
+  align-content: stretch;
+  padding: clamp(0.9rem, 1.8vh, 1.5rem) 0;
   border-top: 1px solid var(--home-method-border);
   border-bottom: 1px solid var(--home-method-border);
 }
 
 .serviceCardTop {
   display: flex;
+  grid-column: 1 / -1;
+  grid-row: 1;
   align-items: center;
   justify-content: space-between;
   color: var(--home-lime);
@@ -251,28 +284,38 @@
 .serviceNumber,
 .featuresLabel {
   color: var(--home-lime);
-  font: 0.68rem/1.4 var(--font-mono), monospace;
+  font:
+    0.68rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .serviceCard h3 {
+  grid-column: 1;
+  grid-row: 2;
   max-width: 12ch;
-  margin: 0.35rem 0 0;
-  font: 600 clamp(2.2rem, 3.4vw, 3.8rem) / 0.98 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  margin: 0;
+  font:
+    600 clamp(2.2rem, 3.4vw, 3.8rem) / 0.98 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
 .serviceSubtitle {
+  grid-column: 1;
+  grid-row: 3;
   margin: 0;
   color: var(--home-method-muted);
-  font-size: 1rem;
+  font-size: var(--type-body);
   font-weight: 600;
   line-height: 1.45;
 }
 
 .serviceDescription {
+  grid-column: 1;
+  grid-row: 4;
   max-width: 43rem;
   margin: 0;
   color: var(--home-method-muted);
@@ -281,8 +324,15 @@
 }
 
 .serviceFeatures {
-  margin-top: auto;
-  padding-top: 0.8rem;
+  display: flex;
+  min-width: 0;
+  grid-column: 2;
+  grid-row: 2 / 5;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0 0 0 clamp(0.9rem, 1.8vw, 1.5rem);
+  border-left: 1px solid var(--home-method-border);
 }
 
 .featuresLabel {
@@ -291,8 +341,7 @@
 
 .serviceFeatures ul {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(1rem, 2vw, 2rem);
+  grid-template-columns: minmax(0, 1fr);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -301,28 +350,32 @@
 .serviceFeatures li {
   display: grid;
   grid-template-columns: 1.4rem minmax(0, 1fr);
-  gap: 0.5rem;
+  gap: var(--space-2);
   align-items: start;
-  padding: 0.65rem 0;
+  padding: 0.45rem 0;
   border-top: 1px solid var(--home-method-border);
-  font-size: 0.8rem;
+  font-size: var(--type-small);
   line-height: 1.45;
 }
 
 .serviceFeatures li > span:first-child {
   color: var(--home-lime);
-  font: 0.62rem/1.6 var(--font-mono), monospace;
+  font:
+    0.62rem/1.6 var(--font-mono),
+    monospace;
 }
 
 .carouselProgress {
   display: grid;
-  width: min(100%, 1440px);
+  width: min(100%, var(--container-standard));
   grid-template-columns: auto minmax(4rem, 1fr) auto;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
   margin: 0 auto;
   color: var(--home-method-muted);
-  font: 0.65rem/1.4 var(--font-mono), monospace;
+  font:
+    0.65rem/1.4 var(--font-mono),
+    monospace;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -375,8 +428,8 @@
   max-width: 29rem;
   margin: 0 0 0.35rem;
   color: var(--home-muted);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
 }
 
 .workflowList {
@@ -403,7 +456,9 @@
   justify-content: center;
   border: 1px solid var(--home-role);
   color: var(--home-role);
-  font: 0.66rem/1 var(--font-mono), monospace;
+  font:
+    0.66rem/1 var(--font-mono),
+    monospace;
 }
 
 .workflowIcon {
@@ -413,8 +468,10 @@
 
 .workflowStep h3 {
   margin: 0;
-  font: 600 clamp(1.45rem, 2.1vw, 2.1rem) / 1.05 var(--font-display), sans-serif;
-  letter-spacing: -0.03em;
+  font:
+    600 clamp(1.45rem, 2.1vw, 2.1rem) / 1.05 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .workflowStep p {
@@ -426,8 +483,8 @@
 }
 
 .faq {
-  padding-top: clamp(5rem, 9vw, 8rem);
-  padding-bottom: clamp(5rem, 9vw, 8rem);
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
   background: var(--home-contact-bg);
   color: var(--home-contact-fg);
 }
@@ -461,7 +518,7 @@
   display: grid;
   grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
   min-height: 5rem;
   padding: 1rem 0;
   cursor: pointer;
@@ -479,12 +536,16 @@
 
 .faqNumber {
   color: var(--home-contact-marker);
-  font: 0.66rem/1.4 var(--font-mono), monospace;
+  font:
+    0.66rem/1.4 var(--font-mono),
+    monospace;
 }
 
 .faqQuestion {
-  font: 600 clamp(1.2rem, 2vw, 1.7rem) / 1.2 var(--font-display), sans-serif;
-  letter-spacing: -0.025em;
+  font:
+    600 clamp(1.2rem, 2vw, 1.7rem) / 1.2 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .faqToggle {
@@ -495,8 +556,13 @@
   justify-content: center;
   border: 1px solid var(--home-contact-border);
   color: var(--home-contact-marker);
-  font: 1.35rem/1 var(--font-body), sans-serif;
-  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
+  font:
+    1.35rem/1 var(--font-body),
+    sans-serif;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
 }
 
 .faqItem[open] .faqToggle {
@@ -528,12 +594,12 @@
 }
 
 .faqItem[open] .faqAnswer p {
-  padding-bottom: 1.5rem;
+  padding-bottom: var(--space-5);
 }
 
 .cta {
-  padding-top: clamp(5rem, 8vw, 8rem);
-  padding-bottom: clamp(5rem, 8vw, 8rem);
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
   background: var(--home-method-bg);
   color: var(--home-method-fg);
 }
@@ -546,15 +612,17 @@
 }
 
 .cta .sectionLabel {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-5);
   color: var(--home-lime);
 }
 
 .ctaTitleBlock h2 {
   max-width: 10ch;
   margin: 0;
-  font: 600 clamp(3.2rem, 6.4vw, 6.8rem) / 0.94 var(--font-display), sans-serif;
-  letter-spacing: -0.04em;
+  font:
+    600 clamp(3.2rem, 6.4vw, 6.8rem) / 0.94 var(--font-display),
+    sans-serif;
+  letter-spacing: var(--tracking-display);
 }
 
 .ctaAction {
@@ -565,8 +633,8 @@
 .ctaAction > p {
   margin: 0 0 1.5rem;
   color: var(--home-method-muted);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
 }
 
 .ctaLink {
@@ -575,15 +643,19 @@
   min-width: min(100%, 17rem);
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--space-4);
   padding: 0.85rem 1rem;
   background: var(--home-lime);
   color: #0a0a0a;
-  font: 700 0.68rem/1.2 var(--font-mono), monospace;
+  font:
+    700 0.68rem/1.2 var(--font-mono),
+    monospace;
   letter-spacing: 0.04em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: background-color 180ms ease, color 180ms ease;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 .ctaLink:hover {
@@ -612,7 +684,7 @@
 
   .heroTitleBlock {
     grid-column: 1 / -1;
-    max-width: 13ch;
+    max-width: none;
   }
 
   .heroIntro {
@@ -626,32 +698,54 @@
 
   .carouselViewport {
     position: relative;
+    display: flex;
     height: auto;
     min-height: 0;
+    flex-direction: column;
     overflow: visible;
-    padding: clamp(5rem, 10vh, 7rem) clamp(1.25rem, 5vw, 3rem);
+    padding: 2rem 5rem 2rem 0;
   }
 
   .carouselHeading {
     align-items: start;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-6);
   }
 
   .carouselTrack {
     width: 100%;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: var(--space-7);
     padding: 0;
     transform: none !important;
   }
 
   .serviceSlide {
     width: 100%;
+    height: auto;
   }
 
   .serviceCard {
+    display: flex;
+    height: auto;
     min-height: 0;
-    padding-block: 1.5rem;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-block: var(--space-5);
+  }
+
+  .serviceCard h3,
+  .serviceSubtitle,
+  .serviceDescription {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .serviceFeatures {
+    display: block;
+    margin-top: var(--space-2);
+    padding: 0.8rem 0 0;
+    border-top: 1px solid var(--home-method-border);
+    border-left: 0;
   }
 
   .serviceFeatures ul {
@@ -663,20 +757,22 @@
   }
 
   .workflowStep {
-    grid-template-columns: 2.6rem 1.4rem minmax(10rem, 0.8fr) minmax(13rem, 1.2fr);
+    grid-template-columns: 2.6rem 1.4rem minmax(10rem, 0.8fr) minmax(
+        13rem,
+        1.2fr
+      );
   }
 }
 
 @media (max-width: 700px) {
   .hero {
-    padding-top: 7.5rem;
-    padding-bottom: 5rem;
+    padding-block: clamp(1.5rem, 4vh, 2.5rem);
   }
 
   .heroGrid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
   }
 
   .heroTitleBlock,
@@ -686,7 +782,7 @@
 
   .heroTitleBlock h1 {
     max-width: 100%;
-    font-size: clamp(3.25rem, 12vw, 5rem);
+    font-size: var(--type-page-title);
   }
 
   .heroTitleBlock {
@@ -710,7 +806,7 @@
   .sectionHeading,
   .faqHeading {
     grid-template-columns: 2.2rem minmax(0, 1fr);
-    gap: 0.75rem;
+    gap: var(--space-3);
     margin-bottom: 2.25rem;
   }
 
@@ -728,7 +824,7 @@
   .sectionHeading h2,
   .workflowHeading h2,
   .faqHeading h2 {
-    font-size: clamp(2.8rem, 10.5vw, 4.5rem);
+    font-size: var(--type-section-title);
   }
 
   .problemGrid {
@@ -750,24 +846,24 @@
   }
 
   .carouselHeading h2 {
-    font-size: clamp(2.8rem, 10vw, 4.5rem);
+    font-size: var(--type-section-title);
   }
 
   .carouselNote {
-    margin-top: 1rem;
+    margin-top: var(--space-4);
   }
 
   .carouselTrack {
-    gap: 2rem;
+    gap: var(--space-6);
   }
 
   .serviceCard {
-    gap: 0.75rem;
+    gap: var(--space-3);
     padding-block: 1.25rem;
   }
 
   .serviceCard h3 {
-    font-size: clamp(2.1rem, 9vw, 3.1rem);
+    font-size: var(--type-card-title);
   }
 
   .serviceFeatures ul {
@@ -780,8 +876,8 @@
 
   .workflowHeading {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-    margin-bottom: 2.5rem;
+    gap: var(--space-4);
+    margin-bottom: var(--space-7);
   }
 
   .workflowHeading .sectionLabel {
@@ -815,7 +911,7 @@
   .workflowStep p {
     grid-column: 2 / -1;
     margin-top: 0.1rem;
-    font-size: 0.9rem;
+    font-size: var(--type-small);
   }
 
   .faqItem summary {
@@ -830,17 +926,17 @@
 
   .faqAnswer p {
     padding-inline: 2.65rem;
-    font-size: 0.9rem;
+    font-size: var(--type-small);
   }
 
   .ctaGrid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--space-6);
   }
 
   .ctaTitleBlock h2 {
     max-width: 12ch;
-    font-size: clamp(2.8rem, 10.5vw, 4.5rem);
+    font-size: var(--type-section-title);
   }
 
   .ctaAction {
@@ -855,15 +951,17 @@
 
   .carouselViewport {
     position: relative;
+    display: flex;
     height: auto;
     min-height: 0;
+    flex-direction: column;
     overflow: visible;
   }
 
   .carouselTrack {
     width: 100%;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: var(--space-7);
     padding: 0 clamp(1.25rem, 5vw, 5rem);
     transform: none !important;
   }
@@ -880,5 +978,12 @@
   .faqToggle,
   .ctaLink {
     transition: none;
+  }
+}
+
+/* Scala condivisa H1 Hero: 80–110px, con crescita controllata sui desktop. */
+@media (min-width: 701px) {
+  .heroTitleBlock h1 {
+    font-size: var(--type-page-title);
   }
 }

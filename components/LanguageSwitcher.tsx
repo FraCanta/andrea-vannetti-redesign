@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { usePageTransition } from "@/components/PageTransition";
 
 type Locale = (typeof routing.locales)[number];
 
@@ -18,6 +19,7 @@ export function LanguageSwitcher({ size = "md" }: { size?: "md" | "lg" }) {
   const pathname = usePathname();
   const params = useParams<{ slug?: string }>();
   const router = useRouter();
+  const navigate = usePageTransition();
   const [isPending, startTransition] = useTransition();
 
   const nextLocale: Locale = locale === "it" ? "en" : "it";
@@ -27,7 +29,7 @@ export function LanguageSwitcher({ size = "md" }: { size?: "md" | "lg" }) {
     <button
       type="button"
       onClick={() =>
-        startTransition(() => {
+        navigate(() => startTransition(() => {
           if (pathname === "/progetti/[slug]" && typeof params.slug === "string") {
             router.replace(
               { pathname: "/progetti/[slug]", params: { slug: params.slug } },
@@ -47,7 +49,7 @@ export function LanguageSwitcher({ size = "md" }: { size?: "md" | "lg" }) {
             pathname as Exclude<typeof pathname, "/progetti/[slug]" | "/blog/[slug]">,
             { locale: nextLocale },
           );
-        })
+        }))
       }
       disabled={isPending}
       lang={nextLocale}
