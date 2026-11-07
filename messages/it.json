@@ -203,7 +203,7 @@
     },
     "roles": {
       "eyebrow": "04 / COME LAVORIAMO INSIEME",
-      "title": "Ruoli chiari. Meno sovrapposizioni.",
+      "title": "Ruoli chiari. Meno confusione.",
       "items": [
         {
           "number": "01",
@@ -797,6 +797,18 @@
       "briefLabel": "Brief o documentazione (link)",
       "figmaLabel": "Figma o presentazione (link)",
       "repositoryLabel": "Repository pubblico (link)",
+      "occupationLabel": "Di cosa ti occupi?",
+      "projectTypesLabel": "Che tipo di progetti segui?",
+      "planLabel": "Come pensi che potremmo collaborare?",
+      "availabilityLabel": "Disponibilità o contesto",
+      "proposalMaterialsLabel": "Link o materiali utili (opzionale)",
+      "proposalRequired": "Completa questo campo",
+      "availability": {
+        "per-project": "In base ai singoli progetti",
+        "occasional": "Collaborazioni occasionali",
+        "ongoing": "Possibile collaborazione continuativa",
+        "to-discuss": "Da valutare insieme"
+      },
       "additionalInfo": "C'è altro che vuoi aggiungere?",
       "submit": "Invia la proposta",
       "changeHint": "Vuoi inviare una richiesta diversa?",

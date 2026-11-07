@@ -71,6 +71,10 @@ export async function POST(req: NextRequest) {
     const projectStage = cleanText(raw.projectStage, 40);
     const timeline = cleanText(raw.timeline, 40);
     const budget = cleanText(raw.budget, 40);
+    const occupation = cleanText(raw.occupation, 40);
+    const projectType = cleanText(raw.projectType, 40);
+    const collaborationPlan = cleanText(raw.collaborationPlan, 3000);
+    const availability = cleanText(raw.availability, 40);
     const locale = raw.locale === "en" ? "en" : "it";
     const privacy = raw.privacy === true;
 
@@ -114,6 +118,14 @@ export async function POST(req: NextRequest) {
     if (collaboration && !allowedCollaborationModes.has(collaborationMode)) {
       return NextResponse.json({ error: "Seleziona come vuoi collaborare." }, { status: 400 });
     }
+    const proposalMode = collaboration && collaborationMode === "proposal";
+    const allowedAvailability = new Set(["per-project", "occasional", "ongoing", "to-discuss"]);
+    if (proposalMode && (
+      !occupation || !projectType ||
+      !collaborationPlan || !availability || !allowedAvailability.has(availability)
+    )) {
+      return NextResponse.json({ error: "Controlla i dettagli della proposta." }, { status: 400 });
+    }
     const collaborationModeLabel = locale === "en"
       ? {
           "project-support": "I have a project and need support",
@@ -146,6 +158,21 @@ export async function POST(req: NextRequest) {
           timeline && detailRow(locale === "en" ? "Indicative timeline" : "Tempistica indicativa", projectLabels.timeline[timeline as keyof typeof projectLabels.timeline]),
           budget && detailRow(locale === "en" ? "Indicative budget" : "Budget indicativo", projectLabels.budget[budget as keyof typeof projectLabels.budget]),
         ].filter(Boolean).join("")
+      : "";
+    const proposalLabels = locale === "en"
+      ? {
+          availability: { "per-project": "Depending on each project", occasional: "Occasional collaborations", ongoing: "Possible ongoing collaboration", "to-discuss": "To be discussed" },
+        }
+      : {
+          availability: { "per-project": "In base ai singoli progetti", occasional: "Collaborazioni occasionali", ongoing: "Possibile collaborazione continuativa", "to-discuss": "Da valutare insieme" },
+        };
+    const proposalRows = proposalMode
+      ? [
+          detailRow(locale === "en" ? "What I do" : "Di cosa mi occupo", occupation),
+          detailRow(locale === "en" ? "Projects I follow" : "Tipi di progetto seguiti", projectType),
+          detailRow(locale === "en" ? "Availability" : "Disponibilità o contesto", proposalLabels.availability[availability as keyof typeof proposalLabels.availability]),
+          detailRow(locale === "en" ? "How I imagine collaborating" : "Come immagino la collaborazione", collaborationPlan),
+        ].join("")
       : "";
     const safeName = escapeHtml(nome);
     const safeEmail = escapeHtml(email);
@@ -182,6 +209,7 @@ export async function POST(req: NextRequest) {
               ${!collaboration ? `<tr><td style="padding: 10px 12px; font-weight: bold; color: #666;">${locale === "en" ? "Service" : "Servizio"}</td><td style="padding: 10px 12px;">${escapeHtml(subject)}</td></tr>` : ""}
               ${projectDetailRows}
               ${collaboration ? `<tr><td style="padding: 10px 12px; font-weight: bold; color: #666;">${locale === "en" ? "Collaboration type" : "Tipo di collaborazione"}</td><td style="padding: 10px 12px;">${escapeHtml(collaborationModeLabel ?? "")}</td></tr>` : ""}
+              ${proposalRows}
               ${collaboration && selectedCollaborationSkills.length ? `<tr><td style="padding: 10px 12px; font-weight: bold; color: #666;">${locale === "en" ? "Skills requested" : "Competenze richieste"}</td><td style="padding: 10px 12px;">${escapeHtml(selectedCollaborationSkills.join(", "))}</td></tr>` : ""}
               ${collaboration ? projectLinkRow(locale === "en" ? "Brief / documentation" : "Brief / documentazione", safeBriefUrl) : ""}
               ${collaboration ? projectLinkRow(locale === "en" ? "Figma / presentation" : "Figma / presentazione", safeFigmaUrl) : ""}

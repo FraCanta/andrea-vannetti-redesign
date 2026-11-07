@@ -203,7 +203,7 @@
     },
     "roles": {
       "eyebrow": "04 / HOW WE WORK TOGETHER",
-      "title": "Clear roles. Fewer overlaps.",
+      "title": "Clear roles. Less confusion.",
       "items": [
         {
           "number": "01",
@@ -797,6 +797,18 @@
       "briefLabel": "Brief or documentation (link)",
       "figmaLabel": "Figma or presentation (link)",
       "repositoryLabel": "Public repository (link)",
+      "occupationLabel": "What do you do?",
+      "projectTypesLabel": "What kind of projects do you work on?",
+      "planLabel": "How do you imagine we could collaborate?",
+      "availabilityLabel": "Availability or context",
+      "proposalMaterialsLabel": "Useful links or materials (optional)",
+      "proposalRequired": "Please complete this field",
+      "availability": {
+        "per-project": "Depending on each project",
+        "occasional": "Occasional collaborations",
+        "ongoing": "Possible ongoing collaboration",
+        "to-discuss": "To be discussed"
+      },
       "additionalInfo": "Is there anything else you'd like to add?",
       "submit": "Send proposal",
       "changeHint": "Want to send a different enquiry?",

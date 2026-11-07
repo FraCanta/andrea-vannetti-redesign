@@ -5,7 +5,6 @@ import { CheckCircle, Loader2, Send } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import { SEND_TO } from "@/components/ContactConversionTracker";
-import { usePageTransition } from "@/components/PageTransition";
 import styles from "./ContactForm.module.css";
 
 type Service =
@@ -50,6 +49,10 @@ type FormValues = {
   figmaUrl: string;
   repositoryUrl: string;
   collaborationSkills: CollaborationSkill[];
+  occupation: string;
+  projectType: string;
+  collaborationPlan: string;
+  availability: string;
   subject: Service | "";
   projectStage: "idea" | "defining" | "existing" | "development" | "online" | "";
   timeline: "asap" | "1-3-months" | "3-6-months" | "flexible" | "";
@@ -69,6 +72,10 @@ const initialForm: FormValues = {
   figmaUrl: "",
   repositoryUrl: "",
   collaborationSkills: [],
+  occupation: "",
+  projectType: "",
+  collaborationPlan: "",
+  availability: "",
   subject: "",
   projectStage: "",
   timeline: "",
@@ -87,7 +94,6 @@ export function ContactForm({
   const t = useTranslations("ContactForm");
   const locale = useLocale();
   const router = useRouter();
-  const navigate = usePageTransition();
   const [fixedCollaboration, setFixedCollaboration] = useState(
     requestSubject === "collaboration",
   );
@@ -99,7 +105,8 @@ export function ContactForm({
   const [errorMsg, setErrorMsg] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const collaboration = form.subject === "collaboration";
-  const showProjectDetails = projectServices.includes(form.subject as Service);
+  const showProjectDetails = projectServices.includes(form.subject as Service) ||
+    (collaboration && form.collaborationMode === "project-support");
 
   const updateField = (name: Exclude<keyof FormValues, "collaborationSkills">, value: string | boolean) => {
     setForm((current) => ({ ...current, [name]: value }));
@@ -121,6 +128,25 @@ export function ContactForm({
     setStatus("idle");
   };
 
+  const chooseCollaborationMode = (mode: FormValues["collaborationMode"]) => {
+    setForm((current) => ({
+      ...current,
+      collaborationMode: mode,
+      occupation: "",
+      projectType: "",
+      collaborationPlan: "",
+      availability: "",
+      ...(mode === "project-support" ? {} : { projectStage: "", timeline: "", budget: "" }),
+      ...(mode === "proposal" ? {} : { collaborationSkills: [], briefUrl: "", figmaUrl: "", repositoryUrl: "" }),
+    }));
+    setFieldErrors((current) => {
+      const next = { ...current };
+      delete next.collaborationMode;
+      return next;
+    });
+    setStatus("idle");
+  };
+
   const chooseSubject = (subject: Service) => {
     setForm((current) => ({
       ...current,
@@ -139,12 +165,12 @@ export function ContactForm({
       return next;
     });
     setStatus("idle");
-    navigate(() => router.replace(
+    router.replace(
       subject === "collaboration"
         ? { pathname: "/contatti", query: { subject: "collaboration" } }
         : { pathname: "/contatti" },
       { scroll: false },
-    ));
+    );
   };
 
   const handleSubjectChange = (value: string) => {
@@ -168,7 +194,7 @@ export function ContactForm({
         return next;
       });
       setStatus("idle");
-      navigate(() => router.replace({ pathname: "/contatti" }, { scroll: false }));
+      router.replace({ pathname: "/contatti" }, { scroll: false });
       return;
     }
     chooseSubject(value as Service);
@@ -186,7 +212,7 @@ export function ContactForm({
       repositoryUrl: "",
     }));
     setStatus("idle");
-    navigate(() => router.replace({ pathname: "/contatti" }, { scroll: false }));
+    router.replace({ pathname: "/contatti" }, { scroll: false });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -199,6 +225,12 @@ export function ContactForm({
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errors.email = t("errors.emailInvalid");
     if (!form.subject) errors.subject = t("errors.subjectRequired");
     if (collaboration && !form.collaborationMode) errors.collaborationMode = t("collaboration.modeRequired");
+    if (collaboration && form.collaborationMode === "proposal") {
+      if (!form.occupation) errors.occupation = t("collaboration.proposalRequired");
+      if (!form.projectType) errors.projectType = t("collaboration.proposalRequired");
+      if (!form.collaborationPlan.trim()) errors.collaborationPlan = t("collaboration.proposalRequired");
+      if (!form.availability) errors.availability = t("collaboration.proposalRequired");
+    }
     if (!form.messaggio.trim()) errors.messaggio = t("errors.messageRequired");
     if (!form.privacy) errors.privacy = t("errors.privacy");
     setFieldErrors(errors);
@@ -324,8 +356,7 @@ export function ContactForm({
                     name="collaborationMode"
                     value={mode}
                     checked={form.collaborationMode === mode}
-                    onChange={() => updateField("collaborationMode", mode)}
-                    aria-invalid={!!fieldErrors.collaborationMode}
+                    onChange={() => chooseCollaborationMode(mode)}
                     aria-describedby={fieldErrors.collaborationMode ? "error-collaboration-mode" : undefined}
                   />
                   <span>{t(`collaboration.modes.${mode}`)}</span>
@@ -336,7 +367,7 @@ export function ContactForm({
           </fieldset>
         )}
 
-        {collaboration && (
+        {collaboration && form.collaborationMode === "project-support" && (
           <div className={styles.collaborationDetails}>
             <div className={styles.field}>
               <label htmlFor="contact-site">{t("labels.portfolio")}</label>
@@ -375,6 +406,42 @@ export function ContactForm({
               <div className={styles.field}>
                 <label htmlFor="contact-repository">{t("collaboration.repositoryLabel")}</label>
                 <input className={styles.control} id="contact-repository" name="repositoryUrl" type="url" inputMode="url" maxLength={500} placeholder={t("placeholders.site")} value={form.repositoryUrl} onChange={(e) => updateField("repositoryUrl", e.target.value)} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {collaboration && form.collaborationMode === "proposal" && (
+          <div className={styles.collaborationDetails}>
+            <div className={styles.field}>
+              <label htmlFor="contact-occupation">{t("collaboration.occupationLabel")} <span aria-hidden="true">*</span></label>
+              <input className={`${styles.control} ${fieldErrors.occupation ? styles.invalid : ""}`} id="contact-occupation" name="occupation" type="text" maxLength={160} value={form.occupation} onChange={(e) => updateField("occupation", e.target.value)} aria-invalid={!!fieldErrors.occupation} />
+              {fieldErrors.occupation && <p className={styles.error}>{fieldErrors.occupation}</p>}
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-project-type">{t("collaboration.projectTypesLabel")} <span aria-hidden="true">*</span></label>
+              <input className={`${styles.control} ${fieldErrors.projectType ? styles.invalid : ""}`} id="contact-project-type" name="projectType" type="text" maxLength={200} value={form.projectType} onChange={(e) => updateField("projectType", e.target.value)} aria-invalid={!!fieldErrors.projectType} />
+              {fieldErrors.projectType && <p className={styles.error}>{fieldErrors.projectType}</p>}
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-collaboration-plan">{t("collaboration.planLabel")} <span aria-hidden="true">*</span></label>
+              <textarea id="contact-collaboration-plan" name="collaborationPlan" rows={4} maxLength={3000} value={form.collaborationPlan} onChange={(e) => updateField("collaborationPlan", e.target.value)} aria-invalid={!!fieldErrors.collaborationPlan} />
+              {fieldErrors.collaborationPlan && <p className={styles.error}>{fieldErrors.collaborationPlan}</p>}
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-availability">{t("collaboration.availabilityLabel")} <span aria-hidden="true">*</span></label>
+              <select className={`${styles.control} ${fieldErrors.availability ? styles.invalid : ""}`} id="contact-availability" name="availability" value={form.availability} onChange={(e) => updateField("availability", e.target.value)} aria-invalid={!!fieldErrors.availability}>
+                <option value="">{t("projectDetails.selectPlaceholder")}</option>
+                {(["per-project", "occasional", "ongoing", "to-discuss"] as const).map((option) => (
+                  <option key={option} value={option}>{t(`collaboration.availability.${option}`)}</option>
+                ))}
+              </select>
+              {fieldErrors.availability && <p className={styles.error}>{fieldErrors.availability}</p>}
+            </div>
+            <div className={styles.materialsGrid}>
+              <div className={styles.field}>
+                <label htmlFor="contact-proposal-materials">{t("collaboration.proposalMaterialsLabel")}</label>
+                <input className={styles.control} id="contact-proposal-materials" name="briefUrl" type="url" inputMode="url" maxLength={500} placeholder={t("placeholders.site")} value={form.briefUrl} onChange={(e) => updateField("briefUrl", e.target.value)} />
               </div>
             </div>
           </div>

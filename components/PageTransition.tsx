@@ -12,7 +12,7 @@ import {
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
 } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./PageTransition.module.css";
 
 type TransitionAction = () => void;
@@ -27,21 +27,19 @@ export function usePageTransition() {
   return useContext(TransitionContext);
 }
 
-function RouteObserver({ onRouteChange }: { onRouteChange: (key: string) => void }) {
+function RouteObserver({ onRouteChange }: { onRouteChange: () => void }) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const routeKey = `${pathname}?${searchParams.toString()}`;
   const previousRoute = useRef<string | null>(null);
 
   useEffect(() => {
     if (previousRoute.current === null) {
-      previousRoute.current = routeKey;
+      previousRoute.current = pathname;
       return;
     }
-    if (previousRoute.current === routeKey) return;
-    previousRoute.current = routeKey;
-    onRouteChange(routeKey);
-  }, [onRouteChange, routeKey]);
+    if (previousRoute.current === pathname) return;
+    previousRoute.current = pathname;
+    onRouteChange();
+  }, [onRouteChange, pathname]);
 
   return null;
 }
@@ -74,7 +72,7 @@ function TransitionController({ children }: { children: ReactNode }) {
     changePhase("opening");
   }, [changePhase, clearTimers]);
 
-  const onRouteChange = useCallback((_routeKey: string) => {
+  const onRouteChange = useCallback(() => {
     routeReadyRef.current = true;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       changePhase("idle");
