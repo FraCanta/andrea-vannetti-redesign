@@ -575,9 +575,12 @@
       50% 100%;
   }
   .heroGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.6rem;
     margin-top: 1.8rem;
+  }
+  .heroCopy {
+    min-width: 0;
   }
   .heroTitle {
     max-width: 12ch;
@@ -596,7 +599,8 @@
     margin-top: 1.35rem;
   }
   .projectDiagram {
-    min-height: 19rem;
+    min-width: 0;
+    min-height: 0;
   }
   .heroRule {
     margin-top: var(--space-7);
