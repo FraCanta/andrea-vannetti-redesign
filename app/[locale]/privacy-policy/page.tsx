@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { PrivacyIt } from "./PrivacyIt";
 import { PrivacyEn } from "./PrivacyEn";
 import { getAlternates } from "@/lib/seo";
+import styles from "./PrivacyPolicy.module.css";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -25,13 +26,13 @@ export default async function PrivacyPolicyPage({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <>
+    <main className={styles.page}>
       <section className="pt-32 md:pt-44 pb-section section-padding">
         <div className="max-w-3xl mx-auto prose-invert">
           {locale === "en" ? <PrivacyEn /> : <PrivacyIt />}
         </div>
       </section>
       <div className="section-divider" />
-    </>
+    </main>
   );
 }

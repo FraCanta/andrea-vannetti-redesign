@@ -1,0 +1,23 @@
+.page {
+  background: var(--home-bg);
+  color: var(--home-fg);
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page strong,
+.page :global([class~="text-typography"]) {
+  color: var(--home-fg);
+}
+
+.page p,
+.page :global([class~="text-typography/80"]),
+.page :global([class~="text-typography-muted"]),
+.page :global([class~="text-typography-dim"]) {
+  color: var(--home-muted);
+}
+
+.page :global([class~="text-primary"]) {
+  color: var(--home-title-accent);
+}

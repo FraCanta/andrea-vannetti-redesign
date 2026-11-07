@@ -12,7 +12,7 @@ export function ProgettiContent() {
   const t = useTranslations("Projects");
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="projects-title">
         <div className={styles.shell}>
           <HomeReveal as="p" className={styles.eyebrow}>
@@ -124,6 +124,6 @@ export function ProgettiContent() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

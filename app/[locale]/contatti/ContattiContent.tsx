@@ -42,7 +42,7 @@ export function ContattiContent({
   const t = useTranslations("Contact");
 
   return (
-    <>
+    <main>
       <section className={`${styles.hero} section-padding`} aria-labelledby="contact-title">
         <div className={styles.shell}>
           <SectionReveal>
@@ -131,6 +131,6 @@ export function ContattiContent({
       </section>
       {/* Divider */}
       <div className="section-divider" />
-    </>
+    </main>
   );
 }

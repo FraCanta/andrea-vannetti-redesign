@@ -140,7 +140,7 @@ export function ProjectDetailContent({ project, locale }: ProjectDetailContentPr
     : [];
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <article>
         <header className={`${styles.detailHero} ${styles.shell}`}>
           <nav className={styles.detailNav} aria-label={t("detail.backToArchive")}>
@@ -312,6 +312,6 @@ export function ProjectDetailContent({ project, locale }: ProjectDetailContentPr
           </div>
         </section>
       </article>
-    </div>
+    </main>
   );
 }

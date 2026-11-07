@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/ThemeProvider";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -36,7 +36,7 @@ export function ChiSonoContent() {
       : "/images/chi-sono-andrea-light.png";
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="about-title">
         <div className={styles.container}>
           <div className={styles.heroGrid}>
@@ -232,6 +232,6 @@ export function ChiSonoContent() {
           </Link>
         </HomeReveal>
       </section>
-    </div>
+    </main>
   );
 }

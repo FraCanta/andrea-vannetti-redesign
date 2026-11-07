@@ -132,6 +132,19 @@ export default async function RootLayout({
 
   const BASE_URL = "https://www.andreavannetti.dev";
   const localeUrl = locale === "it" ? BASE_URL : `${BASE_URL}/en`;
+  const themeBootstrap = `(() => {
+    const root = document.documentElement;
+    let theme = "system";
+    try {
+      const stored = localStorage.getItem("av-theme");
+      if (stored === "light" || stored === "dark" || stored === "system") theme = stored;
+    } catch {}
+    const resolved = theme === "system"
+      ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      : theme;
+    root.dataset.theme = resolved;
+    root.style.colorScheme = resolved;
+  })();`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -208,6 +221,7 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -218,7 +232,7 @@ export default async function RootLayout({
           <SiteProviders>
             <Navbar />
             <PageProgressBar />
-            <main>{children}</main>
+            {children}
             <EditorialFooter />
             <CookieBanner />
             <ContactConversionTracker />

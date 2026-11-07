@@ -8,13 +8,13 @@ import styles from "./HomeChapters.module.css";
 
 export function EditorialHome() {
   return (
-    <div className={styles.homeRoot}>
+    <main className={styles.homeRoot}>
       <EditorialOpening />
       <HomeServices />
       <HomeBridgeMarquee />
       <HomeAbout />
       <HomeBlog />
       <HomeContact />
-    </div>
+    </main>
   );
 }

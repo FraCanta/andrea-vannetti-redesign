@@ -218,7 +218,7 @@ export function ServiziContent() {
   const faqs = t.raw("faq.items") as { q: string; a: string }[];
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="services-title">
         <div className={styles.shell}>
           <HomeReveal as="p" className={styles.sectionLabel}>
@@ -369,6 +369,6 @@ export function ServiziContent() {
           </HomeReveal>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

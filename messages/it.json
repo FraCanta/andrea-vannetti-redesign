@@ -887,9 +887,9 @@
     "minutes": "minuti"
   },
   "NotFound": {
-    "eyebrow": "Errore 404",
+    "eyebrow": "Errore",
     "title": "Pagina non trovata",
-    "text": "La pagina che cerchi non esiste o è stata spostata. Capita anche ai siti migliori.",
+    "text": "La pagina che cerchi non esiste o è stata spostata.<br></br>Capita anche ai siti migliori.",
     "home": "Torna alla home",
     "projects": "Vedi i progetti"
   },

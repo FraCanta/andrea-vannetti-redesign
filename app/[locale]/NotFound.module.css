@@ -1,0 +1,95 @@
+.page {
+  background: var(--home-bg);
+  color: var(--home-fg);
+}
+
+.watermark {
+  color: color-mix(in srgb, var(--home-fg) 3%, transparent);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0;
+  color: var(--home-role);
+  font: 600 0.72rem/1.4 var(--font-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrowNumber {
+  flex: 0 0 auto;
+  border: 1px solid currentColor;
+  padding: 0.23rem 0.4rem;
+}
+
+.copy {
+  color: var(--home-muted);
+}
+
+.primaryButton {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  border: 1px solid var(--home-lime);
+  background: var(--home-lime);
+  color: #0a0a0a;
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.primaryButton:hover {
+  border-color: var(--home-violet);
+  background: var(--home-violet);
+  color: #fff;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--home-title-accent);
+  outline-offset: 4px;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  border-color: var(--home-border);
+  border-style: solid;
+  border-width: 1px;
+  background: transparent;
+  color: var(--home-fg);
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.secondaryButton:hover {
+  border-color: var(--home-fg);
+  background: var(--home-fg);
+  color: var(--home-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+}
